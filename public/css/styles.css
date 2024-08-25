@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --roxo-principal: #5a5d9d;
+    --roxo-sombreamento: #474a7d;
+    --preto-principal: #111111;
+    --roxo-clareado: #787bb2;
+    --cinza--branco: #2a2a2a; 
+    --cinza--navbar:  #faf8f8;
+    --cinza-basico: #DDE1E6;
+}
+
+body {
+    color: var(--cinza--branco);
+    font-family: "Roboto", sans-serif;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center; 
+    justify-content: space-between; 
+}
+
+.header {
+    background-color: var(--cinza--navbar);
+    border-bottom: .0625rem solid var(--cinza-basico);
+    padding: .625rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo-navbar {
+    width: 7.5rem; 
+    height: auto; 
+    vertical-align: middle; 
+}
+
+.navbar {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    color: black;
+}
+
+.navbar li {
+    position: relative;
+}
+
+.navbar li::after {
+    content: '';
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--roxo-sombreamento);
+    transition: width 0.3s ease-in-out;
+}
+.navbar li:hover::after {
+    width: 100%;
+}
+
+.navbar-button {
+    display: flex;
+    align-items: center;
+}
+a {
+    color: black;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+a:hover {
+    color: var(--roxo-sombreamento);
+    transform: scale(1.1);
+}
+
+.header .container {
+    justify-content: space-between;
+}
+
+button.login-button, button.button-nossa-equipe {
+    background-color: transparent;
+    border: 2px solid var(--roxo-principal);
+    color: black;
+    margin-left: 1.25rem; 
+}
+
+button.login-button:hover {
+    background-color: var(--roxo-principal);
+    color: white;
+}
+
+.main-content {
+    height: 59.375rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background: url('../img/people-walking-inside-airport-terminal\ 1.png');
+    background-size: cover;
+    background-position: center;
+    font-weight: bold;
+}
+
+.main-content-texts .main-content-title {
+    display: flex;
+    padding: 40px 0 40px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 53px;
+    color: var(--azul-titulo);
+    max-width: 860px;
+    line-height: 1.3;
+}
+
+.main-content-texts .main-content-subtitle {
+    font-size: 18px;
+    color: #132b3f;;
+    font-weight: 700;
+    max-width: 600px;
+    line-height: 1.7;
+    padding-bottom: 30px;
+}
+
+.main-content-button {
+    width: 185px;
+    height: 60px;
+    margin: auto;
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+}
+
+.main-content-button:hover {
+    background-color: var(--roxo-sombreamento);
+    transition: background-color 0.3s;
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 8px rgba(3, 3, 3, 0.2);
+    transition: 1ms;
+}
+
+
+button {
+    background-color: var(--roxo-principal);
+    color: #fff;
+    padding: 15px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 10px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: var(--roxo-sombreamento);
+    color: white;
+    transform: scale(1.1);
+}
+
+.container-nossa-solucao {
+    background-color: #faf8f8;
+    width: 100%;
+    text-align: center;
+}
+
+.container-sobre-nos .container-nossa-solucao{
+    background-color: white;
+}
+
+
+
+.nossa-solucao-title {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    color: var(--azul-marinho);
+    padding: 20px;
+}
+
+.nossa-solucao-paragrafo {
+    font-weight: 700;
+    font-size: 25px;
+    padding: 0 0 12px;
+}
+
+.content-nossa-solucao {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    gap: 100px;
+    padding: 5%;
+}
+
+.content-nossa-solucao-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo-nossa-solucao-escrito-card img{
+    position: relative;
+    margin: .5rem 3.75rem 0 6.25rem;
+}
+
+/* Section sobre nós */
+.container-sobre-nos{
+    background-color: white;
+    margin: 40px 0 .625rem;
+    padding: .625rem 0 4.375rem;
+}
+
+.nossa-solucao-paragrafo2{
+    padding: 0rem 12.5rem;
+    font-size: 1.25rem;
+}
+
+.fale-conosco-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 60px;
+}
+
+.content-fale-content-titulo{
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    text-align: center;
+    color: var(--roxo-clareado);
+    padding: 15px;
+}
+
+.fale-conosco-paragrafo{
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+footer {
+    display: flex;
+    align-items: center; 
+    justify-content: flex-start; 
+    background-color: var(--cinza-basico);
+    border-top: .96px solid black;
+    padding: 8px;
+    height: 6.25rem;
+    position: relative;
+    width: 100%;
+}
+
+footer img {
+    width: 12.5rem; 
+    height: 6.25rem; 
+    margin-left: 16px; 
+}
+
+.footer-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px; 
+    font-weight: 400;
+}
+
+
+.main-content-texts h1,
+.container-nossa-solucao h1,
+.container-sobre-nos h1,
+.fale-conosco-content h1 {
+    color: var(--roxo-principal);
+}
+
+
