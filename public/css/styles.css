@@ -10,9 +10,12 @@
     --roxo-sombreamento: #474a7d;
     --preto-principal: #111111;
     --roxo-clareado: #787bb2;
-    --cinza--branco: #2a2a2a; 
+    --cinza--branco: #44454e; 
     --cinza--navbar:  #faf8f8;
     --cinza-basico: #DDE1E6;
+    --dourado-principal: #C5AB67;
+    --cinza-titulo: #666472;
+    --cinza-fundo: #e6e7eb;
 }
 
 body {
@@ -29,28 +32,27 @@ body {
 }
 
 .header {
-    background-color: var(--cinza--navbar);
-    border-bottom: .0625rem solid var(--cinza-basico);
     padding: .625rem;
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
     z-index: 1000;
 }
 
 .logo-navbar {
-    width: 7.5rem; 
-    height: auto; 
-    vertical-align: middle; 
+    width: 11.875rem; 
+    margin: auto;
 }
 
 .navbar {
     width: 400px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    margin-left: auto;
     align-items: center;
     list-style: none;
     color: black;
+    gap: 20px;
 }
 
 .navbar li {
@@ -75,6 +77,7 @@ body {
 .navbar-button {
     display: flex;
     align-items: center;
+    margin-left: 50px;
 }
 a {
     color: black;
@@ -93,13 +96,13 @@ a:hover {
 
 button.login-button, button.button-nossa-equipe {
     background-color: transparent;
-    border: 2px solid var(--roxo-principal);
+    border: 2px solid var(--dourado-principal);
     color: black;
     margin-left: 1.25rem; 
 }
 
 button.login-button:hover {
-    background-color: var(--roxo-principal);
+    background-color: var(--cinza--branco);
     color: white;
 }
 
@@ -107,43 +110,65 @@ button.login-button:hover {
     height: 59.375rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    background: url('../img/people-walking-inside-airport-terminal\ 1.png');
+    background: url('../img/home.png');
     background-size: cover;
     background-position: center;
     font-weight: bold;
+    text-align: center;
 }
 
-.main-content-texts .main-content-title {
+.main-content-texts .main-content-title{
     display: flex;
-    padding: 40px 0 40px;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
-    font-size: 53px;
-    color: var(--azul-titulo);
+    font-size: 70px;
+    color: var(--cinza-titulo);
     max-width: 860px;
     line-height: 1.3;
+    justify-content: center;
 }
 
 .main-content-texts .main-content-subtitle {
     font-size: 18px;
-    color: #132b3f;;
+    color: black;
     font-weight: 700;
     max-width: 600px;
     line-height: 1.7;
     padding-bottom: 30px;
 }
 
-.main-content-button {
-    width: 185px;
-    height: 60px;
+.main-content-p{
+    font-size: 70px;
+    color: #111111;
+    padding-bottom: 30px;
+}
+
+.main-content-simleText{
+    color: black;
+}
+
+.main-content-button1 {
+    width: 160px;
+    height: 55px;
     margin: auto;
     box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background-color: #D8DADE;
+    color: black;
+}
+
+.main-content-button2{
+    width: 160px;
+    height: 55px;
+    box-shadow: 4px 5px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    background-color: #22232F;
 }
 
 .main-content-button:hover {
-    background-color: var(--roxo-sombreamento);
+    background-color: #AAABAB;
     transition: background-color 0.3s;
     transform: translateY(-3px);
     box-shadow: 0px 6px 8px rgba(3, 3, 3, 0.2);
@@ -165,13 +190,14 @@ button {
 }
 
 button:hover {
-    background-color: var(--roxo-sombreamento);
     color: white;
     transform: scale(1.1);
+    background-color: #AAABAB;
+    
 }
 
 .container-nossa-solucao {
-    background-color: #faf8f8;
+    background-color: var(--cinza-fundo);
     width: 100%;
     text-align: center;
 }
@@ -180,15 +206,21 @@ button:hover {
     background-color: white;
 }
 
-
-
-.nossa-solucao-title {
+.nossa-solucao-title, .nossa-solucao-title2, .nossa-solucao-title3 {
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     font-size: 30px;
-    color: var(--azul-marinho);
-    padding: 20px;
+    color: var(--preto-principal);
 }
+
+.nossa-solucao-title2{
+    margin-left: 50px
+}
+
+.nossa-solucao-title3{
+    margin-left: 110px
+}
+
 
 .nossa-solucao-paragrafo {
     font-weight: 700;
