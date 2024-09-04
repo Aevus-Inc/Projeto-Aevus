@@ -94,9 +94,9 @@ body {
     margin-bottom: 1%;
 }
 
-.container-inputs {
+.containerInputsLogin {
     width: 100%;
-   height: 50%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -105,7 +105,7 @@ body {
     border-radius: 10%;
 }
 
-.container-inputs p {
+.containerInputsLogin p {
     width: 60%;
     margin: 1%;
 
@@ -130,7 +130,7 @@ body {
     border-radius: 1vh;
 }
 
-#container-buttons {
+#container-buttons-login {
     width: 100%;
     height: 30%;
     display: flex; 
@@ -139,7 +139,7 @@ body {
     align-items: center;
 }
 
-#container-buttons a {
+#container-buttons-login a {
     text-decoration: none;
     color: #778899;
 }
@@ -158,6 +158,104 @@ body {
     width: 60%;
     height: 60%;
     padding: 3%;
+    
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: black;
+    color: white;
+    border-radius: 1vh;
+
+    cursor: pointer;
+}
+
+/* Cadastro */
+#section-cadastro {
+    display: flex;
+    justify-content: space-between;
+
+    display: flex;
+    align-items: center;
+}
+
+.containerInputsCadastro {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-color: white;
+    border-radius: 10%;
+    gap: 1%;
+}
+
+.containerInputsCadastro p {
+    width: 60%;
+    margin: 1%;
+
+    font-size: medium;
+}
+
+.inputsCadastro {
+    width: 100%;
+    height: 22%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputsCadastro input {
+    width: 60%;
+    height: 55%;
+
+    border-color: white;
+    border-radius: 1vh;
+}
+
+#container-mensagem-cadastro {
+    width: 60%;
+    height: 20%;
+}
+
+#container-mensagem-cadastro img {
+    width: 15%;
+    margin-bottom: 1%;
+}
+
+#container-buttons-cadastro {
+    width: 100%;
+    height: 20%;
+    
+    display: flex;
+    flex-direction: column;
+   justify-content: center;
+   align-items: center;
+
+   gap: 8%;
+}
+
+#container-buttons-cadastro a {
+    text-decoration: none;
+    color: #778899;
+}
+
+#button-cadastrar {
+    width: 100%;
+    height: 30%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#button-cadastrar button {
+    width: 60%;
+    height: 60%;
+    padding:3%;
     
 
     display: flex;
