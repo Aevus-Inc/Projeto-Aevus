@@ -82,7 +82,7 @@
 }
 
 .carousel .card .img {
-  background: var(--roxo-principal);
+  background: #DFCC8C;
   height: 148px;
   width: 148px;
   border-radius: 50%;
@@ -93,7 +93,7 @@
   height: 140px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid #fff;
+
 }
 
 .carousel .card h2 {
