@@ -9,7 +9,7 @@
   <title>Aevus</title>
 
   <link rel="stylesheet" href="./css/acesso.css">
-  <script src="js/acesso.js"></script>
+  <script src="js/acesso.js" defer></script>
 </head>
 
 <body>
@@ -26,13 +26,19 @@
         </div>
 
         <ul class="navbarItens">
-          <a href="">Home</a>
-          <a href="">Solução</a>
-          <a href="">Quem Somos</a>
-          <a href="">Fale Conosco</a>
+          <a href="#">Home</a>
+          <a href="#">Solução</a>
+          <a href="#">Quem Somos</a>
+          <a href="#">Fale Conosco</a>
         </ul>
 
       </nav>
+
+      <div class="alerta_erro" id="alertaLogin">
+        <div class="card_erro" id="cardErroLogin">
+          <span id="mensagem_erro_login"></span>
+        </div>
+      </div>
 
       <div id="container-mensagem">
         <img src="./img/logoSemDescricao.png" alt="">
@@ -43,14 +49,14 @@
       <line id="linhaHorizontal"></line>
 
       <div class="containerInputsLogin">
-        <div id="inputEmail" class="inputsLogin">
+        <div class="inputsLogin">
           <p>Email</p>
-          <input type="text">
+          <input type="text" id="inputEmailLogin">
         </div>
 
-        <div id="inputSenha" class="inputsLogin">
+        <div class="inputsLogin">
           <p>Senha</p>
-          <input type="text">
+          <input type="password" id="inputSenhaLogin">
         </div>
       </div>
 
@@ -61,7 +67,7 @@
 
         <p>
           Ainda não possui conta?
-          <a href="">Cadastre-se</a>
+          <a href="#">Cadastre-se</a>
         </p>
 
       </div>
@@ -72,21 +78,20 @@
 
       <nav class="navbar">
         <div class="logoNavbar">
-
           <img src="img/AEVUS.INC.png" alt="">
         </div>
 
         <ul class="navbarItens">
-          <a href="">Home</a>
-          <a href="">Solução</a>
-          <a href="">Quem Somos</a>
-          <a href="">Fale Conosco</a>
+          <a href="#">Home</a>
+          <a href="#">Solução</a>
+          <a href="#">Quem Somos</a>
+          <a href="#">Fale Conosco</a>
         </ul>
       </nav>
 
-      <div class="alerta_erro">
-        <div class="card_erro" id="cardErro">
-          <span id="mensagem_erro"></span>
+      <div class="alerta_erro" id="alertaCadastro">
+        <div class="card_erro" id="cardErroCadastro">
+          <span id="mensagem_erro_cadastro"></span>
         </div>
       </div>
 
@@ -112,12 +117,12 @@
 
         <div class="inputsCadastro">
           <p>Senha</p>
-          <input type="text" id="input_senha">
+          <input type="password" id="input_senha">
         </div>
 
         <div class="inputsCadastro">
           <p>Confirmação de Senha</p>
-          <input type="text" id="input_confirmacao_senha">
+          <input type="password" id="input_confirmacao_senha">
         </div>
 
       </div>
@@ -129,13 +134,12 @@
 
         <p>
           Já possui uma conta?
-          <a href="">Entrar</a>
+          <a href="#">Entrar</a>
         </p>
       </div>
     </section>
 
   </main>
-
 </body>
 
 </html>

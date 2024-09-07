@@ -5,6 +5,19 @@
     scroll-behavior: smooth;
 }
 
+:root {
+    --roxo-principal: #5a5d9d;
+    --roxo-sombreamento: #474a7d;
+    --preto-principal: #111111;
+    --roxo-clareado: #787bb2;
+    --cinza--branco: #44454e;
+    --cinza--navbar: #faf8f8;
+    --cinza-basico: #DDE1E6;
+    --dourado-principal: #C5AB67;
+    --cinza-titulo: #666472;
+    --cinza-fundo: #e6e7eb;
+}
+
 html,
 body {
     width: 100%;
@@ -15,7 +28,6 @@ body {
 
 .card_erro {
     display: none;
-    z-index: 1000;
     background-color: #fff;
     color: black;
     width: 20%;
@@ -26,14 +38,17 @@ body {
     margin-right: 2%;
 }
 
-.card_erro #mensagem_erro {
-    z-index: 1000;
+.card_erro span {
     font-weight: 500;
     font-size: 20px;
 }
 
-.alerta_erro {
-    z-index: 1000;
+#alertaLogin {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#alertaCadastro {
     display: flex;
     justify-content: flex-start;
 }
@@ -200,7 +215,7 @@ body {
 
 .painelDeslizante {
     position: absolute;
-    z-index: 1000;
+    z-index: 10000;
     width: 50%;
     height: 100%;
     background-color: black;
