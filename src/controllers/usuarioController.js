@@ -1,5 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 
+
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -18,19 +19,12 @@ function autenticar(req, res) {
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-
-                        aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
-                            .then((resultadoAquarios) => {
-                                if (resultadoAquarios.length > 0) {
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
-                                        senha: resultadoAutenticar[0].senha,
-                                    });
-                                } else {
-                                    res.status(204).json({ aquarios: [] });
-                                }
-                            })
+                        res.json({
+                            id: resultadoAutenticar[0].id,
+                            email: resultadoAutenticar[0].emailServer,
+                            cnpj: resultadoAutenticar[0].cnpjServer,
+                            senha: resultadoAutenticar[0].senhaServer
+                        });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -56,11 +50,11 @@ function cadastrar(req, res) {
 
     // Faça as validações dos valores
     if (cnpj == undefined) {
-        res.status(400).send("Seu CNPJ está undefined!");
+        res.status(400).send("O CNPJ não foi fornecido!");
     } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("O email não foi fornecido!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+        res.status(400).send("A senha não foi fornecida!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
@@ -83,5 +77,6 @@ function cadastrar(req, res) {
 }
 
 module.exports = {
-    cadastrar
+    cadastrar,
+    autenticar
 }

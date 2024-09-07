@@ -16,12 +16,6 @@
 
   <main class="container">
 
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
-
     <div class="painelDeslizante"></div>
 
     <section id="section-login">
@@ -29,7 +23,6 @@
       <nav class="navbar">
 
         <div class="logoNavbar">
-
           <img src="img/AEVUS.INC.png" alt="">
         </div>
 
@@ -64,7 +57,7 @@
 
       <div id="container-buttons-login">
         <div id="button-logar">
-          <button>Entrar</button>
+          <button onclick="entrar()">Entrar</button>
         </div>
 
         <p>
@@ -77,8 +70,8 @@
     </section>
 
     <section id="section-cadastro">
-      <nav class="navbar">
 
+      <nav class="navbar">
         <div class="logoNavbar">
 
           <img src="img/AEVUS.INC.png" alt="">
@@ -90,8 +83,13 @@
           <a href="">Quem Somos</a>
           <a href="">Fale Conosco</a>
         </ul>
-
       </nav>
+
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
 
       <div id="container-mensagem-cadastro">
         <img src="./img/logoSemDescricao.png" alt="">
@@ -127,7 +125,7 @@
 
       <div id="container-buttons-cadastro">
         <div id="button-cadastrar">
-          <button>Cadastrar</button>
+          <button onclick="cadastrar()">Cadastrar</button>
         </div>
 
         <p>
@@ -142,167 +140,3 @@
 </body>
 
 </html>
-
-<script>
-  function cadastrar() {
-
-    let cnpjVar = input_cnpj.value;
-    let emailVar = input_email.value;
-    let senhaVar = input_senha.value;
-    let confirmacaoSenhaVar = input_confirmacao_senha.value;
-
-    let procurarNumeroSenha = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-    let procurarCaracteresSenha = ["@", "#"];
-    let naoAcheiNumeroSenha = true;
-    let naoAcheiCaracteresSenha = true;
-
-    for (let percorrerSenha = 0;
-      percorrerSenha <= procurarNumeroSenha.length;
-      percorrerSenha++
-    ) {
-
-      if (senhaVar.indexOf(procurarNumeroSenha[percorrerSenha]) > -1) {
-        naoAcheiNumeroSenha = false;
-        break;
-      }
-
-    }
-
-    for (let percorrerSenha = 0;
-      percorrerSenha <= procurarCaracteresSenha.length;
-      percorrerSenha++
-    ) {
-
-      if (senhaVar.indexOf(procurarCaracteresSenha[percorrerSenha]) > -1) {
-        naoAcheiCaracteresSenha = false;
-        break;
-      }
-
-    }
-
-    if (
-      cnpjVar == false &
-      emailVar == false &
-      senhaVar == false &
-      confirmacaoSenhaVar == false
-    ) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Por favor, preencha todos os campos para prosseguir!";
-
-      return false;
-    } else if (cnpjVar == false) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Preencha o nome para prosseguir!";
-
-      return false;
-    } else if (emailVar == false) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Preencha o email para prosseguir!";
-
-      return false;
-    } else if (!emailVar.indexOf("@") || emailVar.indexOf("@") == emailVar.length - 1) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "O email deve conter @ e provedor!";
-
-      return false;
-    } else if (senhaVar == false) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Preencha a senha para prosseguir!";
-
-      return false;
-    } else if (confirmacaoSenhaVar == false) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "Preencha a confirmação de senha para prosseguir!";
-
-      return false;
-    } else if (senhaVar.length < 8) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "A senha deve conter ao menos 8 caracteres!";
-
-      return false;
-    } else if (naoAcheiNumeroSenha) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "A senha deve conter ao menos um número!";
-
-      return false;
-    } else if (naoAcheiCaracteresSenha) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "A senha deve conter ao menos um caractere especial!";
-
-      return false;
-    } else if (senhaVar != confirmacaoSenhaVar) {
-
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "A senha e confirmação de senha não conferem!";
-
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        cnpjServer: cnpjVar.trim(),
-        emailServer: emailVar.trim(),
-        senhaServer: senhaVar.trim()
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-
-          mensagem_erro.innerHTML =
-            "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-
-    return false;
-  }
-
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
-
-</script>
