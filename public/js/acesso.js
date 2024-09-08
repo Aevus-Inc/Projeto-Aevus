@@ -69,10 +69,10 @@ function cadastrar() {
     cardErro.style.display = "block";
     mensagemErro.innerHTML = "A senha deve conter ao menos 8 caracteres!";
     return false;
-  } else if (cnpjVar.length != 8) {
+  } else if (cnpjVar.length != 14) {
 
     cardErro.style.display = "block";
-    mensagemErro.innerHTML = "O CNPJ deve conter 8 caracteres!";
+    mensagemErro.innerHTML = "O CNPJ deve conter 14 caracteres!";
     return false;
   } else if (!numeroSenha) {
 
