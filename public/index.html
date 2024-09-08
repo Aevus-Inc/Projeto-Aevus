@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
@@ -20,31 +20,63 @@
 </head>
 
 <body>
-  <div class="header">
+  <header>
+
     <div class="container">
       <a href="#home"> <img src="img/logoAevus-nav.png" class="logo-navbar" alt=""></a>
-      <center>
-        <ul class="navbar">
+
+      <nav class="menu-desktop">
+        <ul>
           <a href="#home">
             <li>Home</li>
           </a>
           <a href="#solucao">
-            <li>Solução</li>
+            <li>Projetos</li>
           </a>
           <a href="#sobre-nos">
             <li>Quem Somos</li>
           </a>
           <a href="#fale-conosco">
-            <li>Fale Conosco</li>
+            <li>Contato</li>
           </a>
         </ul>
-      </center>
+      </nav>
+
       <div class="navbar-button">
-        <a href="acesso.html"><button class="login-button">Login/Cadastro</button></a>
-      </div>
-    </div>
-  </div>
+        <a href="acesso.html"><button class="login-button">Área do cliente</button></a>
+      </div> <!-- btn cadastro-->
+
+      <div class="menu-mobile">
+        <div class="btn-fechar">
+          <ion-icon name="close-outline"></ion-icon>
+
+          <nav>
+            <ul>
+              <a href="#home">
+                <li>Home</li>
+              </a>
+              <a href="#solucao">
+                <li>Projetos</li>
+              </a>
+              <a href="#sobre-nos">
+                <li>Quem Somos</li>
+              </a>
+              <a href="#fale-conosco">
+                <li>Contato</li>
+              </a>
+            </ul>
+          </nav>
+
+        </div><!-- btn fechar-->
+
+      </div><!-- mobile-menu-->
+
+
+    </div> <!-- Fim da interface-->
+  </header>
   <main>
+
+
     <section class="main-content" id="home">
       <div class="main-content-texts">
         <div class="back-simple">
@@ -243,9 +275,9 @@
     <section class="footer">
       <div class="footer-content">
         <div class="container-img">
-        <img src="img/logo-av.png" alt="">
-        <h1>AEVUS INC.</h1>
-      </div>
+          <img src="img/logo-av.png" alt="">
+          <h1>AEVUS INC.</h1>
+        </div>
         <p>Transformando dados em decisões inteligentes.
         </p>
 
@@ -287,6 +319,7 @@
 </html>
 
 <script src="js/script.js"></script>
+<script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -298,7 +331,7 @@
     });
 
     textarea.addEventListener('blur', () => {
-      title.classList.remove('focused');
+      title.classListNaNpxove('focused');
     });
   });
 
