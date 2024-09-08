@@ -16,6 +16,7 @@
     --dourado-principal: #C5AB67;
     --cinza-titulo: #666472;
     --cinza-fundo: #e6e7eb;
+
 }
 
 html,
@@ -23,17 +24,17 @@ body {
     width: 100%;
     height: 100%;
 
-    background-color: #D9D9D9;
+    background-color: white;
 }
 
 .card_erro {
     display: none;
-    background-color: #fff;
+    background-color: wheat;
     color: black;
     width: 20%;
     position: fixed;
     border-radius: 4px;
-    border: #000000 3px solid;
+    border: var(--dourado-principal) 3px solid;
     padding: 1%;
     margin-right: 2%;
 }
@@ -85,7 +86,7 @@ body {
 }
 
 .navbarItens a {
-    color: 	#778899;
+    color: 	var(--dourado-principal);
     text-decoration: none;
 }
 .logoNavbar {
@@ -97,6 +98,27 @@ body {
 
     display: flex;
    align-items: flex-start;
+}
+
+#linhaHorizontal {
+    width: 60%;
+    border: 0.1px solid #000000;
+}
+
+.painelDeslizante {
+    position: absolute;
+    z-index: 10000;
+    width: 50%;
+    height: 100%;
+    background-color: var(--dourado-principal);
+    transition: transform 0.5s ease-in-out;
+
+    
+    background-image: url(../img/pesquisa\ de\ satisfação.png);
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+  
 }
 
 
@@ -119,10 +141,7 @@ body {
     align-items: center;
 }
 
-#linhaHorizontal {
-    width: 60%;
-    border: 0.1px solid #8b8b8b;
-}
+
 
 #container-mensagem {
     width: 60%;
@@ -168,8 +187,9 @@ body {
     width: 60%;
     height: 40%;
 
-    border-color: white;
     border-radius: 1vh;
+    background-color: #f8f6f2;
+    border-color: var(--dourado-principal);
 }
 
 #container-buttons-login {
@@ -183,7 +203,7 @@ body {
 
 #container-buttons-login a {
     text-decoration: none;
-    color: #778899;
+    color: var(--dourado-principal);
 }
 
 #button-logar {
@@ -206,21 +226,15 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-color: black;
+    background-color: var(--dourado-principal);
+    border-color: var(--dourado-principal);
     color: white;
     border-radius: 1vh;
 
     cursor: pointer;
 }
 
-.painelDeslizante {
-    position: absolute;
-    z-index: 10000;
-    width: 50%;
-    height: 100%;
-    background-color: black;
-    transition: transform 0.5s ease-in-out;
-}
+
 
 /* Cadastro */
 #section-cadastro {
@@ -263,7 +277,8 @@ body {
     width: 60%;
     height: 55%;
 
-    border-color: white;
+    background-color: #f8f6f2;
+    border-color: var(--dourado-principal);
     border-radius: 1vh;
 }
 
@@ -291,7 +306,7 @@ body {
 
 #container-buttons-cadastro a {
     text-decoration: none;
-    color: #778899;
+    color: var(--dourado-principal);
 }
 
 #button-cadastrar {
@@ -313,7 +328,8 @@ body {
     justify-content: center;
     align-items: center;
 
-    background-color: black;
+    background-color: var(--dourado-principal);
+    border-color: var(--dourado-principal);
     color: white;
     border-radius: 1vh;
 

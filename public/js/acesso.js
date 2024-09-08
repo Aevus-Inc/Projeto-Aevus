@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 function cadastrar() {
   const painelDeslizante = document.querySelector('.painelDeslizante');
 
-  let cnpjVar = document.getElementById("input_cnpj").value;
+  let cnpjVar = document.getElementById("inputCnpjCadastro").value;
   let emailVar = document.getElementById("input_email").value;
   let senhaVar = document.getElementById("input_senha").value;
   let confirmacaoSenhaVar = document.getElementById("input_confirmacao_senha").value;
@@ -140,9 +140,6 @@ function cadastrar() {
 
   return false;
 }
-
-
-
 
 function entrar() {
   
