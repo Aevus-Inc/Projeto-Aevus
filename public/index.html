@@ -21,35 +21,42 @@
 
 <body>
   <header>
+    <div class="teste">
+      <div class="container">
+        <a href="#home"> <img src="img/logoAevus-nav.png" class="logo-navbar" alt=""></a>
 
-    <div class="container">
-      <a href="#home"> <img src="img/logoAevus-nav.png" class="logo-navbar" alt=""></a>
+        <nav class="menu-desktop">
+          <ul>
+            <a href="#home">
+              <li>Home</li>
+            </a>
+            <a href="#solucao">
+              <li>Projetos</li>
+            </a>
+            <a href="#sobre-nos">
+              <li>Quem Somos</li>
+            </a>
+            <a href="#fale-conosco">
+              <li>Contato</li>
+            </a>
+          </ul>
+        </nav>
 
-      <nav class="menu-desktop">
-        <ul>
-          <a href="#home">
-            <li>Home</li>
-          </a>
-          <a href="#solucao">
-            <li>Projetos</li>
-          </a>
-          <a href="#sobre-nos">
-            <li>Quem Somos</li>
-          </a>
-          <a href="#fale-conosco">
-            <li>Contato</li>
-          </a>
-        </ul>
-      </nav>
+        <div class="navbar-button">
+          <a href="acesso.html"><button class="login-button">Área do cliente</button></a>
+        </div> <!-- btn cadastro-->
 
-      <div class="navbar-button">
-        <a href="acesso.html"><button class="login-button">Área do cliente</button></a>
-      </div> <!-- btn cadastro-->
+      </div>
 
-      <div class="menu-mobile">
+      <div class="btn-abrir-menu" id="btn-menu">
+        <ion-icon name="list-outline"></ion-icon>
+      </div> <!-- btn-abrir-menu  -->
+
+      <div class="menu-mobile" id="menu-mobile">
+ 
         <div class="btn-fechar">
           <ion-icon name="close-outline"></ion-icon>
-
+        </div><!-- btn fechar-->
           <nav>
             <ul>
               <a href="#home">
@@ -67,10 +74,12 @@
             </ul>
           </nav>
 
-        </div><!-- btn fechar-->
+      
 
       </div><!-- mobile-menu-->
+      <div class="overlay-menu" id="overlay-menu">
 
+      </div><!-- overlay-menu-->
 
     </div> <!-- Fim da interface-->
   </header>
@@ -319,6 +328,7 @@
 </html>
 
 <script src="js/script.js"></script>
+<script src="js/mobile.js"></script>
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 
 <script>
