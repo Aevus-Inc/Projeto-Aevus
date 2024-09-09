@@ -46,14 +46,13 @@
           <a href="acesso.html"><button class="login-button">Área do cliente</button></a>
         </div> <!-- btn cadastro-->
 
+        <div class="btn-abrir-menu" id="btn-menu">
+          <ion-icon name="list-outline"></ion-icon>
+        </div> <!-- btn-abrir-menu  -->
       </div>
 
-      <div class="btn-abrir-menu" id="btn-menu">
-        <ion-icon name="list-outline"></ion-icon>
-      </div> <!-- btn-abrir-menu  -->
-
-      <div class="menu-mobile" id="menu-mobile">
- 
+      <a onclick="abrirMenu()">
+      <div class="menu-mobile" id="menu-mobile" onclick="abrirMenu()">
         <div class="btn-fechar">
           <ion-icon name="close-outline"></ion-icon>
         </div><!-- btn fechar-->
@@ -77,7 +76,8 @@
       
 
       </div><!-- mobile-menu-->
-      <div class="overlay-menu" id="overlay-menu">
+    </a>
+      <div class="overlay-menu" id="overlay-menu" onclick="abrirMenu()">
 
       </div><!-- overlay-menu-->
 
@@ -138,7 +138,7 @@
       </div>
       <div class="container-quadrados">
         <img class="img-quadrados" src="img/brain-svgrepo-com.svg" alt="">
-        <p class="container-quadrados-title">Soluções ideais</p>
+        <p class="container-quadrados-title">Soluções Ideais</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur aliquid veniam explicabo sunt ipsa
           asperiores quod architecto, est repellat tenetur eligendi dolores provident ducimus laboriosam! Nihil quam
           blanditiis cumque inventore?</p>
