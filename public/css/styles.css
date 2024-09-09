@@ -133,6 +133,7 @@ button.button-nossa-equipe:hover {
     color: var(--dourado-navbar);
 }
 
+/*  COMECO DA MAIN-CONTENT*/
 .main-content {
     /* background: linear-gradient(45deg, #190361 0%, #B0F 100%);
     background: linear-gradient(45deg, #190361, #bb00ff); */
@@ -162,12 +163,15 @@ button.button-nossa-equipe:hover {
 }
 
 .main-content-image {
+    position: sticky;
     flex: 1;
     max-width: 40%;
     text-align: right;
     margin-right: 3.125rem;
     border-radius: 1.25rem;
 }
+
+
 
 .main-content-image img {
     width: 100%;
@@ -208,7 +212,7 @@ button.button-nossa-equipe:hover {
 .back-simple {
     display: flex;
     justify-content: center;
-    width: 14.6875rem;
+    width: 21.875rem;
     height: 1.875rem;
     background-color: white;
     border-radius: .625rem;
@@ -266,6 +270,9 @@ button:hover {
 
 }
 
+/*  FIM DA MAIN-CONTENT*/
+
+/*  COMECO DA SOLUCAO*/
 .container-nossa-solucao,
 .container-sobre-nos,
 .content-nossa-solucao {
@@ -326,12 +333,16 @@ button:hover {
 }
 
 .container-aevus-infinity {
+
+    display: flex;
+
+
     width: 20.625rem;
     height: 20.625rem;
     border: .125rem solid black;
     position: relative;
     border-radius: 50%;
-    display: flex;
+
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -818,16 +829,35 @@ button.fale-conosco-button {
 }
 
 .menu-mobile {
-display: none;
+    display: none;
 }
 
-/*ESTILO DO MENU MOBILE */
+
+@media(max-width:1270px) {
+    boduy {
+        flex-direction: column;
+    }
+
+    .main-content {
+        flex-direction: column;
+    }
+}
+
+/* ESTILO DO MENU MOBILE */
 
 @media(max-width:800px) {
 
-    .container{
+    .container {
         display: none;
+
     }
+
+    .main-content {
+        flex-direction: column;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
 
     .btn-abrir-menu {
 
@@ -837,6 +867,8 @@ display: none;
         width: 80%;
 
     }
+
+
 
     .btn-abrir-menu ion-icon {
         color: var(--dourado-principal);
@@ -867,6 +899,12 @@ display: none;
 
     .menu-mobile nav ul {
         text-align: right;
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        padding-right: 5%;
+
 
     }
 
@@ -875,6 +913,7 @@ display: none;
         font-size: 20px;
         font-weight: 300px;
         padding: 2.5rem 4%;
+        text-transform: uppercase;
 
     }
 
@@ -940,6 +979,125 @@ display: none;
         left: 0%;
         z-index: 333;
     }
-}
 
-/*ESTILO DO MENU MOBILE */
+
+    < !-- COMECO DA CONTENT NO MOBILE -->.main-content-image img {
+        width: 90%;
+    }
+
+    .main-content-texts {
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .main-content-image {
+        margin: auto;
+        max-width: 100%;
+        border-radius: 1rem;
+    }
+
+    .nossa-solucao-title,
+    .nossa-solucao-title2,
+    .nossa-solucao-title3 {
+        font-size: 1.5rem;
+
+        margin: 1.5rem 0;
+    }
+
+    .content-nossa-solucao {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .content-nossa-solucao-card {
+        width: 100%;
+
+    }
+
+    .container-projetos {
+        flex-direction: column;
+        height: auto;
+
+    }
+
+    .container-quadrados {
+        width: 100%;
+    }
+
+
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .main-content-title {
+        font-size: 2rem;
+    }
+
+    .main-content-subtitle {
+        font-size: 1rem;
+    }
+
+    .main-content-image img {
+        width: 90%;
+
+    }
+
+
+
+
+
+
+
+    /* .container {
+    .main-content-texts {
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .main-content-image {
+        margin: auto;
+        max-width: 100%;
+        border-radius: 1rem;
+    }
+
+    .nossa-solucao-title,
+    .nossa-solucao-title2,
+    .nossa-solucao-title3 {
+        font-size: 1.5rem;
+       
+        margin: 1.5rem 0;
+    }
+
+    .content-nossa-solucao {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .content-nossa-solucao-card {
+        width: 100%;
+        
+    }
+
+    .container-projetos {
+        flex-direction: column;
+        height: auto;
+        
+    }
+
+    .container-quadrados {
+        width: 100%;
+    }
+ */
+
+
+
+
+
+
+
+
+
+    /*ESTILO DO MENU MOBILE */
