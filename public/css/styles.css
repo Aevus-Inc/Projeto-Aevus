@@ -57,6 +57,11 @@ header {
     margin: auto;
 }
 
+.logo-navbar:hover{
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
 .menu-desktop {
 
     width: 37.5rem;
@@ -74,7 +79,7 @@ header {
     gap: 3.75rem;
 }
 
-li .menu-desktop ::after {
+.menu-desktop li::after {
     content: '';
     position: absolute;
     bottom: -0.5625rem;
@@ -86,7 +91,7 @@ li .menu-desktop ::after {
     transition: width 0.3s ease-in-out;
 }
 
-li .menu-desktop :hover::after {
+.menu-desktop li:hover::after {
     width: 100%;
 }
 
@@ -103,7 +108,7 @@ a {
     transition: transform 0.3s;
 }
 
-.menu-desktop a :hover {
+.menu-desktop a:hover {
     color: var(--dourado-navbar);
     transform: scale(1.1);
 }
@@ -118,6 +123,11 @@ button.button-nossa-equipe {
     border: .125rem solid black;
     color: black;
     margin-left: 20px;
+}
+
+button.login-button{
+    background-color: var(--preto-botao);
+    color: white;
 }
 
 button.button-nossa-equipe {
@@ -337,8 +347,8 @@ button:hover {
     display: flex;
 
 
-    width: 20.625rem;
-    height: 20.625rem;
+    width: 13.75rem;
+    height: 13.75rem;
     border: .125rem solid black;
     position: relative;
     border-radius: 50%;
@@ -350,8 +360,8 @@ button:hover {
 }
 
 .circle {
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 1.5625rem;
+    height: 1.5625rem;
     background: black;
     border-radius: 50%;
     position: absolute;
@@ -454,13 +464,83 @@ button:hover {
     font-weight: 500;
 }
 
+/*Section Nossa empresa*/
+
+.nossa-empresa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--fundo-telaHome1);
+    margin: 3.75rem 0 .625rem;
+    padding: .625rem 0 4.375rem;
+}
+
+.container-nossa-empresa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 1.25rem;
+    width: 100%;
+    padding: 0%;
+    background-color: var(--fundo-telaHome1);
+}
+
+.nossa-empresa-title {
+    font-family: "Roboto", sans-serif;
+    font-size: 35px;
+}
+
+.nossa-empresa-texto {
+    font-family: "Roboto", sans-serif;
+    width: 70%;
+}
+
+.container-conceitos h4{
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.container-conceitos-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    width: 70%;
+    /* Use 100% da largura para espalhar os elementos */
+    flex-wrap: wrap;
+}
+
+.container-conceitos {
+    flex: 1;
+    min-width: 250px;
+    margin: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.container-imagens img {
+    width: 50%; /* Ajuste o tamanho da imagem conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+}
+
+.img-conceitos {
+    height: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: white;
+    margin-bottom: 3.75rem;
+}
+
 /* Section sobre nós */
 .container-sobre-nos {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--fundo-telaHome1);
-    margin: 2.5rem 0 10px;
+    margin: 1.1rem 0 10px;
     padding: 10px 0 70px;
 }
 
@@ -475,6 +555,11 @@ button:hover {
     padding: 0%;
     background-color: var(--fundo-telaHome1);
 }
+
+.nossa-sobre-title{
+    font-size: 35px;
+}
+
 
 /*Section Fale conosco*/
 .fale-conosco-content {
@@ -751,8 +836,8 @@ button.fale-conosco-button {
 }
 
 
-/** Tam 220x220
-/* @-webkit-keyframes circle {
+/** Tam 220x220*/
+@-webkit-keyframes circle {
     0%{
         transform: rotate(0deg)translate(-6.5625rem)rotate(0deg);
     }
@@ -768,10 +853,10 @@ button.fale-conosco-button {
     100%{
         transform: rotate(360deg)translate(-6.875rem)rotate(-360deg);
     }
-} */
+}
 
 /*Tam 330x330*/
-
+/* 
 @-webkit-keyframes circle {
     0% {
         transform: rotate(0deg)translate(-10rem)rotate(0deg);
@@ -790,7 +875,7 @@ button.fale-conosco-button {
     100% {
         transform: rotate(360deg)translate(-10.3125rem)rotate(-360deg);
     }
-}
+} */
 
 /*Responsividade Footer*/
 
