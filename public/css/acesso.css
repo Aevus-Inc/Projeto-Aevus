@@ -15,8 +15,6 @@
     --cinza-basico: #DDE1E6;
     --dourado-principal: #C5AB67;
     --cinza-titulo: #666472;
-    --cinza-fundo: #e6e7eb;
-
 }
 
 html,
@@ -74,21 +72,50 @@ body {
 .navbarItens {
     width: 80%;
     padding-right: 10%;
-
-    text-decoration: none;
-    border-bottom: transparent 4px solid;
     font-weight: 600;
-
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 4%;
 }
 
-.navbarItens a {
-    color: 	var(--dourado-principal);
-    text-decoration: none;
+ul {
+    list-style-type: none;
+    padding: 0; 
+    margin: 0;
 }
+
+.navbarItens a {
+    color: var(--dourado-principal);
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+
+.navbarItens a:hover {
+    color: var(--preto-principal);
+    transform: scale(1.1);
+}
+
+.navbarItens li {
+    position: relative;
+}
+
+.navbarItens li::after {
+    content: '';
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background-color: var(--preto-principal);
+    transition: width 0.3s ease-in-out;
+}
+
+.navbarItens li:hover::after {
+    width: 100%;
+}
+
 .logoNavbar {
     width: 10%;
 }
