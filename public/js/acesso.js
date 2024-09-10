@@ -180,16 +180,20 @@ function entrar() {
   }).then(function (resposta) {
     console.log("ESTOU NO THEN DO entrar()!")
 
-    
+    if (resposta == 403) {
+      cardErro.style.display = "block"
+    mensagemErro.innerHTML = "U!";
+    return false;
+    }
 
     if (resposta.ok) {
       console.log(resposta);
 
-      cardErro.style.display = "block";
-      mensagemErro.innerHTML = "Login realizado com sucesso!"; 
+      cardErro.style.display = "block"
+      mensagemErro.innerHTML = "Login realizado com sucesso!";
 
-      setTimeout(sumirMensagem, 10000);
-
+      setInterval(sumirMensagem, 10000);
+      
       // resposta.json().then(json => {
       //   console.log(json);
       //   console.log(JSON.stringify(json));
@@ -207,11 +211,15 @@ function entrar() {
     } else {
 
       console.log("Houve um erro ao tentar realizar o login!");
+      cardErro.style.display = "block"
       mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
 
+      setInterval(sumirMensagem, 10000)
+      
       resposta.text().then(texto => {
         console.error(texto);
       });
+
     }
 
   }).catch(function (erro) {
