@@ -90,11 +90,11 @@ function cadastrar() {
     mensagemErro.innerHTML = "A senha e confirmação de senha não conferem!";
     return false;
   } else {
-    setInterval(sumirMensagem, 3000);
+    setInterval(sumirMensagem, 10000);
   }
 
 
-  setTimeout(sumirMensagem, 3000);
+  setTimeout(sumirMensagem, 10000);
 
 
   function sumirMensagem() {
@@ -162,7 +162,7 @@ function entrar() {
     mensagemErro.innerHTML = "Por favor, preencha o email prosseguir!";
     return false;
   } else {
-    setInterval(sumirMensagem, 5000)
+    setInterval(sumirMensagem, 10000)
   }
 
   console.log("FORM LOGIN: ", emailVar);
@@ -188,7 +188,7 @@ function entrar() {
       cardErro.style.display = "block";
       mensagemErro.innerHTML = "Login realizado com sucesso!"; 
 
-      setTimeout(sumirMensagem, 3000);
+      setTimeout(sumirMensagem, 10000);
 
       // resposta.json().then(json => {
       //   console.log(json);
