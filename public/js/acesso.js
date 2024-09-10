@@ -21,7 +21,7 @@ function cadastrar() {
   const painelDeslizante = document.querySelector('.painelDeslizante');
 
   let cnpjVar = document.getElementById("inputCnpjCadastro").value;
-  let emailVar = document.getElementById("input_email").value;
+  let emailVar = document.getElementById("input_email").value.toLowerCase();
   let senhaVar = document.getElementById("input_senha").value;
   let confirmacaoSenhaVar = document.getElementById("input_confirmacao_senha").value;
 
@@ -29,7 +29,7 @@ function cadastrar() {
   let mensagemErro = document.getElementById("mensagem_erro_cadastro");
 
   let procurarNumeroSenha = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  let procurarCaracteresSenha = ['@', '#'];
+  let procurarCaracteresSenha = ['@', '#', '!', '.'];
   let numeroSenha = false;
   let caracteresSenha = false;
 
@@ -82,7 +82,7 @@ function cadastrar() {
   } else if (!caracteresSenha) {
 
     cardErro.style.display = "block";
-    mensagemErro.innerHTML = "A senha deve conter ao menos um caractere especial!";
+    mensagemErro.innerHTML = "A senha deve conter ao menos um caractere especial! Caracteres aceitos: '@', '!', '.', '#'";
     return false;
   } else if (senhaVar != confirmacaoSenhaVar) {
 
@@ -90,11 +90,11 @@ function cadastrar() {
     mensagemErro.innerHTML = "A senha e confirmação de senha não conferem!";
     return false;
   } else {
-    setInterval(sumirMensagem, 2000);
+    setInterval(sumirMensagem, 10000);
   }
 
 
-  setTimeout(sumirMensagem, 2000);
+  setTimeout(sumirMensagem, 10000);
 
 
   function sumirMensagem() {
@@ -162,7 +162,7 @@ function entrar() {
     mensagemErro.innerHTML = "Por favor, preencha o email prosseguir!";
     return false;
   } else {
-    setInterval(sumirMensagem, 3000)
+    setInterval(sumirMensagem, 10000)
   }
 
   console.log("FORM LOGIN: ", emailVar);
@@ -180,20 +180,29 @@ function entrar() {
   }).then(function (resposta) {
     console.log("ESTOU NO THEN DO entrar()!")
 
+    
+
     if (resposta.ok) {
       console.log(resposta);
 
-      resposta.json().then(json => {
-        console.log(json);
-        console.log(JSON.stringify(json));
-        sessionStorage.EMAIL_USUARIO = json.email;
-        sessionStorage.CNPJ_USUARIO = json.cnpj;
-        sessionStorage.ID_USUARIO = json.id;
-        setTimeout(function () {
-          window.location = "./dashboard/preQuiz.html";
-        }, 1000);
+      cardErro.style.display = "block";
+      mensagemErro.innerHTML = "Login realizado com sucesso!"; 
 
-      });
+      setTimeout(sumirMensagem, 10000);
+
+      // resposta.json().then(json => {
+      //   console.log(json);
+      //   console.log(JSON.stringify(json));
+      //   sessionStorage.EMAIL_USUARIO = json.email;
+      //   sessionStorage.CNPJ_USUARIO = json.cnpj;
+      //   sessionStorage.ID_USUARIO = json.id;
+      //   setTimeout(function () {
+      //     cardErro.style.display = "block"
+      //     mensagemErro.innerHTML = "Login realizado com sucesso!";
+      //     // window.location = "./dashboard/preQuiz.html";
+      //   }, 1000);
+
+      // });
 
     } else {
 
