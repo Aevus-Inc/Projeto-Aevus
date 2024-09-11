@@ -29,7 +29,7 @@ function cadastrar() {
   let mensagemErro = document.getElementById("mensagem_erro_cadastro");
 
   let procurarNumeroSenha = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  let procurarCaracteresSenha = ['@', '#', '!', '.'];
+  let procurarCaracteresSenha = ["@", "#", "!", "."];
   let numeroSenha = false;
   let caracteresSenha = false;
 
@@ -43,7 +43,8 @@ function cadastrar() {
     mensagemErro.innerHTML =
       "Por favor, preencha todos os campos para prosseguir!";
     return false;
-  } else if (senhaVar != "") {
+    setInterval(sumirMensagem, 8000)
+  } 
     for (let percorrerSenha = 0; percorrerSenha < procurarNumeroSenha.length; percorrerSenha++) {
       if (senhaVar.indexOf(procurarNumeroSenha[percorrerSenha]) > -1) {
         numeroSenha = true;
@@ -56,7 +57,7 @@ function cadastrar() {
         caracteresSenha = true;
         break;
       }
-    }
+  
   }
 
   if (!(emailVar.indexOf("@") > -1) || emailVar.indexOf("@") == emailVar.length - 1) {
@@ -82,7 +83,7 @@ function cadastrar() {
   } else if (!caracteresSenha) {
 
     cardErro.style.display = "block";
-    mensagemErro.innerHTML = "A senha deve conter ao menos um caractere especial! Caracteres aceitos: '@', '!', '.', '#'";
+    mensagemErro.innerHTML = "A senha deve conter ao menos um caractere especial! Caracteres aceitos: ' @ ', ' ! ', ' # ' ou ' . '";
     return false;
   } else if (senhaVar != confirmacaoSenhaVar) {
 
@@ -90,11 +91,11 @@ function cadastrar() {
     mensagemErro.innerHTML = "A senha e confirmação de senha não conferem!";
     return false;
   } else {
-    setInterval(sumirMensagem, 10000);
+    setInterval(sumirMensagem, 8000);
   }
 
 
-  setTimeout(sumirMensagem, 10000);
+  setTimeout(sumirMensagem, 8000);
 
 
   function sumirMensagem() {
@@ -137,6 +138,7 @@ function cadastrar() {
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
     });
+    setInterval(sumirMensagem, 8000);
 
   return false;
 }
@@ -162,7 +164,7 @@ function entrar() {
     mensagemErro.innerHTML = "Por favor, preencha o email prosseguir!";
     return false;
   } else {
-    setInterval(sumirMensagem, 10000)
+    setInterval(sumirMensagem, 8000)
   }
 
   console.log("FORM LOGIN: ", emailVar);
@@ -192,7 +194,7 @@ function entrar() {
       cardErro.style.display = "block"
       mensagemErro.innerHTML = "Login realizado com sucesso!";
 
-      setInterval(sumirMensagem, 10000);
+      setInterval(sumirMensagem, 8000);
       
       // resposta.json().then(json => {
       //   console.log(json);
@@ -214,7 +216,7 @@ function entrar() {
       cardErro.style.display = "block"
       mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
 
-      setInterval(sumirMensagem, 10000)
+      setInterval(sumirMensagem, 8000)
       
       resposta.text().then(texto => {
         console.error(texto);
@@ -225,6 +227,7 @@ function entrar() {
   }).catch(function (erro) {
     console.log(erro);
   })
+  setInterval(sumirMensagem, 8000)
 
   return false;
 
