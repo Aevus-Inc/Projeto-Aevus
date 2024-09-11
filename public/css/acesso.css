@@ -3,6 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    font-family: "Roboto", sans-serif;
 }
 
 :root {
@@ -72,7 +73,6 @@ body {
 .navbarItens {
     width: 80%;
     padding-right: 10%;
-    font-weight: 600;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,13 +86,13 @@ ul {
 }
 
 .navbarItens a {
-    color: var(--dourado-principal);
+    color: var(--preto-principal);
     text-decoration: none;
     transition: transform 0.3s;
 }
 
 .navbarItens a:hover {
-    color: var(--preto-principal);
+    color: var(--dourado-principal);
     transform: scale(1.1);
 }
 
@@ -108,7 +108,7 @@ ul {
     transform: translateX(-50%);
     width: 0;
     height: 3px;
-    background-color: var(--preto-principal);
+    background-color: var(--dourado-principal);
     transition: width 0.3s ease-in-out;
 }
 
@@ -122,14 +122,24 @@ ul {
 
 .logoNavbar img {
     width: 90%;
-
+    transition: transform 0.3s;
     display: flex;
    align-items: flex-start;
+
+   cursor: pointer;
 }
 
-#linhaHorizontal {
+.logoNavbar img:hover{
+    transform: scale(1.1);
+}
+
+#linhaHorizontal, #linhaHorizontal-Cadastro {
     width: 60%;
     border: 0.1px solid #000000;
+}
+
+#linhaHorizontal-Cadastro{
+    margin-top: 10px;
 }
 
 .painelDeslizante {
@@ -213,6 +223,7 @@ ul {
 .inputsLogin input {
     width: 60%;
     height: 40%;
+    padding: 10px;
 
     border-radius: 1vh;
     background-color: #f8f6f2;
@@ -261,8 +272,6 @@ ul {
     cursor: pointer;
 }
 
-
-
 /* Cadastro */
 #section-cadastro {
     display: flex;
@@ -303,6 +312,7 @@ ul {
 .inputsCadastro input {
     width: 60%;
     height: 55%;
+    padding: 10px;
 
     background-color: #f8f6f2;
     border-color: var(--dourado-principal);

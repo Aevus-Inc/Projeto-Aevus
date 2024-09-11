@@ -28,8 +28,6 @@ body {
     background-color: var(--fundo-telaHome1);
 }
 
-
-
 .container {
     display: flex;
     /* DISPLAY NONE AQUI */
@@ -180,8 +178,6 @@ button.button-nossa-equipe:hover {
     border-radius: 1.25rem;
 }
 
-
-
 .main-content-image img {
     width: 100%;
     height: auto;
@@ -238,7 +234,6 @@ button.button-nossa-equipe:hover {
     width: 10rem;
     height: 3.4375rem;
     margin: auto;
-    box-shadow: .25rem .3125rem .25rem rgba(0, 0, 0, 0.05);
     border-radius: 1.25rem;
     background-color: transparent;
     border: 2px solid black;
@@ -248,7 +243,6 @@ button.button-nossa-equipe:hover {
 .main-content-button2 {
     width: 10rem;
     height: 3.4375rem;
-    box-shadow: .25rem .3125rem .25rem rgba(0, 0, 0, 0.25);
     border-radius: 1.25rem;
     background-color: var(--preto-botao);
 }
@@ -383,7 +377,7 @@ button:hover {
     background: url('../img/airport.svg');
     display: flex;
     width: 100%;
-    max-width: 102.0625rem;
+    max-width: 91.0625rem;
     height: 29.5rem;
     flex-direction: row;
     justify-content: space-between;
@@ -438,13 +432,30 @@ button:hover {
     align-items: flex-start;
     justify-content: flex-end;
     padding: 1.3rem;
-    width: 32.5rem;
+    width: 29.5rem;
     background-color: var(--dourado-quadrados);
     color: white;
     border-radius: 1.25rem;
 }
 
+.container-icons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.container-icons i {
+    font-size: 3em;
+    transition: color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.container-icons i:hover {
+    transform: scale(1.2); 
+}
+
 .img-quadrados {
+    border: 1px solid black;
     height: 5rem;
     height: 5rem;
     border-radius: 50%;
@@ -452,11 +463,25 @@ button:hover {
     margin-bottom: auto;
 }
 
-.container-quadrados-title {
+.container-quadrados-title, .container-quadrados-title3 {
     font-size: 1.5rem;
     font-weight: 600;
     padding-top: 1.3rem;
 }
+
+.container-quadrados-title3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-top: 1.3rem;
+}
+
+.container-icons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 50px; 
+}
+
 
 .container-quadrados p {
     margin-bottom: .625rem;
@@ -470,7 +495,7 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--fundo-telaHome1);
+    background-color: #F0EEE8;
     margin: 3.75rem 0 .625rem;
     padding: .625rem 0 4.375rem;
 }
@@ -484,7 +509,7 @@ button:hover {
     gap: 1.25rem;
     width: 100%;
     padding: 0%;
-    background-color: var(--fundo-telaHome1);
+    background-color: #F0EEE8;
 }
 
 .nossa-empresa-title {
