@@ -7,15 +7,22 @@
 }
 
 :root {
-    --roxo-principal: #5a5d9d;
-    --roxo-sombreamento: #474a7d;
     --preto-principal: #111111;
-    --roxo-clareado: #787bb2;
     --cinza--branco: #44454e;
     --cinza--navbar: #faf8f8;
     --cinza-basico: #DDE1E6;
     --dourado-principal: #C5AB67;
+    --dourado-navbar: #DFCC8C;
+    --dourado-quadrados: #A7967D;
+    --dourado-inputs: #CFB767;
+    --preto-botao: #22232F;
     --cinza-titulo: #666472;
+    --cinza-fundo: #e6e7eb;
+    --fundo-telaHome1: #f8f6f2;
+    --cinza-telaFundo1: #DCDCDC;
+    --cinza-destaque: #808080;
+    --preto-secundario: #1C1C1C;
+    --cinza-gelo: #C0C0C0;
 }
 
 html,
@@ -28,12 +35,12 @@ body {
 
 .card_erro {
     display: none;
-    background-color: wheat;
-    color: black;
+    background-color: var(--cinza-gelo);
+    color: var(--preto-principal);
     width: 20%;
     position: fixed;
     border-radius: 4px;
-    border: var(--dourado-principal) 3px solid;
+    border: var(--preto-principal) 3px solid;
     padding: 1%;
     margin-right: 2%;
 }
@@ -92,7 +99,7 @@ ul {
 }
 
 .navbarItens a:hover {
-    color: var(--dourado-principal);
+    color: var(--cinza-gelo);
     transform: scale(1.1);
 }
 
@@ -108,7 +115,7 @@ ul {
     transform: translateX(-50%);
     width: 0;
     height: 3px;
-    background-color: var(--dourado-principal);
+    background-color: var(--cinza-gelo);
     transition: width 0.3s ease-in-out;
 }
 
@@ -151,14 +158,12 @@ ul {
     transition: transform 0.5s ease-in-out;
 
     
-    background-image: url(../img/pesquisa\ de\ satisfação.png);
+    background-image: url(../img/satisfacao-do-cliente.png);
     background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
   
 }
-
-
 
 #section-login,
 #section-cadastro {
@@ -264,8 +269,8 @@ ul {
     justify-content: center;
     align-items: center;
 
-    background-color: var(--dourado-principal);
-    border-color: var(--dourado-principal);
+    background-color: var(--preto-principal);
+    border-color: var(--preto-principal);
     color: white;
     border-radius: 1vh;
 
@@ -365,8 +370,8 @@ ul {
     justify-content: center;
     align-items: center;
 
-    background-color: var(--dourado-principal);
-    border-color: var(--dourado-principal);
+    background-color: var(--preto-secundario);
+    border-color: var(--preto-secundario);
     color: white;
     border-radius: 1vh;
 

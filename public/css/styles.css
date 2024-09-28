@@ -20,12 +20,15 @@
     --cinza-titulo: #666472;
     --cinza-fundo: #e6e7eb;
     --fundo-telaHome1: #f8f6f2;
+    --cinza-telaFundo1: #DCDCDC;
+    --cinza-destaque: #808080;
+    --preto-secundario: #1C1C1C;
 }
 
 body {
     color: var(--cinza--branco);
     font-family: "Roboto", sans-serif;
-    background-color: var(--fundo-telaHome1);
+    background-color: white;
 }
 
 .container {
@@ -40,9 +43,8 @@ body {
 }
 
 header {
-    background: linear-gradient(45deg, #f5f3ed 0%, #F0EEE8 100%);
-    background: linear-gradient(45deg, #F0EEE8, #F0EEE8);
-    border-bottom: .0625rem solid var(--dourado-principal);
+   background-color: var(--cinza-fundo);
+    border-bottom: .0625rem solid var(--cinza--branco);
     padding: 15px;
     position: sticky;
     top: 0;
@@ -84,7 +86,7 @@ header {
     transform: translateX(-50%);
     width: 0;
     height: .1875rem;
-    background-color: var(--dourado-navbar);
+    background-color: var(--cinza--branco);
     transition: width 0.3s ease-in-out;
 }
 
@@ -106,7 +108,7 @@ a {
 }
 
 .menu-desktop a:hover {
-    color: var(--dourado-navbar);
+    color: var(--cinza-titulo);
     transform: scale(1.1);
 }
 
@@ -116,9 +118,9 @@ a {
 
 button.login-button,
 button.button-nossa-equipe {
-    background-color: transparent;
+    background-color: var(--preto-principal);
     border: .125rem solid black;
-    color: black;
+    color: white;
     margin-left: 20px;
 }
 
@@ -128,7 +130,7 @@ button.login-button{
 }
 
 button.button-nossa-equipe {
-    border: .125rem solid var(--dourado-navbar);
+    border: .125rem solid var();
 }
 
 button.login-button:hover {
@@ -144,10 +146,9 @@ button.button-nossa-equipe:hover {
 .main-content {
     /* background: linear-gradient(45deg, #190361 0%, #B0F 100%);
     background: linear-gradient(45deg, #190361, #bb00ff); */
-    background: linear-gradient(45deg, #f5f3ed 0%, #F0EEE8 100%);
-    background: linear-gradient(45deg, #F0EEE8, #F0EEE8);
+    background-color: var(--cinza-fundo);
     width: 98%;
-    height: 56.25rem;
+    height: 85vh;
     display: flex;
     margin-left: .9375rem;
     margin-right: .9375rem;
@@ -162,7 +163,8 @@ button.button-nossa-equipe:hover {
     text-align: justify;
     animation: gradient 10s ease infinite;
     background-size: 200% 200%;
-    border-radius: 1.5625rem;
+    border-bottom-left-radius: 1.5625rem;
+    border-bottom-right-radius: 1.5625rem;
 }
 
 .main-content-texts {
@@ -219,12 +221,11 @@ button.button-nossa-equipe:hover {
     justify-content: center;
     width: 21.875rem;
     height: 1.875rem;
-    background-color: white;
+   ;
     border-radius: .625rem;
 }
 
 .main-content-simleText {
-    background-color: white;
     padding-top: .3125rem;
     color: black;
     text-align: center;
@@ -235,9 +236,9 @@ button.button-nossa-equipe:hover {
     height: 3.4375rem;
     margin: auto;
     border-radius: 1.25rem;
-    background-color: transparent;
-    border: 2px solid black;
-    color: black;
+    background-color: var(--cinza-destaque);
+    border: 2px solid --cinza-destaque;
+    color: white;
 }
 
 .main-content-button2 {
@@ -370,7 +371,7 @@ button:hover {
     justify-content: center;
     padding-top: 1.25rem;
     padding-bottom: 1.25rem;
-    background-color: var(--fundo-telaHome1);
+    background-color: white;
 }
 
 .container-projetos {
@@ -423,6 +424,7 @@ button:hover {
     gap: 1.25rem;
     margin-top: .3125rem;
     font-family: "Roboto", sans-serif;
+    background-color: white;
 }
 
 .container-quadrados {
@@ -433,9 +435,10 @@ button:hover {
     justify-content: flex-end;
     padding: 1.3rem;
     width: 29.5rem;
-    background-color: var(--dourado-quadrados);
+    background-color: var(--preto-secundario);
     color: white;
     border-radius: 1.25rem;
+    border: .125rem;
 }
 
 .container-icons {
@@ -464,6 +467,7 @@ button:hover {
 }
 
 .container-quadrados-title, .container-quadrados-title3 {
+    color: var(--dourado-principal);
     font-size: 1.5rem;
     font-weight: 600;
     padding-top: 1.3rem;
@@ -490,12 +494,11 @@ button:hover {
 }
 
 /*Section Nossa empresa*/
-
 .nossa-empresa {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #F0EEE8;
+    background-color: white;
     margin: 3.75rem 0 .625rem;
     padding: .625rem 0 4.375rem;
 }
@@ -508,8 +511,9 @@ button:hover {
     text-align: center;
     gap: 1.25rem;
     width: 100%;
-    padding: 0%;
-    background-color: #F0EEE8;
+    height: 98vh;
+    padding-top: 2%;
+    background-color: var(--cinza-fundo);
 }
 
 .nossa-empresa-title {
@@ -565,9 +569,10 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--fundo-telaHome1);
+    height: 40vh;
     margin: 1.1rem 0 10px;
     padding: 10px 0 70px;
+    background-color: white;
 }
 
 .content-nossa-solucao {
@@ -579,7 +584,7 @@ button:hover {
     gap: 1.25rem;
     width: 100%;
     padding: 0%;
-    background-color: var(--fundo-telaHome1);
+ 
 }
 
 .nossa-sobre-title{
@@ -603,7 +608,7 @@ button:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    background-color: #F0EEE8;
+    background-color: var(--cinza-fundo);
     align-items: center;
     padding: 0 0 3.75rem;
 }
@@ -760,7 +765,7 @@ button.fale-conosco-button {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12.5rem, auto));
     gap: 56px;
-    background: #1a242f;
+    background: var(--preto-secundario);
 }
 
 .footer-content h4 {
@@ -819,7 +824,7 @@ button.fale-conosco-button {
 }
 
 .icons a:hover {
-    color: var(--dourado-navbar);
+    color: var(--cinza--branco);
     transform: translateY(-0.3125rem);
 }
 
@@ -997,7 +1002,6 @@ button.fale-conosco-button {
 }
 
 /* ESTILO DO MENU MOBILE */
-
 @media(max-width:800px) {
     .menu-mobile {
         display: none;
