@@ -1,22 +1,3 @@
-
-
-document.addEventListener("DOMContentLoaded", function () {
-
-  const painelDeslizante = document.querySelector('.painelDeslizante');
-  const loginLink = document.querySelector('#container-buttons-login a');
-  const cadastroLink = document.querySelector('#container-buttons-cadastro a');
-
-  loginLink.addEventListener('click', function (e) {
-    e.preventDefault();
-    painelDeslizante.style.transform = 'translateX(0%)';
-  });
-
-  cadastroLink.addEventListener('click', function (e) {
-    e.preventDefault();
-    painelDeslizante.style.transform = 'translateX(100%)';
-  });
-});
-
 function cadastrar() {
   const painelDeslizante = document.querySelector('.painelDeslizante');
 
@@ -30,85 +11,71 @@ function cadastrar() {
 
   let procurarNumeroSenha = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
   let procurarCaracteresSenha = ["@", "#", "!", "."];
+
   let numeroSenha = false;
   let caracteresSenha = false;
 
-  if (
-    cnpjVar == "" ||
-    emailVar == "" ||
-    senhaVar == "" ||
-    confirmacaoSenhaVar == ""
-  ) {
-    cardErro.style.display = "block";
-    mensagemErro.innerHTML =
-      "Por favor, preencha todos os campos para prosseguir!";
-    return false;
-    setInterval(sumirMensagem, 8000)
-  } 
-    for (let percorrerSenha = 0; percorrerSenha < procurarNumeroSenha.length; percorrerSenha++) {
-      if (senhaVar.indexOf(procurarNumeroSenha[percorrerSenha]) > -1) {
-        numeroSenha = true;
-        break;
-      }
-    }
+  const regexCNPJComPontuacao = /^\d{2}\.\d{3}\.\d{3}\/\d{4}\-\d{2}$/;
+  const regexCNPJSemPontuacao = /^\d{14}$/;
 
-    for (let percorrerSenha = 0; percorrerSenha < procurarCaracteresSenha.length; percorrerSenha++) {
-      if (senhaVar.indexOf(procurarCaracteresSenha[percorrerSenha]) > -1) {
-        caracteresSenha = true;
-        break;
-      }
-  
+  if (cnpjVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+    cardErro.style.display = "block";
+    mensagemErro.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
+    setInterval(sumirMensagem, 8000);
+    return false;
+  }
+
+  if (!(regexCNPJComPontuacao.test(cnpjVar) || regexCNPJSemPontuacao.test(cnpjVar))) {
+    cardErro.style.display = "block";
+    mensagemErro.innerHTML = "O CNPJ inserido é inválido!";
+    setInterval(sumirMensagem, 8000);
+    return false;
+  }
+
+  cnpjVar = cnpjVar.replace(/[.\-\/]/g, '');
+
+  for (let percorrerSenha = 0; percorrerSenha < procurarNumeroSenha.length; percorrerSenha++) {
+    if (senhaVar.indexOf(procurarNumeroSenha[percorrerSenha]) > -1) {
+      numeroSenha = true;
+      break;
+    }
+  }
+
+  for (let percorrerSenha = 0; percorrerSenha < procurarCaracteresSenha.length; percorrerSenha++) {
+    if (senhaVar.indexOf(procurarCaracteresSenha[percorrerSenha]) > -1) {
+      caracteresSenha = true;
+      break;
+    }
   }
 
   if (!(emailVar.indexOf("@") > -1) || emailVar.indexOf("@") == emailVar.length - 1) {
-
     cardErro.style.display = "block";
     mensagemErro.innerHTML = "O email deve conter @ e provedor!";
+    setInterval(sumirMensagem, 8000);
     return false;
   } else if (senhaVar.length < 8) {
-
     cardErro.style.display = "block";
     mensagemErro.innerHTML = "A senha deve conter ao menos 8 caracteres!";
-    return false;
-  } else if (cnpjVar.length != 14) {
-
-    cardErro.style.display = "block";
-    mensagemErro.innerHTML = "O CNPJ deve conter 14 caracteres!";
+    setInterval(sumirMensagem, 8000);
     return false;
   } else if (!numeroSenha) {
-
     cardErro.style.display = "block";
     mensagemErro.innerHTML = "A senha deve conter ao menos um número!";
+    setInterval(sumirMensagem, 8000);
     return false;
   } else if (!caracteresSenha) {
-
     cardErro.style.display = "block";
-    mensagemErro.innerHTML = "A senha deve conter ao menos um caractere especial! Caracteres aceitos: ' @ ', ' ! ', ' # ' ou ' . '";
+    mensagemErro.innerHTML = "A senha deve conter ao menos um caractere especial! Caracteres aceitos: '@', '!', '#', ou '.'";
+    setInterval(sumirMensagem, 8000);
     return false;
   } else if (senhaVar != confirmacaoSenhaVar) {
-
     cardErro.style.display = "block";
     mensagemErro.innerHTML = "A senha e confirmação de senha não conferem!";
-    return false;
-  } else {
     setInterval(sumirMensagem, 8000);
+    return false;
   }
-
 
   setTimeout(sumirMensagem, 8000);
-
-
-  function sumirMensagem() {
-    cardErro.style.display = "none"
-  }
-
-  function limparFormulario() {
-    document.getElementById("input_cnpj").value = "";
-    document.getElementById("input_email").value = "";
-    document.getElementById("input_senha").value = "";
-    document.getElementById("input_confirmacao_senha").value = "";
-  }
-
 
   fetch("/usuarios/cadastrar", {
     method: "POST",
@@ -118,7 +85,7 @@ function cadastrar() {
     body: JSON.stringify({
       cnpjServer: cnpjVar.trim(),
       emailServer: emailVar.trim(),
-      senhaServer: senhaVar.trim()
+      senhaServer: senhaVar.trim(),
     }),
   })
     .then(function (resposta) {
@@ -126,9 +93,7 @@ function cadastrar() {
       if (resposta.ok) {
         cardErro.style.display = "block";
         mensagemErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
         painelDeslizante.style.transform = 'translateX(100%)';
-
       } else {
         cardErro.style.display = "block";
         mensagemErro.innerHTML = "Já existe um usuário cadastrado com essas informações!";
@@ -138,96 +103,8 @@ function cadastrar() {
     .catch(function (resposta) {
       console.log(`#ERRO: ${resposta}`);
     });
-    setInterval(sumirMensagem, 8000);
 
-  return false;
-}
-
-function entrar() {
-  
-  let emailVar = document.getElementById("inputEmailLogin").value;
-  let senhaVar = document.getElementById("inputSenhaLogin").value;
-  
-  let cardErro = document.getElementById("cardErroLogin");
-  let mensagemErro = document.getElementById("mensagem_erro_login");
-
-  if (emailVar == false || senhaVar == false) {
-    cardErro.style.display = "block"
-    mensagemErro.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
-    return false;
-  } else if (emailVar == false) {
-    cardErro.style.display = "block"
-    mensagemErro.innerHTML = "Por favor, preencha o email prosseguir!";
-    return false;
-  } else if (senhaVar == false) {
-    cardErro.style.display = "block"
-    mensagemErro.innerHTML = "Por favor, preencha o email prosseguir!";
-    return false;
-  } else {
-    setInterval(sumirMensagem, 8000)
-  }
-
-  console.log("FORM LOGIN: ", emailVar);
-  console.log("FORM SENHA: ", senhaVar);
-
-  fetch("/usuarios/autenticar", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      emailServer: emailVar,
-      senhaServer: senhaVar
-    })
-  }).then(function (resposta) {
-    console.log("ESTOU NO THEN DO entrar()!")
-
-    if (resposta == 403) {
-      cardErro.style.display = "block"
-    mensagemErro.innerHTML = "U!";
-    return false;
-    }
-
-    if (resposta.ok) {
-      console.log(resposta);
-
-      cardErro.style.display = "block"
-      mensagemErro.innerHTML = "Login realizado com sucesso!";
-
-      setInterval(sumirMensagem, 8000);
-      
-      // resposta.json().then(json => {
-      //   console.log(json);
-      //   console.log(JSON.stringify(json));
-      //   sessionStorage.EMAIL_USUARIO = json.email;
-      //   sessionStorage.CNPJ_USUARIO = json.cnpj;
-      //   sessionStorage.ID_USUARIO = json.id;
-      //   setTimeout(function () {
-      //     cardErro.style.display = "block"
-      //     mensagemErro.innerHTML = "Login realizado com sucesso!";
-      //     // window.location = "./dashboard/preQuiz.html";
-      //   }, 1000);
-
-      // });
-
-    } else {
-
-      console.log("Houve um erro ao tentar realizar o login!");
-      cardErro.style.display = "block"
-      mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
-
-      setInterval(sumirMensagem, 8000)
-      
-      resposta.text().then(texto => {
-        console.error(texto);
-      });
-
-    }
-
-  }).catch(function (erro) {
-    console.log(erro);
-  })
-  setInterval(sumirMensagem, 8000)
+  setInterval(sumirMensagem, 8000);
 
   return false;
 
@@ -235,4 +112,3 @@ function entrar() {
     cardErro.style.display = "none"
   }
 }
-
