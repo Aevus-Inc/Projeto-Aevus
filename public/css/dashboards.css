@@ -33,15 +33,19 @@ body {
 
 .container {
   width: 80%;
+  margin-left: 16%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Section - Menu lateral */
 .barraLateral {
   background-color: #111111;
   width: 16%;
   height: 100vh;
+
+  position: fixed;
 }
 
 .div-logo {
@@ -82,7 +86,7 @@ body {
 }
 
 .div-buttons .button-menu-lateral {
-  width: 60%;
+  width: 50%;
   height: 12%;
   border-radius: 5px;
 
@@ -106,4 +110,103 @@ body {
 
   background-color: var(--dourado-navbar);
   color: #fff;
+}
+
+
+/*  */
+.section-graficos1 {
+  width: 50%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.section-graficos2 {
+  width: 50%;
+  height: 100vh
+}
+
+.containerCards {
+  width: 100%;
+  height: 25vh;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.cards-aeroportos {
+  width: 100%;
+  height: 60vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.cards-aeroportos h1 {
+  margin-bottom: 2%;
+}
+.graficos-pontuacoes {
+  width: 100%;
+  height: 40%;
+}
+
+.card {
+  width: 40%;
+  height: 20vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card img {
+  width: 180px;
+  height: 18vh;
+
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.card p {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  margin-top: 2%;
+
+  color: var(--preto-principal);
+
+  list-style: none;
+}
+
+.graficos-pontuacoes {
+  display: flex;
+  justify-content: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.graficos-pontuacoes h1 {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+#graficoPontuacoesBaixas {
+  width: 70%;
 }
