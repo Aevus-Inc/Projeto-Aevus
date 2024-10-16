@@ -51,7 +51,8 @@
         </div>
 
         <div class="div-logo">
-            <img src="../img/logoSemDescricao.png" alt="">
+            <!-- <img src="../img/logoSemDescricao.png" alt=""> -->
+             <p>AEVUS INC.</p>
         </div>
 
     </header>
@@ -61,9 +62,9 @@
 
             <div class="cards-aeroportos">
 
-                <h1>Aeroportos</h1>
+                <h2>Aeroportos</h2>
 
-                <div class="containerCards">
+                <div class="container-cards">
                     <div class="card">
                         <a href="">
                             <img src="../img/aeroporto de gru.jpeg" alt="">
@@ -81,7 +82,7 @@
 
                 </div>
 
-                <div class="containerCards">
+                <div class="container-cards">
                     <div class="card">
                         <a href="">
                             <img src="../img/aeroporto-campinas.jpg" alt="">
@@ -100,23 +101,25 @@
             </div>
 
             <div class="graficos-pontuacoes">
-                <!-- <h1>Pontuações mais baixas</h1> -->
+                <h2>Pontuações mais baixas</h2>
 
                 <div id="graficoPontuacoesBaixas">
-                    <!-- <canvas id="myChart"></canvas> -->
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
 
         </section>
 
         <section class="section-graficos2">
-            <div class="">
-                <!-- <div id="table_div"></div> -->
+
+            <div class="graficos-satisfacao">
+                <div class="tabelaSatisfacao">
+                    <h2>Indíces de Satisfação por Aeroportos</h2>
+                    <div id="table_div"></div>
+                </div>
             </div>
         </section>
     </main>
-
-
 
 </body>
 
@@ -150,13 +153,16 @@
     function drawTable() {
         var data = new google.visualization.DataTable();
         data.addColumn('string', 'Name');
-        data.addColumn('number', 'Salary');
-        data.addColumn('boolean', 'Full Time Employee');
+        data.addColumn('number', 'Muito Bom');
+        data.addColumn('number', 'Bom');
+        data.addColumn('number', 'Razoável');
+        data.addColumn('number', 'Ruim');
+        data.addColumn('number', 'Muito Ruim')
         data.addRows([
-            ['Mike', { v: 10000, f: '$10,000' }, true],
-            ['Jim', { v: 8000, f: '$8,000' }, false],
-            ['Alice', { v: 12500, f: '$12,500' }, true],
-            ['Bob', { v: 7000, f: '$7,000' }, true]
+        ['Mike', 5, 2, 6, 0, 7],
+                ['Jim', 4, 3, 5, 1, 2],
+                ['Alice', 3, 4, 5, 2, 1],
+                ['Bob', 2, 1, 3, 0, 5]
         ]);
 
         var table = new google.visualization.Table(document.getElementById('table_div'));

@@ -31,8 +31,12 @@ body {
   background-color: white;
 }
 
+button {
+  cursor: pointer;
+}
+
 .container {
-  width: 80%;
+  width: 84%;
   margin-left: 16%;
   display: flex;
   justify-content: center;
@@ -75,14 +79,14 @@ body {
 }
 
 .div-buttons {
-  height: 50%;
+  height: 45%;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  gap: 4%;
+  gap: 6%;
 }
 
 .div-buttons .button-menu-lateral {
@@ -90,7 +94,7 @@ body {
   height: 12%;
   border-radius: 5px;
 
-  background-color: var(--cinza-titulo);
+  background-color: #44454e;
   color: #fff;
 }
 
@@ -108,26 +112,27 @@ body {
   height: 60%;
   border-radius: 5px;
 
-  background-color: var(--dourado-navbar);
-  color: #fff;
+  background-color: #fff;
+  color: #44454e;
 }
 
 
 /*  */
 .section-graficos1 {
-  width: 50%;
+  width: 52%;
   height: 100vh;
 
   display: flex;
   flex-direction: column;
+
 }
 
 .section-graficos2 {
-  width: 50%;
-  height: 100vh
+  width: 52%;
+  height: 100vh;
 }
 
-.containerCards {
+.container-cards {
   width: 100%;
   height: 25vh;
 
@@ -141,16 +146,16 @@ body {
 .cards-aeroportos {
   width: 100%;
   height: 60vh;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.cards-aeroportos h1 {
+.cards-aeroportos h2 {
   margin-bottom: 2%;
 }
+
 .graficos-pontuacoes {
   width: 100%;
   height: 40%;
@@ -178,6 +183,10 @@ body {
   border-radius: 10px;
 }
 
+.card:hover img {
+  filter: brightness(50%);
+}
+
 .card p {
   width: 100%;
 
@@ -200,6 +209,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .graficos-pontuacoes h1 {
   width: 100%;
 
@@ -208,5 +218,28 @@ body {
 }
 
 #graficoPontuacoesBaixas {
-  width: 70%;
+  width: 50%;
+}
+
+.graficos-satisfacao {
+  width: 100%;
+  height: 40vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tabelaSatisfacao {
+  width: 80%;
+  margin-right: 10%;
+}
+
+.tabelaSatisfacao h2 {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 6%;
 }
