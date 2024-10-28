@@ -7,7 +7,7 @@
   font-family: "Roboto", sans-serif;
 }
 
-:root {
+:root { 
   --preto-principal: #111111;
   --cinza--branco: #44454e;
   --cinza--navbar: #faf8f8;
@@ -123,7 +123,6 @@ button {
 .section-graficos1 {
   width: 52%;
   height: 100vh;
-
   display: flex;
   flex-direction: column;
 

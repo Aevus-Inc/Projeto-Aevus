@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aevus | Aeroporto</title>
+
+    <link rel="stylesheet" href="./../css/aeroporto.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <header class="barraLateral">
+        <div class="div-user">
+            <h1>Bem Vindo!</h1>
+            <h2>Olar</h2>
+        </div>
+
+        <div class="div-buttons">
+            <button class="button-menu-lateral">Editar Funcionários</button>
+            <button class="button-menu-lateral">Editar Aeroportos</button>
+            <button class="button-menu-lateral">Tela Inicial</button>
+        </div>
+
+
+
+        <div class="div-sair">
+            <button>Sair</button>
+        </div>
+
+        <div class="div-logo">
+            <!-- <img src="../img/logoSemDescricao.png" alt=""> -->
+            <p>AEVUS INC.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section-graficos1">
+            <div class="cards-aeroportos">
+                <div class="card-space">
+                    <a href="">
+                        <p>KP1-01</p>
+                        <div class="card">
+                            <p>Valor 01</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-space">
+                    <a href="">
+                        <p>KP1-01</p>
+                        <div class="card">
+                            <p>Valor 02</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-space">
+                    <a href="">
+                        <p>KP1-01</p>
+                        <div class="card">
+                            <p>Valor 03</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <section class="visao-geral">
+                <p>Visão Geral</p>
+                <div class="grafico-geral">
+                    <canvas id="myChart" width="120px" height="100%"></canvas>
+                </div>
+            </section>
+
+                <!-- <section class="detalhes">
+                    <p>Detalhes</p>
+                    <div class="campo-detalhes"><img src="../assets/imgs/Grafico.png" alt=""></div>
+                </section> -->
+        </section>
+
+        <section class="section-graficos2">
+            <div class="campo-filtro">
+                <h2>Busca por filtro</h2>
+                <div class="campos-check">
+                    <div class="campo-filtro-check">
+                        <input class="check-option" id="check-option1" type="checkbox">
+                        <label for="check-option1">Data</Label>
+                    </div>
+                    <div class="campo-filtro-check">
+                        <input class="check-option" id="check-option2" type="checkbox">
+                        <label for="check-option2">Problema/Solução</Label>
+                    </div>
+                </div>
+            </div>
+
+            <section class="series">
+                <p>Séries</p>
+                <div class="campo-series">
+                    <canvas id="myChart2" width="378" height="380"></canvas>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+
+</html>
+
+
+<script>
+    const ctx = document.getElementById('myChart');
+    const ctx2 = document.getElementById('myChart2');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2020', '2021', '2022', '2023', '2024'],
+            datasets: [
+                {
+                    label: 'Limpeza',
+                    data: [18, 30, 25, 40, 41],
+                    backgroundColor: '#EBD469',
+                    borderWidth: 4,
+                    borderColor: '#EBD469'
+                },
+                {
+                    label: 'Preços',
+                    data: [0, 11, 38, 30, 33],
+                    backgroundColor: '#111111',
+                    borderWidth: 4,
+                    borderColor: '#111111'
+                },
+                {
+                    label: 'Variedade',
+                    data: [12, 5, 20, 15, 50],
+                    backgroundColor: '#666472',
+                    borderWidth: 4,
+                    borderColor: '#666472'
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+
+    new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ['item'],
+            datasets:   [
+                {
+                    label: 'Série 1',
+                    data: [40],
+                    backgroundColor: '#111111',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Série 2',
+                    data: [72],
+                    backgroundColor: '#666472',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Série 3',
+                    data: [100],
+                    backgroundColor: '#EBD469',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Série 4',
+                    data: [90],
+                    backgroundColor: '#A7967D',
+                    borderWidth: 1
+                },
+            ]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
