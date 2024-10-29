@@ -89,9 +89,10 @@ button {
   gap: 6%;
 }
 
+
 .div-buttons .button-menu-lateral {
-  width: 50%;
-  height: 12%;
+  width: 150px;
+  height: 5vh;
   border-radius: 5px;
 
   background-color: #44454e;
