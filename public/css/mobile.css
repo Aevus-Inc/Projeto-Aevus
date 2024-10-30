@@ -1,0 +1,464 @@
+.btn-abrir-menu {
+    display: none;
+    width: max-content !important;
+    margin-left: auto;
+}
+
+.btn-abrir-menu ion-icon {
+    color: var(--dourado-principal);
+    font-size: 2.5rem;
+}
+
+.menu-mobile {
+    display: none; 
+    position: absolute;
+    top: 0;
+    right: 0; 
+    width: 40%; 
+    height: 100%;
+    background-color: white;
+    z-index: 1001;
+    transition: transform 0.3s ease-in-out; 
+    transform: translateX(100%);
+}
+
+.menu-mobile.abrir-menu {
+    display: block; 
+    transform: translateX(0);
+}
+
+.overlay-menu {
+    display: none;
+    background-color: rgba(94, 91, 91, 0.46);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+.overlay-menu.abrir-menu {
+    display: block;
+}
+
+.menu-mobile {
+        display: flex;
+        background-color: var(--dourado-navbar);
+        position: fixed;
+        text-align: center;
+        align-items: center;
+        justify-content: center;    
+        flex-direction: column;
+        width: 40%; 
+        height: 100%;
+        z-index: 444;
+        overflow: hidden;
+        transition: 0.7s;
+        list-style: none;
+        color: black;
+        gap: 1.25rem;
+    }
+
+.menu-mobile ul {
+
+    display: flex;
+    gap: 3.75rem;
+}
+
+.menu-mobile li {
+    text-align: center;
+    position: relative; 
+}
+
+.menu-mobile li::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: var(--dourado-principal);
+    transition: width 0.3s ease-in-out;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.menu-mobile li:hover::after {
+    width: 100%;
+}
+
+.menu-mobile li{
+text-align: center;
+}
+
+    .abrir-menu {
+        display: block;
+    }
+
+    .menu-mobile nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+
+    .menu-mobile nav ul {
+        width: 40%;
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        padding-right: 5%;
+    }
+
+    .menu-mobile ion-icon {
+        position: relative;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    .menu-mobile nav ul li a {
+        font-size: 20px;
+        font-weight: 250px;
+        padding: 2.5rem 4%;
+        text-transform: uppercase;
+    }
+
+    .menu-mobile nav ul li a::after {
+        content: '';
+        position: block;
+        bottom: -0.5625rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: .1875rem;
+        background-color: var(--cinza--branco);
+        transition: width 0.3s ease-in-out;
+    }
+
+    .menu-mobile.menu-mobile.abrir-menu~.overlay-menu {
+        display: block;
+    }
+
+    .menu-mobile li:hover::after {
+        width: 100%;
+    }
+
+    .menu-mobile ul {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        font-size: 1.25rem;
+        gap: 3.75rem;
+    }
+
+    .menu-mobile a:hover {
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .menu-mobile.btn-fechar {
+        color: var(--dourado-principal);
+        font-size: 2rem;
+    }
+
+    .btn-fechar {
+        padding: 20px 5%;
+    }
+
+    .overlay-menu {
+        display: none;
+        background-color: #5e5b5b75;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        z-index: 333;
+    }
+
+    .main-content-image img {
+        width: 90%;
+    }
+
+    .main-content-image-mobile {
+        margin: auto;
+        max-width: 100%;
+        border-radius: 1rem;
+    }
+
+
+@media (max-width: 1270px) {
+    body {
+        flex-direction: column;
+    }
+
+    .main-content {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        width: 100%;
+        margin-left: 0%;
+        margin: auto;
+    }
+
+    .main-content-image {
+        display: none;
+    }
+
+    .main-content-texts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: left; 
+    }
+
+    .main-content-image-mobile {
+    display: block;
+    position: sticky;
+    flex: 1;
+    max-width: 40%;
+    min-width: 340px;
+    margin:auto;
+    margin-bottom: 3.125rem;
+}
+
+.main-content-image-mobile img {
+    width: 100%;
+    height: auto;
+}
+
+    .main-content-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem; /* Espaçamento entre os botões */
+        width: 100%;
+    }
+
+    .main-content-button1,
+    .main-content-button2 {
+        flex: 1;
+        max-width: 200px; /* Ajuste conforme necessário */
+    }
+
+}
+
+@media (max-width: 1107px) {
+    .container .menu-desktop, .container .navbar-button {
+        display: none;
+    }
+
+    .btn-abrir-menu {
+        display: block;
+        text-align: right;
+        width: 80%;
+    }
+
+    .main-content-texts {
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+
+    .main-content-title {
+        font-size: 2rem;
+        text-align: center !important;
+        text-align: left;
+    }
+
+
+
+    .container-conceitos {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+    max-width: 300px;
+}
+
+       .container-nossa-empresa {
+        width: 100%; 
+        padding: 1rem; 
+        box-sizing: border-box; 
+    }
+
+    .container-nossa-empresa > * {
+        width: 100%; 
+        max-width: 100%; 
+        box-sizing: border-box; 
+    }
+}
+
+
+.container-nossa-empresa > * {
+    width: 100%; 
+    max-width: 100%; 
+    box-sizing: border-box; 
+}
+
+
+/* ESTILO DO MENU MOBILE */
+
+@media (max-width:880px){
+
+ .container-sobre-nos {
+        margin-bottom: 100px;
+    }
+
+}
+@media (max-width: 800px) {
+
+
+    .main-content-texts .main-content-title {
+    font-size: 46px
+
+}
+
+      .container-conceitos-wrapper {
+    height: 1200px;
+
+}
+
+    .container-sobre-nos {
+        margin-bottom: 200px;
+    }
+
+    
+    .nossa-solucao-title,
+    .nossa-solucao-title2,
+    .nossa-solucao-title3 {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+    }
+
+    .content-nossa-solucao {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .content-nossa-solucao-card {
+        width: 100%;
+    }
+
+    .container-projetos {
+        flex-direction: column;
+  
+    }
+
+    .container-quadrados {
+        width: 100%;
+    }
+
+    .main-content-subtitle {
+        font-size: 1rem;
+    }
+
+    .main-content-image img {
+        width: 90%;
+    }
+
+    body {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .main-content-subtitle {
+        font-size: 1rem;
+    }
+
+    .container-nossa-empresa {
+        width: 100%; 
+        padding: 1rem; 
+        box-sizing: border-box; 
+
+    }
+
+    .container-nossa-empresa > * {
+        width: 100%; 
+        max-width: 100%; 
+        box-sizing: border-box; 
+    }
+
+    .container-nossa-empresa img {
+        display: flex;
+    }
+
+    .container-quadrados {
+        width: 100%;
+        padding: 1rem; 
+        box-sizing: border-box; 
+    }
+
+    .container-quadrados > * {
+        width: 100%; 
+        max-width: 100%; 
+        box-sizing: border-box; 
+    }
+
+    .container-quadrados img {
+        width: 100%; 
+        display: block; 
+    }
+
+    .container-conceitos {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    flex-direction: column;
+    max-width: 320px;
+}
+
+@media (max-width: 700px){
+
+      .container-conceitos-wrapper {
+    height: 1200px;
+
+    
+}
+}
+
+@media (max-width: 650px){
+
+   .container-sobre-nos {
+        margin-bottom: 350px;
+    }
+    
+}
+
+@media (max-width: 600px){
+
+   .container-sobre-nos {
+        margin-bottom: 450px;
+    }
+    
+}
+    
+}
+
+/*Responsividade Footer*/
+@media (max-width: 105.625rem) {
+    .footer {
+        padding: 3.125rem 5% 2.5rem;
+    }
+}
+
+@media (max-width: 70rem) {
+    .footer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18.75rem, auto));
+        gap: 32px;
+    }
+}
+
+@media (max-width: 43.75rem) {
+    .footer {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(18.75rem, auto));
+        gap: 32px;
+    }
+}

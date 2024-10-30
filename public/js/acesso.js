@@ -93,6 +93,7 @@ function cadastrar() {
       if (resposta.ok) {
         cardErro.style.display = "block";
         mensagemErro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+        window.location = "dashboard\dashboard.html"
         painelDeslizante.style.transform = 'translateX(100%)';
       } else {
         cardErro.style.display = "block";
