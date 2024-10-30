@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/carousel.css">
+  <link rel="stylesheet" href="css/mobile.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -48,46 +49,25 @@
         </div> <!-- btn cadastro-->
 
         <div class="btn-abrir-menu" id="btn-menu">
-          <ion-icon name="list-outline"></ion-icon>
-        </div> <!-- btn-abrir-menu  -->
-      </div>
+  <ion-icon name="list-outline"></ion-icon>
+</div> <!-- btn-abrir-menu -->
 
-  
-       <!-- btn-abrir-menu  -->
+<div class="menu-mobile" id="menu-mobile">
+  <div class="btn-fechar" id="btn-fechar">
+    <ion-icon name="close-outline"></ion-icon>
+  </div><!-- btn fechar-->
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#solucao">Projetos</a></li>
+      <li><a href="#nossa-empresa">Quem Somos</a></li>
+      <li><a href="#fale-conosco">Contato</a></li>
+      <li><a href="./acesso.html">Área do cliente</a></li>
+    </ul>
+  </nav>
+</div> <!-- menu-mobile -->
 
-      <div class="menu-mobile" id="menu-mobile">
-
-        =======
-        <a onclick="abrirMenu()">
-          <div class="menu-mobile" id="menu-mobile" onclick="abrirMenu()">
-            >>>>>>> a2cd57537616c2397ac631c1427c4232cbd67af3
-            <div class="btn-fechar">
-              <ion-icon name="close-outline"></ion-icon>
-            </div><!-- btn fechar-->
-            <nav>
-              <ul>
-                <a href="#home">
-                  <li>Home</li>
-                </a>
-                <a href="#solucao">
-                  <li>Projetos</li>
-                </a>
-                <a href="#sobre-nos">
-                  <li>Quem Somos</li>
-                </a>
-                <a href="#fale-conosco">
-                  <li>Contato</li>
-                </a>
-              </ul>
-            </nav>
-
-
-
-          </div><!-- mobile-menu-->
-        </a>
-        <div class="overlay-menu" id="overlay-menu" onclick="abrirMenu()">
-
-        </div><!-- overlay-menu-->
+<div class="overlay-menu" id="overlay-menu"></div><!-- overlay-menu -->
 
       </div> <!-- Fim da interface-->
   </header>
@@ -103,8 +83,11 @@
         <p class="main-content-subtitle">Combinamos inovação e experiência para elevar seu negócio ao próximo nível.
           Conheça mais sobre como podemos
           fazer a diferença. </p>
+            <div class="main-content-button">
         <a href=""> <button class="main-content-button1">Saiba Mais</button></a>
         <a href="acesso.html"> <button class="main-content-button2">Cadastre-se</button></a>
+        </div>
+      </div>
       </div>
       <div class="main-content-image">
         <img src="img/home-img.png" alt="">
@@ -196,8 +179,8 @@
             <p>Se tornar referência no mercado de soluções eficazes e inovadoras, sempre priorizando o cliente.</p>
           </div>
 
-          <div class="container-conceitos">
-            <img class="img-conceitos" src="img/star-svgrepo-com.svg" alt="">
+          <div class="container-conceitos" id="container-conceitos-olhos">
+            <img id="img-conceitos-olho" src="img/star-svgrepo-com.svg" alt="">
             <h4>Valores</h4>
             <p>Na Aevus, priorizamos comunicação, honestidade, disciplina, comprometimento e conexão para oferecer
               soluções inovadoras.</p>
