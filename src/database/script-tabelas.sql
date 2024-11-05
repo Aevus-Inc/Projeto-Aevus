@@ -1,7 +1,7 @@
 create database if not exists aevus;
 use aevus;
 
-create table if not exists empresa (
+create table if not exists empresa1 (
 id int primary key auto_increment,
 cnpj char(14) not null,
 email varchar(100) not null,
