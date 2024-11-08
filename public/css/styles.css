@@ -248,11 +248,11 @@ button.button-nossa-equipe:hover {
     background-color: var(--preto-botao);
 }
 
-.main-content-button:hover {
-    background-color: #AAABAB;
+.main-content-button {
+    
     transition: background-color 0.3s;
     transform: translateY(-0.1875rem);
-    box-shadow: 0rem .375rem .5rem rgba(3, 3, 3, 0.2);
+    box-shadow: 0rem .375rem .5rem rgba(255, 255, 255, 0.2);
     transition: 1ms;
 }
 
@@ -558,9 +558,14 @@ button:hover {
 .img-conceitos {
     height: 5rem;
     height: 5rem;
-    border-radius: 50%;
-    border: 1px solid black;
-    background-color: white;
+    
+    margin-bottom: 3.75rem;
+}
+
+.img-conceitos-olho {
+    height: 5rem;
+    height: 5rem;
+    
     margin-bottom: 3.75rem;
 }
 
