@@ -153,6 +153,7 @@ ul {
     position: absolute;
     z-index: 10000;
     width: 50%;
+    left: 50%;
     height: 100%;
     background-color: var(--dourado-principal);
     transition: transform 0.5s ease-in-out;
