@@ -37,7 +37,7 @@
 
         <div class="div-user">
             <h1>Bem Vindo!</h1>
-            <h2>Fernanda</h2>
+            <span id="b_usuario"></span>
         </div>
 
         <div class="div-buttons">
@@ -190,6 +190,7 @@
     </main>
 </body>
 <script type="text/javascript">
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     const ctx = document.getElementById('chartPontuacoesBaixas').getContext('2d');
     const chartPontuacoesBaixas = new Chart(ctx, {
@@ -444,6 +445,65 @@ document.getElementById('filtro-tempo').addEventListener('change', function() {
     // // Inicializa os filtros e o gráfico ao carregar a página
     preencherSelectAnos(); // Preenche o select de anos
     atualizarOpcoesFiltro(); // Atualiza a exibição dos filtros
+
+    const nomes = [];
+    const acertos = [];
+    const listaCores = ['#CD853F', '#5E371C', ' #271E17'];
+
+    function ultimasRespostas() {
+        fetch('/dashboard/ultimasRespostas', { method: 'POST' })
+            .then(resultado => resultado.json())
+            .then(respostas => {
+
+                console.log(respostas)
+
+                respostas.forEach(resposta => {
+
+
+                    nomes.push(resposta.nome);
+                    acertos.push(resposta.qtdAcertos);
+
+                });
+
+                let posicaoCor = Math.random() * 3;
+                let corGrafico = listaCores[posicaoCor];
+
+                console.log(acertos)
+                console.log(nomes)
+
+                const ctx = document.getElementById('myChart');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: nomes,
+                        datasets: [{
+                            label: "Quantidade de acertos",
+                            data: acertos,
+                            borderWidth: 1,
+                            backgroundColor: ['#D2691E', '#5E371C', '#271E17'],
+                            borderColor: corGrafico
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+            })
+            .catch(error => console.error('Erro ao buscar pontuações:', error));
+    }
+
+
+
+
+
+
+
+
 
     // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
