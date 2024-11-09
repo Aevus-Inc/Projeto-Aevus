@@ -116,7 +116,7 @@
 function entrar() {
   let emailVar = document.getElementById("inputEmailLogin").value;
   let senhaVar = document.getElementById("inputSenhaLogin").value;
-  
+
   let cardErro = document.getElementById("cardErroLogin");
   let mensagemErro = document.getElementById("mensagem_erro_login");
 
@@ -128,7 +128,8 @@ function entrar() {
 
   console.log("FORM LOGIN: ", emailVar);
   console.log("FORM SENHA: ", senhaVar);
-
+  
+  // Realizando o fetch para autenticar o usuário
   fetch("/usuarios/autenticar", {
     method: "POST",
     headers: {
@@ -140,38 +141,49 @@ function entrar() {
     })
   }).then(function (resposta) {
     console.log("ESTOU NO THEN DO entrar()!");
+
+    // Verifica se a resposta de autenticação é um erro (status 403)
     if (resposta.status == 403) {
       cardErro.style.display = "block";
       mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
       setInterval(sumirMensagem, 8000);
       return false;
     }
+
+    // Se a resposta for bem-sucedida
     if (resposta.ok) {
-      console.log(resposta);
+      console.log("Login realizado com sucesso!");
       cardErro.style.display = "block";
       mensagemErro.innerHTML = "Login realizado com sucesso!";
       setInterval(sumirMensagem, 8000);
-      window.location.href = "/dashboard/dashboard.html";
-    // if (data.classeUsuario === "administrador") {
-    //       window.location.href = "/dashboard/dashboard.html";
-    //     } else if (data.classeUsuario === "funcionario") {
-    //       window.location.href = "/dashboard/dashboard-funcionario.html";
-    //     }
+
+      // Processa os dados recebidos do backend
+      resposta.json().then(data => {
+        console.log("Dados recebidos do backend:", data);
+
+        if (data.tipoUsuario.toLowerCase() === "administrador" || data.tipoUsuario.toLowerCase() === "empresa") {
+          // Redireciona tanto o administrador quanto a empresa para a mesma página
+          window.location.href = "../dashboard/dashboard.html";
+        } else if (data.tipoUsuario.toLowerCase() === "funcionario") {
+          window.location.href = "../dashboard/dashboard-funcionario.html";
+        } else {
+          console.log("Tipo de usuário não reconhecido:", data.tipoUsuario);
+        }
+    });
+
     } else {
       console.log("Houve um erro ao tentar realizar o login!");
       cardErro.style.display = "block";
       mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
       setInterval(sumirMensagem, 8000);
-      
+
       resposta.text().then(texto => {
         console.error(texto);
       });
     }
-  }).catch(function (resposta) {
-    console.log(`#ERRO: ${resposta}`);
+  }).catch(function (erro) {
+    console.error(`#ERRO: ${erro}`);
   });
-
-  return false;
 
   function sumirMensagem() {
     cardErro.style.display = "none";
