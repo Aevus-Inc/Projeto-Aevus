@@ -1,8 +1,3 @@
-
-function sumirMensagem() {
-  cardErroLogin.style.display = "none"
-}
-
 //   function cadastrar() {
 //   const painelDeslizante = document.querySelector('.painelDeslizante');
 
@@ -118,68 +113,79 @@ function sumirMensagem() {
 //   }
 // }
 
-
-
 function entrar() {
-var emailVar = inputEmailLogin.value;
-var senhaVar = inputSenhaLogin.value;
+  let emailVar = document.getElementById("inputEmailLogin").value;
+  let senhaVar = document.getElementById("inputSenhaLogin").value;
 
-if (emailVar == "" || senhaVar == "") {
-  cardErroLogin.style.display = "block"
-  mensagem_erro_login.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
+  let cardErro = document.getElementById("cardErroLogin");
+  let mensagemErro = document.getElementById("mensagem_erro_login");
+
+  if (!emailVar || !senhaVar) {
+    cardErro.style.display = "block";
+    mensagemErro.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
     return false;
-}
-else {
-    setInterval(sumirMensagem, 5000)
-}
+  }
 
-console.log("FORM LOGIN: ", emailVar);
-console.log("FORM SENHA: ", senhaVar);
-
-fetch("/usuarios/autenticar", {
+  console.log("FORM LOGIN: ", emailVar);
+  console.log("FORM SENHA: ", senhaVar);
+  
+  // Realizando o fetch para autenticar o usuário
+  fetch("/usuarios/autenticar", {
     method: "POST",
     headers: {
-        "Content-Type": "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
-        emailServer: emailVar,
-        senhaServer: senhaVar
+      emailServer: emailVar,
+      senhaServer: senhaVar
     })
-}).then(function (resposta) {
-    console.log("ESTOU NO THEN DO entrar()!")
+  }).then(function (resposta) {
+    console.log("ESTOU NO THEN DO entrar()!");
 
-    if (resposta.ok) {
-        console.log(resposta);
-
-        resposta.json().then(json => {
-            console.log(json);
-            console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = json.email;
-            sessionStorage.NOME_USUARIO = json.nome;
-            sessionStorage.ID_USUARIO = json.id;
-            setTimeout(function () {
-              cardErroLogin.style.display = "block"
-              mensagem_erro_login.innerHTML = "Login realizado com sucesso! Direcionando para a Dashboard!";
-
-                window.location = "./dashboard/dashboard.html";
-            }, 1000);
-
-        });
-
-    } else {
-
-        console.log("Houve um erro ao tentar realizar o login!");
-        cardErroLogin.style.display = "block"
-        mensagem_erro_login.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
-
-        resposta.text().then(texto => {
-            console.error(texto);
-        });
+    // Verifica se a resposta de autenticação é um erro (status 403)
+    if (resposta.status == 403) {
+      cardErro.style.display = "block";
+      mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
+      setInterval(sumirMensagem, 8000);
+      return false;
     }
 
-}).catch(function (erro) {
-    console.log(erro);
-})
+    // Se a resposta for bem-sucedida
+    if (resposta.ok) {
+      console.log("Login realizado com sucesso!");
+      cardErro.style.display = "block";
+      mensagemErro.innerHTML = "Login realizado com sucesso!";
+      setInterval(sumirMensagem, 8000);
 
-return false;
+      // Processa os dados recebidos do backend
+      resposta.json().then(data => {
+        console.log("Dados recebidos do backend:", data);
+
+        if (data.tipoUsuario.toLowerCase() === "administrador" || data.tipoUsuario.toLowerCase() === "empresa") {
+          // Redireciona tanto o administrador quanto a empresa para a mesma página
+          window.location.href = "../dashboard/dashboard.html";
+        } else if (data.tipoUsuario.toLowerCase() === "funcionario") {
+          window.location.href = "../dashboard/dashboard-funcionario.html";
+        } else {
+          console.log("Tipo de usuário não reconhecido:", data.tipoUsuario);
+        }
+    });
+
+    } else {
+      console.log("Houve um erro ao tentar realizar o login!");
+      cardErro.style.display = "block";
+      mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
+      setInterval(sumirMensagem, 8000);
+
+      resposta.text().then(texto => {
+        console.error(texto);
+      });
+    }
+  }).catch(function (erro) {
+    console.error(`#ERRO: ${erro}`);
+  });
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 }
