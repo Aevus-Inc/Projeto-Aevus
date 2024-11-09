@@ -75,7 +75,9 @@ function cadastrar() {
     return false;
   }
 
-  setTimeout(sumirMensagem, 8000);
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 
   fetch("/usuarios/cadastrar", {
     method: "POST",
@@ -107,12 +109,69 @@ function cadastrar() {
   setInterval(sumirMensagem, 8000);
 
   return false;
-
-  function sumirMensagem() {
-    cardErro.style.display = "none"
-  }
 }
 
-function sumirMensagem() {
-  cardErro.style.display = "none"
+function entrar() {
+  let emailVar = document.getElementById("inputEmailLogin").value;
+  let senhaVar = document.getElementById("inputSenhaLogin").value;
+  
+  let cardErro = document.getElementById("cardErroLogin");
+  let mensagemErro = document.getElementById("mensagem_erro_login");
+
+  if (!emailVar || !senhaVar) {
+    cardErro.style.display = "block";
+    mensagemErro.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
+    return false;
+  }
+
+  console.log("FORM LOGIN: ", emailVar);
+  console.log("FORM SENHA: ", senhaVar);
+
+  fetch("/usuarios/autenticar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      emailServer: emailVar,
+      senhaServer: senhaVar
+    })
+  }).then(function (resposta) {
+    console.log("ESTOU NO THEN DO entrar()!");
+    if (resposta.status == 403) {
+      cardErro.style.display = "block";
+      mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
+      setInterval(sumirMensagem, 8000);
+      return false;
+    }
+    if (resposta.ok) {
+      console.log(resposta);
+      cardErro.style.display = "block";
+      mensagemErro.innerHTML = "Login realizado com sucesso!";
+      setInterval(sumirMensagem, 8000);
+      window.location.href = "/dashboard/dashboard.html";
+    // if (data.classeUsuario === "administrador") {
+    //       window.location.href = "/dashboard/dashboard.html";
+    //     } else if (data.classeUsuario === "funcionario") {
+    //       window.location.href = "/dashboard/dashboard-funcionario.html";
+    //     }
+    } else {
+      console.log("Houve um erro ao tentar realizar o login!");
+      cardErro.style.display = "block";
+      mensagemErro.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
+      setInterval(sumirMensagem, 8000);
+      
+      resposta.text().then(texto => {
+        console.error(texto);
+      });
+    }
+  }).catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+  });
+
+  return false;
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
 }
