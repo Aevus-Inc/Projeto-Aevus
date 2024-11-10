@@ -7,6 +7,7 @@
     <title>Aevus | Aeroporto</title>
 
     <link rel="stylesheet" href="./../css/aeroporto.css">
+    <link rel="shortcut icon" href="../img/logoSemDescricao.png" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
@@ -14,7 +15,11 @@
     <header class="barraLateral">
         <div class="div-user">
             <h1>Bem Vindo!</h1>
-            <h2>Olar</h2>
+            <h2>nomeUsuário</h2>
+        </div>
+
+        <div class="div-nomeAirport">
+            <h3>Aeroporto de <br>nomeAeroporto</h3>
         </div>
 
         <div class="div-buttons">
@@ -22,7 +27,6 @@
             <button class="button-menu-lateral">Editar Aeroportos</button>
             <button class="button-menu-lateral">Tela Inicial</button>
         </div>
-
 
 
         <div class="div-sair">
@@ -40,7 +44,7 @@
             <div class="cards-aeroportos">
                 <div class="card-space">
                     <a href="/public/dashboard/aeroporto.html">
-                        <p>KP1-01</p>
+                        <p>KP1-01 Pior</p>
                         <div class="card">
                             <p>Valor 01</p>
                         </div>
@@ -48,7 +52,7 @@
                 </div>
                 <div class="card-space">
                     <a href="">
-                        <p>KP1-01</p>
+                        <p>KP1-02 medio</p>
                         <div class="card">
                             <p>Valor 02</p>
                         </div>
@@ -56,7 +60,7 @@
                 </div>
                 <div class="card-space">
                     <a href="">
-                        <p>KP1-01</p>
+                        <p>KP1-03 melhor</p>
                         <div class="card">
                             <p>Valor 03</p>
                         </div>
@@ -65,7 +69,7 @@
             </div>
 
             <section class="visao-geral">
-                <p>Visão Geral</p>
+                <p>Reclamação por setor a cada ano</p>
                 <div class="grafico-geral">
                     <canvas id="myChart" width="120px" height="100%"></canvas>
                 </div>
@@ -83,11 +87,15 @@
                 <div class="campos-check">
                     <div class="campo-filtro-check">
                         <input class="check-option" id="check-option1" type="checkbox">
-                        <label for="check-option1">Data</Label>
+                        <label for="check-option1">Limpeza</Label>
                     </div>
                     <div class="campo-filtro-check">
                         <input class="check-option" id="check-option2" type="checkbox">
-                        <label for="check-option2">Problema/Solução</Label>
+                        <label for="check-option2">Preço</Label>
+                    </div>
+                    <div class="campo-filtro-check">
+                        <input class="check-option" id="check-option2" type="checkbox">
+                        <label for="check-option2">Tempo de Espera</Label>
                     </div>
                 </div>
             </div>

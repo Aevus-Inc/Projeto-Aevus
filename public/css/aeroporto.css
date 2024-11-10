@@ -29,7 +29,7 @@
 body {
     /* color: var(--cinza--branco); */
     font-family: "Roboto", sans-serif;
-    background-color: white;
+    background-color: #E6E7Eb;
 }
 
 button {
@@ -75,6 +75,16 @@ button {
     color: #fff;
 }
 
+.div-nomeAirport {
+    height: 8%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
 .div-buttons {
     height: 45%;
     display: flex;
@@ -107,7 +117,7 @@ button {
     height: 60%;
     border-radius: 5px;
     background-color: #fff;
-    color: #44454e;
+    color: #44454e;     
     cursor: pointer;
 }
 
@@ -120,11 +130,14 @@ button {
     background-color: #44454e; 
     color: #fff;
  }
+
+
 /* Seção lado esquerdo*/
 .section-graficos1 {
     width: 55%;
     height: 100vh;
-    background-color:#E6E7Eb;
+        background-color:var(--fundo-telaHome1);
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -145,11 +158,12 @@ button {
 }
 
 .card {
-    background-color:var(--fundo-telaHome1);
     width: 215px;
     height: 18vh;
     object-fit: cover;
     border-radius: 10px;
+    border-style: solid;
+    border-color: black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -171,7 +185,6 @@ p {
 }
 
 .grafico-geral {
-    background-color:var(--fundo-telaHome1);
     width: 40vw;
     height: 68vh;
     display: flex;
@@ -203,9 +216,9 @@ p {
 
 /* Seção lado direito */
 .section-graficos2 {
+    background-color:var(--fundo-telaHome1);
     width: 45%;
     height: 100vh;
-    background-color:#E6E7Eb;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -216,7 +229,6 @@ p {
 }
 
 .campos-check{
-    background-color:var(--fundo-telaHome1);
     width: 70vh;
     height: 20vh;
     border-radius: 15px;
@@ -248,7 +260,6 @@ p {
 }
 
 .campo-series {
-    background-color:var(--fundo-telaHome1);
     width: 70vh;
     height: 69vh;
     display: flex;
