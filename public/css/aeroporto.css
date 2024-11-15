@@ -92,15 +92,14 @@ button {
     justify-content: center;
     align-items: center;
     gap: 6%;
-    
 }
 
-.div-buttons .button-menu-lateral {
-    width: 50%;
-    height: 12%;
-    border-radius: 5px;
 
-    background-color: #44454e; 
+.div-buttons .button-menu-lateral {
+    width: 180px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #44454e;
     color: #fff;
 }
 
@@ -117,27 +116,25 @@ button {
     height: 60%;
     border-radius: 5px;
     background-color: #fff;
-    color: #44454e;     
+    color: #44454e;
     cursor: pointer;
 }
 
 
- #telaIncial{
+#telaIncial {
     width: 110px;
     height: 5vh;
     border-radius: 5px;
-
-    background-color: #44454e; 
+    background-color: #44454e;
     color: #fff;
- }
+}
 
 
 /* Seção lado esquerdo*/
 .section-graficos1 {
     width: 55%;
     height: 100vh;
-        background-color:var(--fundo-telaHome1);
-
+    background-color: var(--fundo-telaHome1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -216,7 +213,7 @@ p {
 
 /* Seção lado direito */
 .section-graficos2 {
-    background-color:var(--fundo-telaHome1);
+    background-color: var(--fundo-telaHome1);
     width: 45%;
     height: 100vh;
     display: flex;
@@ -228,11 +225,11 @@ p {
     margin-top: 15px;
 }
 
-.campos-check{
+.campos-check {
     width: 70vh;
     height: 20vh;
     border-radius: 15px;
-    padding: 10px; 
+    padding: 10px;
 }
 
 .campo-filtro-check {
@@ -241,15 +238,15 @@ p {
     justify-content: start;
 }
 
-.campo-filtro-check label{
+.campo-filtro-check label {
     color: var(--preto-principal);
     font-weight: bold;
-    font-size:xx-large;
+    font-size: xx-large;
     cursor: pointer;
     padding: 5px;
 }
 
-.campo-filtro-check input{
+.campo-filtro-check input {
     color: var(--preto-principal);
     width: 25px;
     height: 25px;
@@ -265,5 +262,5 @@ p {
     display: flex;
     border-radius: 15px;
     align-items: center;
-    padding: 10px; 
+    padding: 10px;
 }
