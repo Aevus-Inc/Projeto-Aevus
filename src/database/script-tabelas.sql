@@ -1,3 +1,4 @@
+drop database aevus;
 create database if not exists aevus;
 use aevus;
 
@@ -17,16 +18,6 @@ CREATE TABLE IF NOT EXISTS Empresa (
   constraint uk_cpj unique (cnpj)
 );
 
-CREATE TABLE IF NOT EXISTS Funcionario (
-    idFuncionario INT AUTO_INCREMENT,
-    nome VARCHAR(100),
-    cargo VARCHAR(100),
-    telefone VARCHAR(100),
-    email VARCHAR(100),
-    idSupervisor INT,
-    PRIMARY KEY (idFuncionario),
-    FOREIGN KEY (idSupervisor) REFERENCES Funcionario(idFuncionario)
-);
 
 CREATE TABLE IF NOT EXISTS Pessoa (
   idPessoa INT AUTO_INCREMENT,
@@ -35,18 +26,19 @@ CREATE TABLE IF NOT EXISTS Pessoa (
   PRIMARY KEY (idPessoa)
 );
 
+
 CREATE TABLE IF NOT EXISTS Usuario (
-    idFuncionario INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100),
-    email VARCHAR(254) UNIQUE,
-    cpf CHAR(11) UNIQUE,
-    tipoFuncionario VARCHAR(255) DEFAULT 'Operacional',
-    senha VARCHAR(255),
-    dataContratacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(255) DEFAULT 'Ativo',
-    fkPessoa INT,
-    FOREIGN KEY (fkPessoa) REFERENCES Pessoa(idPessoa) ON DELETE SET NULL,
-    CONSTRAINT ck_tipoFuncionario CHECK (tipoFuncionario IN ('operacional', 'administrador', 'Operacional', 'Administrador'))
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,       
+    nome VARCHAR(100),                              
+    email VARCHAR(254) UNIQUE,                     
+    cpf CHAR(11) UNIQUE,                            
+    tipoUsuario VARCHAR(255) DEFAULT 'Operacional', 
+    senha VARCHAR(255),                             
+    dataContratacao DATETIME DEFAULT CURRENT_TIMESTAMP, 
+    status VARCHAR(255) DEFAULT 'Ativo',            
+    fkPessoa INT,                                   
+    FOREIGN KEY (fkPessoa) REFERENCES Pessoa(idPessoa) ON DELETE SET NULL, 
+    CONSTRAINT ck_tipoUsuario CHECK (tipoUsuario IN ('Operacional', 'Administrador')) 
 );
 
 
@@ -70,7 +62,7 @@ CREATE TABLE IF NOT EXISTS RelacaoAeroporto_Funcionario (
     dataFim DATETIME,
     PRIMARY KEY (Aeroporto_idAeroporto, Funcionario_idFuncionario),
     FOREIGN KEY (Aeroporto_idAeroporto) REFERENCES Aeroporto(idAeroporto) ON DELETE CASCADE,
-    FOREIGN KEY (Funcionario_idFuncionario) REFERENCES Usuario(idFuncionario) ON DELETE CASCADE
+    FOREIGN KEY (Funcionario_idFuncionario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Passageiro (
@@ -265,3 +257,25 @@ CREATE TABLE log (
     descricao TEXT NOT NULL,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+-- Massa de dados para teste:
+
+-- INSERT INTO Empresa (nomeFantasia, cnpj, razaoSocial, email, senha)
+-- VALUES 
+-- ('Aevus Infinity', '12345678000199', 'Aevus Infinity LTDA', 'testeempresa@teste.com', 'xx123456');
+
+
+-- INSERT INTO Pessoa (nome, cpf)
+-- VALUES 
+-- ('João Silva', '12345678901'),
+-- ('Maria Santos', '98765432100');
+
+-- INSERT INTO Usuario (nome, email, cpf, tipoUsuario, senha, fkPessoa)
+-- VALUES 
+-- ('João Silva', 'testeop@teste.com', '12345678901', 'Operacional', 'xx123456', 1),
+-- ('Maria Santos', 'testeadm@teste.com', '98765432100', 'Administrador', 'xx123456', 2);
+
+-- select * from Pessoa;
+-- select * from Usuario;
+
