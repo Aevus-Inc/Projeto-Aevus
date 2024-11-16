@@ -1,4 +1,3 @@
-drop database aevus;
 create database if not exists aevus;
 use aevus;
 
