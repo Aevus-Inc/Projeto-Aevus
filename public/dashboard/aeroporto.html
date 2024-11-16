@@ -13,22 +13,18 @@
 
 <body>
     <header class="barraLateral">
+
         <div class="div-user">
             <h1>Bem Vindo!</h1>
-            <h2>nomeUsuário</h2>
+            <span id="b_usuario"></span>
         </div>
 
-        <div class="div-nomeAirport">
-            <h3>Aeroporto de <br>nomeAeroporto</h3>
+        <div class="div-nameAirport">
+            <h3>Aeroporto de</h3>
+            <span id="b_aeroporto"></span>
         </div>
 
         <div class="div-buttons">
-            <!-- <a href="editarFuncionario.html">
-                <button class="button-menu-lateral">Editar Funcionários</button>
-            </a>
-            <a href="">
-                <button class="button-menu-lateral">Editar Aeroportos</button>
-            </a> -->
             <a href="dashboard.html">
                 <button class="button-menu-lateral">Tela Inicial</button>
             </a>
@@ -41,7 +37,6 @@
         </div>
 
         <div class="div-logo">
-            <!-- <img src="../img/logoSemDescricao.png" alt=""> -->
             <p>AEVUS INC.</p>
         </div>
     </header>
@@ -51,41 +46,37 @@
             <div class="cards-aeroportos">
                 <div class="card-space">
                     <a href="/public/dashboard/aeroporto.html">
-                        <p>KP1-01 Pior</p>
+                        <p>Setor em Destaque</p> <!-- Avalia qual setor representa a maior proporção das reclamações no período analisado -->
                         <div class="card">
-                            <p>Valor 01</p>
+                            <span id="valor01kpi"></span> <!-- Contrinuição(%) = Reclamação de um setor / Reclamação total de todos os setores -->
                         </div>
                     </a>
                 </div>
                 <div class="card-space">
                     <a href="">
-                        <p>KP1-02 medio</p>
+                        <p>Crescimento Anual</p> <!-- Mostra quanto as reclamações aumentaram ou diminuíram de um ano para o outro em cada setor -->
                         <div class="card">
-                            <p>Valor 02</p>
+                            <span id="valor02kpi"></span> <!-- Crescimentto = Reclamação ano atual - Reclamação ano anterior --> 
                         </div>
                     </a>
                 </div>
                 <div class="card-space">
                     <a href="">
-                        <p>KP1-03 melhor</p>
+                        <p>Oscilação por Setor</p> <!-- Avalia a diferença entre o maior e o menor número de reclamações em cada setor ao longo dos anos, para entender o quanto as reclamações oscilaram -->
                         <div class="card">
-                            <p>Valor 03</p>
+                            <span id="valor02kpi"></span> <!-- Variação = Máximo Reclamações - Mínimo Reclamações -->
                         </div>
                     </a>
                 </div>
             </div>
 
             <section class="visao-geral">
-                <p>Reclamação por setor a cada ano</p>
+                <p>Evolução Anual das Reclamações por Setor</p>
                 <div class="grafico-geral">
                     <canvas id="myChart" width="120px" height="100%"></canvas>
                 </div>
             </section>
 
-                <!-- <section class="detalhes">
-                    <p>Detalhes</p>
-                    <div class="campo-detalhes"><img src="../assets/imgs/Grafico.png" alt=""></div>
-                </section> -->
         </section>
 
         <section class="section-graficos2">
@@ -107,7 +98,7 @@
                 </div>
             </div>
 
-            
+
             <section class="series">
                 <p>Séries</p>
                 <div class="campo-series">
@@ -168,7 +159,7 @@
         type: 'bar',
         data: {
             labels: ['item'],
-            datasets:   [
+            datasets: [
                 {
                     label: 'Série 1',
                     data: [40],
