@@ -265,3 +265,4 @@ CREATE TABLE log (
     descricao TEXT NOT NULL,
     data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+

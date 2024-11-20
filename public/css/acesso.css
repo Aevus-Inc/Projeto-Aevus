@@ -152,9 +152,9 @@ ul {
 .painelDeslizante {
     position: absolute;
     z-index: 10000;
-    margin-left: 50%;
     width: 50%;
     height: 100%;
+    left: 50%;
     background-color: var(--dourado-principal);
     transition: transform 0.5s ease-in-out;
 
@@ -163,6 +163,7 @@ ul {
     background-size: auto 100%;
     background-position: center;
     background-repeat: no-repeat;
+  
 }
 
 #section-login,

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../img/logoSemDescricao.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aevus | Dashboards</title>
+
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <script src="../js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!--FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+</head>
+
+<!-- <body onload=" atualizarFeed()"> -->
+
+<body>
+    <header class="barraLateral">
+
+        <div class="div-user">
+            <h1>Bem Vindo!</h1>
+            <span id="usuarioNome"></span>
+        </div>
+
+        <div id="espacoButtons"></div>
+
+        <div class="div-sair">
+            <a href="../index.html">
+                <button>Sair</button>
+            </a>
+        </div>
+
+        <div class="div-logo">
+            <p>AEVUS INC.</p>
+        </div>
+
+    </header>
+
+    <main class="container">
+        <section class="section-graficos1">
+
+            <div class="cards-aeroportos">
+
+                <div class="container-cards">
+                    <div class="card">
+                        <a href="aeroporto.html">
+                            <img src="../img/aeroporto1.jpg" alt="">
+                            <p>Aeroporto de Guarulhos</p>
+                        </a>
+                    </div>
+
+
+                    <div class="card">
+                        <a href="">
+                            <img src="../img/aeroporto2.webp" alt="">
+                            <p>Aeroporto de Congonhas</p>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div class="container-cards">
+                    <div class="card">
+                        <a href="">
+                            <img src="../img/aeroporto3.jpg" alt="">
+                            <p>Aeroporto de Campinas</p>
+                        </a>
+                    </div>
+
+                    <div class="card">
+                        <a href="">
+                            <img src="../img/aeroporto4.jpg" alt="">
+                            <p>Aeroporto de Brasília</p>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="graficos-pontuacoes">
+                <h2>Pontuações mais baixas</h2>
+
+
+                <div class="container-pontuacoes-baixas">
+
+                    <div id="graficoPontuacoesBaixas">
+                        <canvas id="chartPontuacoesBaixas"></canvas>
+                    </div>
+
+                    <div class="pontuacoesBaixasClassificacao">
+                        <p>Pontuação 1:
+                            <span id="pontuacao1">Guarulhos - 3.2</span>
+                        </p>
+
+                        <p>Pontuação 2:
+                            <span id="pontuacao2">Congonhas - 3.5</span>
+                        </p>
+
+                        <p>Pontuação 3:
+                            <span id="pontuacao3">Brasília - 3.8</span>
+                        </p>
+
+
+                        <p>Pontuação 34:
+                            <span id="pontuacao3">Campinas - 2.0</span>
+                        </p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="section-graficos2">
+            <div class="graficos-por-tempo">
+                <h2>Gráfico por Tempo</h2>
+
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="selecao-servico">Escolha o Serviço:</label>
+                        <label for="filtro-tempo">Escolha o Filtro:</label>
+                        <label for="selecao-ano" id="etiqueta-ano" style="display: none;">Escolha o Ano:</label>
+                        <label for="selecao-trimestre" id="etiqueta-trimestre" style="display: none;">Escolha o Trimestre:</label>
+                    </div>
+                    <div class="filter-group">
+                        <select id="selecao-servico" onchange="mostrarFiltroTempo()">
+                            <option value="">Selecione um Serviço</option>
+                            <option value="Sanitário">Sanitário</option>
+                            <option value="Check-In">Check-In</option>
+                            <option value="Desembarque">Desembarque</option>
+                        </select>
+
+                        <select id="filtro-tempo" onchange="atualizarOpcoesFiltro()">
+                            <option value="">Selecione um Filtro</option>
+                            <option value="ano">Ano</option>
+                            <option value="trimestre">Trimestre</option>
+                        </select>
+
+                        <select id="selecao-ano" style="display: none;">
+                            <option value="">Selecione um Ano</option>
+                        </select>
+
+                        <select id="selecao-trimestre" style="display: none;">
+                            <option value="">Selecione um Trimestre</option>
+                            <option value="1">1º Trimestre</option>
+                            <option value="2">2º Trimestre</option>
+                            <option value="3">3º Trimestre</option>
+                            <option value="4">4º Trimestre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="graficoTempo">
+                    <canvas id="chartTempo"></canvas>
+                </div>
+
+                <div class="graficos-satisfacao">
+                    <div class="tabelaSatisfacao">
+                        <h2>Índices de Satisfação por Aeroportos</h2>
+                        <div id="table_div"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+       
