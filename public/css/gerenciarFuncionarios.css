@@ -9,7 +9,15 @@
   body {
    background-color: #e6e7eb;
   }
-  
+  a {
+    text-decoration: none; 
+    color: inherit;      
+    outline: none;        
+    font-weight: normal;   
+    padding: 0;            
+    margin: 0;             
+}
+
   :root {
     --preto-principal: #111111;
     --cinza--branco: #44454e;
@@ -191,8 +199,9 @@
     cursor: pointer;
   }
   
-  .add-button{
-    width: 23%;
+  .div-add-button{
+    margin-top: 10%;
+    width: 100%;
     height: 5vh;
     background-color: #dbbb1b;
     color: #fff;
