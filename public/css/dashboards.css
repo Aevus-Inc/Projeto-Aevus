@@ -242,8 +242,8 @@ button {
 
   width: 100%;
 
-
   gap: 1%;
+  padding: 3%;
 }
 
 
@@ -293,6 +293,11 @@ button {
 .tabelaSatisfacao {
   width: 100%;
   height: 60%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .tabelaSatisfacao h2 {
@@ -300,14 +305,6 @@ button {
   margin-bottom: 2%;
   display: flex;
   justify-content: center;
-}
-
-#table_div {
-  width: 90%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .graficos-por-tempo {
