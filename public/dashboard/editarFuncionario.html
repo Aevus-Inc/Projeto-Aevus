@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Funcionário</title>
     <link rel="stylesheet" href="../css/gerenciarFuncionarios.css">
+    <link rel="shortcut icon" href="../img/logoSemDescricao.png" type="image/x-icon">
 </head>
 
 <body>
@@ -13,7 +15,7 @@
 
         <div class="div-user">
             <h1>Bem Vindo!</h1>
-            <h2>Fernanda</h2>
+            <span id="b_usuario"></span>
         </div>
 
         <div class="div-buttons">
@@ -39,255 +41,236 @@
         <div class="editar-funcionario">
 
             <div class="card-editar">
+                <div class="div-titulo-editar-funcionario">
+                    <h1>Editar Funcionário</h1>
+                </div>
+                
+                <div class="form-group">
+                    
+                    <label for="select-funcionario">Selecionar Funcionário:</label>
+                    <select id="select-funcionario" aria-label="Selecionar Funcionário">
+                        <option value="">Selecione um Funcionário</option>
+                    </select>
+                </div>
 
-            <h1>Editar Funcionário</h1>
-            <div class="form-group">
+                <div class="form-group">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" placeholder="Digite o nome..." required>
+                </div>
+                <div class="form-group">
+                    <label for="cargo">Cargo:</label>
+                    <input type="text" id="cargo" placeholder="Digite o cargo..." required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone:</label>
+                    <input type="text" id="telefone" placeholder="Digite o telefone..." required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Digite o email..." required>
+                </div>
 
-                <label for="select-funcionario">Selecionar Funcionário:</label>
-                <select id="select-funcionario" aria-label="Selecionar Funcionário">
-                    <option value="">Selecione um Funcionário</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" placeholder="Digite o nome..." required>
-            </div>
-            <div class="form-group">
-                <label for="cargo">Cargo:</label>
-                <input type="text" id="cargo" placeholder="Digite o cargo..." required>
-            </div>
-            <div class="form-group">
-                <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" placeholder="Digite o telefone..." required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" placeholder="Digite o email..." required>
-            </div>
+                <div class="form-actions" id="botoes-editar">
+                    <button id="save-button" class="styled-button">Salvar Alterações</button>
+                    <button id="delete-button" class="delete-button">Excluir Funcionário</button>
+                    <button id="cancel-button" class="cancel-button">Cancelar</button>
+                    <div>
+                        <a href="../dashboard/adicionarFuncionario.html">
+                            <button class="div-add-button"> Adicionar Funcionário </button>
+                        </a>
+                    </div>
+                </div>
 
-            <div class="form-actions" id="botoes-editar">
-                <button id="save-button" class="styled-button">Salvar Alterações</button>
-                <button id="delete-button" class="delete-button">Excluir Funcionário</button>
-                <button id="cancel-button" class="cancel-button">Cancelar</button>
+                <div id="feedback-message" style="color: green;"></div>
             </div>
-
-            <div id="feedback-message" style="color: green;"></div>
         </div>
-        </div>
 
-        <!-- Card de Adição de Funcionários -->
-        <div class="adicionar-funcionario">
-
-            <div class="card-adicionar">
-            <h1>Adicionar Funcionário</h1>
-            <div class="form-group">
-                <label for="novo-nome">Nome:</label>
-                <input type="text" id="novo-nome" placeholder="Digite o nome..." required>
-            </div>
-            <div class="form-group">
-                <label for="novo-cargo">Cargo:</label>
-                <input type="text" id="novo-cargo" placeholder="Digite o cargo..." required>
-            </div>
-            <div class="form-group">
-                <label for="novo-telefone">Telefone:</label>
-                <input type="text" id="novo-telefone" placeholder="Digite o telefone..." required>
-            </div>
-            <div class="form-group">
-                <label for="novo-email">Email:</label>
-                <input type="email" id="novo-email" placeholder="Digite o email..." required>
-            </div>
-            <div class="form-actions">
-                <button id="add-button" class="styled-button">Adicionar Funcionário</button>
-            </div>
-            <div id="add-feedback-message" style="color: green;"></div>
         </div>
-    </div>
-    </div>
     </main>
 
-
+    
 </body>
+
 </html>
 
 <script>
-// Dados de exemplo para funcionários - mockados
-let funcionarios = [
-    { id: 1, nome: "João Silva", cargo: "Gerente", telefone: "(11) 98765-4321", email: "joao.silva@example.com" },
-    { id: 2, nome: "Maria Oliveira", cargo: "Analista", telefone: "(11) 91234-5678", email: "maria.oliveira@example.com" }
-];
+    // Dados de exemplo para funcionários - mockados
+    let funcionarios = [
+        { id: 1, nome: "João Silva", cargo: "Gerente", telefone: "(11) 98765-4321", email: "joao.silva@example.com" },
+        { id: 2, nome: "Maria Oliveira", cargo: "Analista", telefone: "(11) 91234-5678", email: "maria.oliveira@example.com" }
+    ];
 
-// Carrega os dados mockados do localStorage se disponíveis
-function carregarFuncionariosDoLocalStorage() {
-    const funcionariosSalvos = localStorage.getItem('funcionarios');
-    if (funcionariosSalvos) {
-        funcionarios = JSON.parse(funcionariosSalvos);
-    } else {
+    // Carrega os dados mockados do localStorage se disponíveis
+    function carregarFuncionariosDoLocalStorage() {
+        const funcionariosSalvos = localStorage.getItem('funcionarios');
+        if (funcionariosSalvos) {
+            funcionarios = JSON.parse(funcionariosSalvos);
+        } else {
+            localStorage.setItem('funcionarios', JSON.stringify(funcionarios));
+        }
+    }
+
+    // Função para salvar a lista de funcionários no localStorage
+    function salvarFuncionariosNoLocalStorage() {
         localStorage.setItem('funcionarios', JSON.stringify(funcionarios));
     }
-}
 
-// Função para salvar a lista de funcionários no localStorage
-function salvarFuncionariosNoLocalStorage() {
-    localStorage.setItem('funcionarios', JSON.stringify(funcionarios));
-}
+    // Elementos do DOM
+    const selectFuncionario = document.getElementById('select-funcionario');
+    const nomeInput = document.getElementById('nome');
+    const cargoInput = document.getElementById('cargo');
+    const telefoneInput = document.getElementById('telefone');
+    const emailInput = document.getElementById('email');
+    const novoNomeInput = document.getElementById('novo-nome');
+    const novoCargoInput = document.getElementById('novo-cargo');
+    const novoTelefoneInput = document.getElementById('novo-telefone');
+    const novoEmailInput = document.getElementById('novo-email');
 
-// Elementos do DOM
-const selectFuncionario = document.getElementById('select-funcionario');
-const nomeInput = document.getElementById('nome');
-const cargoInput = document.getElementById('cargo');
-const telefoneInput = document.getElementById('telefone');
-const emailInput = document.getElementById('email');
-const novoNomeInput = document.getElementById('novo-nome');
-const novoCargoInput = document.getElementById('novo-cargo');
-const novoTelefoneInput = document.getElementById('novo-telefone');
-const novoEmailInput = document.getElementById('novo-email');
+    // Função para formatar o telefone ao digitar e limitar a quantidade de dígitos
+    novoTelefoneInput.addEventListener('input', function () {
+        let telefone = novoTelefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
-// Função para formatar o telefone ao digitar e limitar a quantidade de dígitos
-novoTelefoneInput.addEventListener('input', function () {
-    let telefone = novoTelefoneInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+        // Limita a quantidade de dígitos a 11 (máximo para números de celular no formato brasileiro)
+        if (telefone.length > 11) {
+            telefone = telefone.slice(0, 11);
+        }
 
-    // Limita a quantidade de dígitos a 11 (máximo para números de celular no formato brasileiro)
-    if (telefone.length > 11) {
-        telefone = telefone.slice(0, 11);
-    }
+        // Aplica a formatação com base na quantidade de dígitos
+        if (telefone.length <= 10) {
+            telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
+        } else {
+            telefone = telefone.replace(/^(\d{2})(\d{5})(\d{0,4})$/, '($1) $2-$3');
+        }
 
-    // Aplica a formatação com base na quantidade de dígitos
-    if (telefone.length <= 10) {
-        telefone = telefone.replace(/^(\d{2})(\d{4})(\d{0,4})$/, '($1) $2-$3');
-    } else {
-        telefone = telefone.replace(/^(\d{2})(\d{5})(\d{0,4})$/, '($1) $2-$3');
-    }
-
-    novoTelefoneInput.value = telefone;
-});
-
-// Inicializa o dropdown de seleção de funcionários
-function inicializarSelectFuncionarios() {
-    selectFuncionario.innerHTML = '<option value="">Selecione um Funcionário</option>';
-    funcionarios.forEach(funcionario => {
-        const option = document.createElement('option');
-        option.value = funcionario.id;
-        option.textContent = funcionario.nome;
-        selectFuncionario.appendChild(option);
+        novoTelefoneInput.value = telefone;
     });
-}
 
-// Carrega dados do funcionário selecionado nos campos do formulário
-selectFuncionario.addEventListener('change', function () {
-    const funcionarioId = parseInt(selectFuncionario.value);
-    const funcionario = funcionarios.find(f => f.id === funcionarioId);
-    if (funcionario) {
-        nomeInput.value = funcionario.nome;
-        cargoInput.value = funcionario.cargo;
-        telefoneInput.value = funcionario.telefone;
-        emailInput.value = funcionario.email;
-    } else {
-        limparCampos();
+    // Inicializa o dropdown de seleção de funcionários
+    function inicializarSelectFuncionarios() {
+        selectFuncionario.innerHTML = '<option value="">Selecione um Funcionário</option>';
+        funcionarios.forEach(funcionario => {
+            const option = document.createElement('option');
+            option.value = funcionario.id;
+            option.textContent = funcionario.nome;
+            selectFuncionario.appendChild(option);
+        });
     }
-});
 
-// Salvar as alterações no funcionário selecionado e limpar campos
-document.getElementById('save-button').addEventListener('click', function () {
-    const funcionarioId = parseInt(selectFuncionario.value);
-    if (funcionarioId) {
+    // Carrega dados do funcionário selecionado nos campos do formulário
+    selectFuncionario.addEventListener('change', function () {
+        const funcionarioId = parseInt(selectFuncionario.value);
         const funcionario = funcionarios.find(f => f.id === funcionarioId);
         if (funcionario) {
-            funcionario.nome = nomeInput.value;
-            funcionario.cargo = cargoInput.value;
-            funcionario.telefone = telefoneInput.value;
-            funcionario.email = emailInput.value;
-            salvarFuncionariosNoLocalStorage();
-            alert('Alterações salvas com sucesso!');
-            inicializarSelectFuncionarios();
+            nomeInput.value = funcionario.nome;
+            cargoInput.value = funcionario.cargo;
+            telefoneInput.value = funcionario.telefone;
+            emailInput.value = funcionario.email;
+        } else {
             limparCampos();
         }
-    } else {
-        alert('Por favor, selecione um funcionário para editar.');
-    }
-});
+    });
 
-// Excluir funcionário
-document.getElementById('delete-button').addEventListener('click', function () {
-    const funcionarioId = parseInt(selectFuncionario.value);
-    if (funcionarioId) {
-        if (confirm('Tem certeza de que deseja excluir este funcionário?')) {
-            funcionarios = funcionarios.filter(f => f.id !== funcionarioId);
+    // Salvar as alterações no funcionário selecionado e limpar campos
+    document.getElementById('save-button').addEventListener('click', function () {
+        const funcionarioId = parseInt(selectFuncionario.value);
+        if (funcionarioId) {
+            const funcionario = funcionarios.find(f => f.id === funcionarioId);
+            if (funcionario) {
+                funcionario.nome = nomeInput.value;
+                funcionario.cargo = cargoInput.value;
+                funcionario.telefone = telefoneInput.value;
+                funcionario.email = emailInput.value;
+                salvarFuncionariosNoLocalStorage();
+                alert('Alterações salvas com sucesso!');
+                inicializarSelectFuncionarios();
+                limparCampos();
+            }
+        } else {
+            alert('Por favor, selecione um funcionário para editar.');
+        }
+    });
+
+    // Excluir funcionário
+    document.getElementById('delete-button').addEventListener('click', function () {
+        const funcionarioId = parseInt(selectFuncionario.value);
+        if (funcionarioId) {
+            if (confirm('Tem certeza de que deseja excluir este funcionário?')) {
+                funcionarios = funcionarios.filter(f => f.id !== funcionarioId);
+                salvarFuncionariosNoLocalStorage();
+                alert('Funcionário excluído.');
+                inicializarSelectFuncionarios();
+                limparCampos();
+            }
+        } else {
+            alert('Por favor, selecione um funcionário para excluir.');
+        }
+    });
+
+    // Cancelar a edição (limpa os campos)
+    document.getElementById('cancel-button').addEventListener('click', function () {
+        limparCampos();
+    });
+
+    // Função para verificar duplicidade de email ou telefone
+    function verificaDuplicidade(email, telefone) {
+        return funcionarios.some(funcionario => funcionario.email === email || funcionario.telefone === telefone);
+    }
+
+    // Adicionar funcionário com validação de duplicidade e formato de telefone
+    document.getElementById('add-button').addEventListener('click', function () {
+        const nome = novoNomeInput.value;
+        const cargo = novoCargoInput.value;
+        const telefone = novoTelefoneInput.value;
+        const email = novoEmailInput.value;
+
+        if (nome && cargo && telefone && email) {
+            // Verifica se o email ou telefone já existem
+            if (verificaDuplicidade(email, telefone)) {
+                alert('Este e-mail ou telefone já está cadastrado para outro funcionário.');
+                return;
+            }
+
+            const novoFuncionario = {
+                id: funcionarios.length + 1,
+                nome: nome,
+                cargo: cargo,
+                telefone: telefone,
+                email: email
+            };
+
+            // Adiciona o novo funcionário à lista e salva no localStorage
+            funcionarios.push(novoFuncionario);
             salvarFuncionariosNoLocalStorage();
-            alert('Funcionário excluído.');
+
+            alert('Funcionário adicionado com sucesso!');
+            limparCamposAdicao();
             inicializarSelectFuncionarios();
-            limparCampos();
+        } else {
+            alert('Por favor, preencha todos os campos.');
         }
-    } else {
-        alert('Por favor, selecione um funcionário para excluir.');
+    });
+
+    // Função para limpar os campos do formulário
+    function limparCampos() {
+        selectFuncionario.value = '';
+        nomeInput.value = '';
+        cargoInput.value = '';
+        telefoneInput.value = '';
+        emailInput.value = '';
     }
-});
 
-// Cancelar a edição (limpa os campos)
-document.getElementById('cancel-button').addEventListener('click', function () {
-    limparCampos();
-});
+    // Limpar campos de adição
+    function limparCamposAdicao() {
+        novoNomeInput.value = '';
+        novoCargoInput.value = '';
+        novoTelefoneInput.value = '';
+        novoEmailInput.value = '';
+    }
 
-// Função para verificar duplicidade de email ou telefone
-function verificaDuplicidade(email, telefone) {
-    return funcionarios.some(funcionario => funcionario.email === email || funcionario.telefone === telefone);
-}
-
-// Adicionar funcionário com validação de duplicidade e formato de telefone
-document.getElementById('add-button').addEventListener('click', function () {
-    const nome = novoNomeInput.value;
-    const cargo = novoCargoInput.value;
-    const telefone = novoTelefoneInput.value;
-    const email = novoEmailInput.value;
-
-    if (nome && cargo && telefone && email) {
-        // Verifica se o email ou telefone já existem
-        if (verificaDuplicidade(email, telefone)) {
-            alert('Este e-mail ou telefone já está cadastrado para outro funcionário.');
-            return;
-        }
-
-        const novoFuncionario = {
-            id: funcionarios.length + 1,
-            nome: nome,
-            cargo: cargo,
-            telefone: telefone,
-            email: email
-        };
-
-        // Adiciona o novo funcionário à lista e salva no localStorage
-        funcionarios.push(novoFuncionario);
-        salvarFuncionariosNoLocalStorage();
-
-        alert('Funcionário adicionado com sucesso!');
-        limparCamposAdicao();
+    // Carrega a lista de funcionários ao inicializar a página
+    document.addEventListener('DOMContentLoaded', function () {
+        carregarFuncionariosDoLocalStorage();
         inicializarSelectFuncionarios();
-    } else {
-        alert('Por favor, preencha todos os campos.');
-    }
-});
+    });
 
-// Função para limpar os campos do formulário
-function limparCampos() {
-    selectFuncionario.value = '';
-    nomeInput.value = '';
-    cargoInput.value = '';
-    telefoneInput.value = '';
-    emailInput.value = '';
-}
-
-// Limpar campos de adição
-function limparCamposAdicao() {
-    novoNomeInput.value = '';
-    novoCargoInput.value = '';
-    novoTelefoneInput.value = '';
-    novoEmailInput.value = '';
-}
-
-// Carrega a lista de funcionários ao inicializar a página
-document.addEventListener('DOMContentLoaded', function () {
-    carregarFuncionariosDoLocalStorage();
-    inicializarSelectFuncionarios();
-});
-
-    </script>
+</script>

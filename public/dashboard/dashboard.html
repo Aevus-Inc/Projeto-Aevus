@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aevus | Dashboards</title>
 
-
     <link rel="stylesheet" href="./../css/dashboards.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -24,8 +23,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
-
 <body onload="pontuacoesMaisBaixas(), respostasPorAeroporto()">
     <header class="barraLateral">
 
@@ -35,6 +32,11 @@
         </div>
 
         <div class="div-buttons">
+          
+           <a href="adicionarFuncionario.html">
+            <button class="button-menu-lateral">Adicionar Funcionário</button>
+           </a>
+=======
             <a href="editarFuncionario.html">
                 <button class="button-menu-lateral">Editar Funcionários</button>
             </a>
@@ -58,19 +60,20 @@
 
             <div class="cards-aeroportos">
 
+                <h1>Aeroportos</h1>
                 <div class="container-cards">
                     <div class="card">
                         <a href="aeroporto.html">
-                            <img src="../img/aeroporto1.jpg" alt="">
-                            <p>Aeroporto de Guarulhos</p>
+                            <img src="../img/aeroporto1.jpg">
+                            <p>Guarulhos</p>
                         </a>
                     </div>
 
 
                     <div class="card">
-                        <a href="">
-                            <img src="../img/aeroporto2.webp" alt="">
-                            <p>Aeroporto de Congonhas</p>
+                        <a href="aeroporto.html">
+                            <img src="../img/aeroporto2.webp">
+                            <p>Congonhas</p>
                         </a>
                     </div>
 
@@ -78,16 +81,16 @@
 
                 <div class="container-cards">
                     <div class="card">
-                        <a href="">
-                            <img src="../img/aeroporto3.jpg" alt="">
-                            <p>Aeroporto de Campinas</p>
+                        <a href="aeroporto.html">
+                            <img src="../img/aeroporto3.jpg">
+                            <p>Campinas</p>
                         </a>
                     </div>
 
                     <div class="card">
-                        <a href="">
+                        <a href="aeroporto.html">
                             <img src="../img/aeroporto4.jpg" alt="">
-                            <p>Aeroporto de Brasília</p>
+                            <p>Brasília</p>
                         </a>
                     </div>
                 </div>
@@ -104,19 +107,20 @@
                     <!-- <div class="pontuacoesBaixasClassificacao">
                         <p>Pontuação 1:
                             <span id="pontuacao1">Guarulhos - 3.2</span>
+
                         </p>
 
-                        <p>Pontuação 2:
-                            <span id="pontuacao2">Congonhas - 3.5</span>
+                        <p>Pontuação 2
+                            <span id="pontuacao2">Congonhas 3.5</span>
                         </p>
 
-                        <p>Pontuação 3:
-                            <span id="pontuacao3">Brasília - 3.8</span>
+                        <p>Pontuação 3
+                            <span id="pontuacao3">Brasília 3.8</span>
                         </p>
 
 
-                        <p>Pontuação 34:
-                            <span id="pontuacao3">Campinas - 2.0</span>
+                        <p>Pontuação 4
+                            <span id="pontuacao3">Campinas 2.0</span>
                         </p>
                         </p>
                     </div> -->

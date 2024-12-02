@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Funcionário</title>
+    <link rel="stylesheet" href="../css/gerenciarFuncionarios.css">
+    <link rel="shortcut icon" href="../img/logoSemDescricao.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <header class="barraLateral">
+
+        <div class="div-user">
+            <h1>Bem Vindo!</h1>
+            <span id="b_usuario"></span>
+        </div>
+
+        <div class="div-buttons">
+            <a href="dashboard.html">
+                <button class="button-menu-lateral">Visão Geral</button>
+            </a>
+        </div>
+
+        <div class="div-sair">
+            <a href="../index.html">
+                <button>Sair</button>
+            </a>
+        </div>
+
+        <div class="div-logo">
+            <p>AEVUS INC.</p>
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <!-- Card de Adição de Funcionários -->
+        <div class="adicionar-funcionario">
+
+            <div class="card-adicionar">
+            <h1>Adicionar Funcionário</h1>
+            <div class="form-group">
+                <label for="novo-nome">Nome:</label>
+                <input type="text" id="novo-nome" placeholder="Digite o nome..." required>
+            </div>
+            <div class="form-group">
+                <label for="novo-cargo">Cargo:</label>
+                <input type="text" id="novo-cargo" placeholder="Digite o cargo..." required>
+            </div>
+            <div class="form-group">
+                <label for="novo-telefone">Telefone:</label>
+                <input type="text" id="novo-telefone" placeholder="Digite o telefone..." required>
+            </div>
+            <div class="form-group">
+                <label for="novo-email">Email:</label>
+                <input type="email" id="novo-email" placeholder="Digite o email..." required>
+            </div>
+            <div class="form-actions">
+                <button id="add-button" class="styled-button">Adicionar Funcionário</button>
+            </div>
+            <div id="add-feedback-message" style="color: green;"></div>
+        </div>
+    </div>
+    </div>
+    </main>
+
+
+</body>
+</html>

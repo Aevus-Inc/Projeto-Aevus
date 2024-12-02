@@ -27,9 +27,7 @@
 }
 
 body {
-    /* color: var(--cinza--branco); */
-    font-family: "Roboto", sans-serif;
-    background-color: white;
+    background-color: #E6E7Eb;
 }
 
 button {
@@ -43,6 +41,7 @@ button {
     justify-content: center;
     align-items: center;
 }
+
 
 /* Section - Menu lateral */
 .barraLateral {
@@ -61,8 +60,9 @@ button {
     justify-content: center;
 }
 
-.div-logo img {
-    width: 22%;
+.div-logo p {
+    color: #44454e;
+    font-size: 20px;
 }
 
 .div-user {
@@ -75,22 +75,29 @@ button {
     color: #fff;
 }
 
+.div-nameAirport {
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+}
+
 .div-buttons {
-    height: 45%;
+    height: 32%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 6%;
-    
 }
 
 .div-buttons .button-menu-lateral {
-    width: 50%;
-    height: 12%;
+    width: 150px;
+    height: 5vh;
     border-radius: 5px;
-
-    background-color: #44454e; 
+    background-color: #44454e;
     color: #fff;
 }
 
@@ -103,34 +110,23 @@ button {
 }
 
 .div-sair button {
-    width: 40%;
-    height: 60%;
+    width: 80px;
+    height: 30px;
     border-radius: 5px;
     background-color: #fff;
     color: #44454e;
-    cursor: pointer;
 }
 
-
- #telaIncial{
+#telaIncial {
     width: 110px;
     height: 5vh;
     border-radius: 5px;
-
-    background-color: #44454e; 
+    background-color: #44454e;
     color: #fff;
- }
-/* Seção lado esquerdo*/
-.section-graficos1 {
-    width: 55%;
-    height: 100vh;
-    background-color:#E6E7Eb;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 
+/* Seção lado esquerdo*/
 /* KPI´S */
 .cards-aeroportos {
     width: 100%;
@@ -144,26 +140,42 @@ button {
     margin-bottom: 2%;
 }
 
+.card-space p{
+    color: var(--cinza--branco);
+    font-weight: bold;
+    font-size: x-large;
+} 
+
 .card {
-    background-color:var(--fundo-telaHome1);
     width: 215px;
     height: 18vh;
     object-fit: cover;
     border-radius: 10px;
+    border-style: solid;
+    color: var(--cinza--branco);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-p {
-    color: var(--preto-principal);
-    font-weight: bold;
-    font-size: x-large;
+/* Gráfico Visão Geral */
+.section-graficos1 {
+    width: 55%;
+    height: 100vh;
+    background-color: var(--fundo-telaHome1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Gráfico Visão Geral */
 .visao-geral {
     margin-top: 15px;
+}
+
+.visao-geral p{
+    color: var(--cinza--branco);
+    font-weight: bold;
+    font-size: x-large;
 }
 
 .visao-geral img {
@@ -171,7 +183,6 @@ p {
 }
 
 .grafico-geral {
-    background-color:var(--fundo-telaHome1);
     width: 40vw;
     height: 68vh;
     display: flex;
@@ -180,47 +191,22 @@ p {
 }
 
 
-/* Campo Detalhes
-.detalhes {
-    margin-top: 15px;
-}
-
-.detalhes img {
-    height: 200px;
-    width: 90vw;
-}
-
-.campo-detalhes {
-    background-color:var(--cinza--navbar);
-    width: 40vw;
-    height: 24vh;
-    display: flex;
-    border-radius: 15px;
-    padding: 10px;
-} */
-
-
-
 /* Seção lado direito */
-.section-graficos2 {
-    width: 45%;
-    height: 100vh;
-    background-color:#E6E7Eb;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
+/* Filtro */
 .campo-filtro {
     margin-top: 15px;
+    margin-left: 10px;
 }
 
-.campos-check{
-    background-color:var(--fundo-telaHome1);
+.campo-filtro h2{
+    font-size: x-large;
+    margin-left: 9px;
+}
+
+.campos-check {
     width: 70vh;
     height: 20vh;
-    border-radius: 15px;
-    padding: 10px; 
+    padding: 10px;
 }
 
 .campo-filtro-check {
@@ -229,18 +215,32 @@ p {
     justify-content: start;
 }
 
-.campo-filtro-check label{
-    color: var(--preto-principal);
-    font-weight: bold;
-    font-size:xx-large;
+.campo-filtro-check label {
+    font-size: 24px;
     cursor: pointer;
     padding: 5px;
 }
 
-.campo-filtro-check input{
-    color: var(--preto-principal);
+.campo-filtro-check input {
     width: 25px;
     height: 25px;
+}
+
+/* Gráfico Séries */
+.section-graficos2 {
+    background-color: var(--fundo-telaHome1);
+    color: var(--cinza--branco);
+    width: 45%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.section-graficos2{
+    color: var(--cinza--branco);
+    font-weight: bold;
+    font-size: x-large;
 }
 
 .series {
@@ -248,11 +248,10 @@ p {
 }
 
 .campo-series {
-    background-color:var(--fundo-telaHome1);
-    width: 70vh;
-    height: 69vh;
+    width: 66vh;
+    height: 66vh;
     display: flex;
     border-radius: 15px;
     align-items: center;
-    padding: 10px; 
+    padding: 5px;
 }
