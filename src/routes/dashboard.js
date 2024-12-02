@@ -1,25 +1,30 @@
-var dashboardModel = require("../models/dashboardModel");
+const express = require('express');
+const router = express.Router();
+const dashboardController = require('../controllers/dashboardController');
 
-function ultimasRespostas(req, res) {
+// Rota POST para recuperar as 3 pontuações mais baixas
+router.post('/pontuacoesMaisBaixas', function(req, res) {
+    dashboardController.pontuacoesMaisBaixas(req, res);
+});
 
-    // var ultimasTresRespostas = req.body.ultimasTresRespostas;
-    // var nome = req.body.nome;
+router.post('/respostasPorServico', async (req, res) => {
+    try {
+        const { servico, filtro, valor } = req.body;
 
-    console.log(`Recuperando as ultimas 3 medidas`);
+        if (!servico || !filtro || !valor) {
+            return res.status(400).json({ error: "Faltam parâmetros na requisição" });
+        }
 
-    dashboardModel.ultimasRespostas().then(function (resultado) {
-        // if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        // } else {
-            // res.status(204).send("Nenhum resultado encontrado!")
-        // }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas respostas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
+        const dados = await dashboardController.respostasPorServico(req,res);
+        res.json(dados);
+    } catch (error) {
+        console.error("Erro ao processar requisição:", error);
+        res.status(500).json({ error: "Erro interno no servidor" });
+    }
+});
 
-module.exports = {
-    ultimasRespostas
-}
+  router.post('/respostasPorAeroporto', function(req, res) {
+    dashboardController.respostasPorAeroporto(req, res);
+});
+
+module.exports = router;

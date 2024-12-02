@@ -264,3 +264,4 @@ CREATE TABLE log (
 
 -- select * from Pessoa;
 -- select * from Usuario;
+

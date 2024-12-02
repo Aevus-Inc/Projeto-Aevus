@@ -13,7 +13,7 @@
   <title>Aevus</title>
 
   <link rel="stylesheet" href="./css/acesso.css">
-
+  <script src="js/acesso.js"></script>
 </head>
 
 <body>
@@ -49,7 +49,7 @@
       </nav>
 
       <div class="alerta_erro" id="alertaLogin">
-        <div class="card_erro" id="cardErroLogin">
+        <div class="card_erro" id="cardErro">
           <span id="mensagem_erro_login"></span>
         </div>
       </div>
@@ -165,6 +165,81 @@
 
   </main>
 </body>
+
 </html>
 
-<script src="./js/acesso.js" defer></script>
+<script>
+
+  function entrar() {
+    var emailVar = inputEmailLogin.value;
+    var senhaVar = inputSenhaLogin.value;
+
+    if (emailVar == "" || senhaVar == "") {
+      cardErro.style.display = "block"
+      mensagem_erro_login.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
+      return false;
+    }
+    else {
+      setInterval(sumirMensagem, 5000)
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      })
+    }).then(function (resposta) {
+      console.log("ESTOU NO THEN DO entrar()!")
+
+      if (resposta.ok) {
+        console.log(resposta);
+
+        resposta.json().then(json => {
+          console.log(json);
+          console.log(JSON.stringify(json));
+          sessionStorage.TIPO_USUARIO = json.tipoUsuario;
+          sessionStorage.EMAIL_USUARIO = json.email;
+          sessionStorage.NOME_USUARIO = json.nome;
+          sessionStorage.ID_USUARIO = json.id;
+          setTimeout(function () {
+
+            if (json.tipoUsuario === "Administrador" 
+            || json.tipoUsuario === "Empresa") {
+              window.location.href = "../dashboard/dashboard.html";
+            } else if (json.tipoUsuario === "Operacional") {
+              window.location.href = "../dashboard/dashboardFuncionario.html";
+            } else {
+              console.log("Tipo de usuário não reconhecido:", sessionStorage.tipoUsuario);
+            }
+          }, 1000);
+        });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+                mensagem_erro_login.innerHTML = "Os dados inseridos estão incorretos, por favor, revise seus dados e tente novamente!";
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none"
+  }
+
+</script>

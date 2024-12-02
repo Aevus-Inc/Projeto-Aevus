@@ -9,12 +9,7 @@
     <title>Aevus | Dashboards</title>
 
     <link rel="stylesheet" href="./../css/dashboards.css">
-    <link rel="stylesheet" href="./../css/estilo.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,28 +19,28 @@
 
     <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <!--FONT AWESOME-->
-    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
-
-<body>
+<body onload="pontuacoesMaisBaixas(), respostasPorAeroporto()">
     <header class="barraLateral">
 
         <div class="div-user">
             <h1>Bem Vindo!</h1>
-            <span id="b_usuario"></span>
+            <span id="usuarioNome"></span>
         </div>
 
         <div class="div-buttons">
-           <a href="editarFuncionario.html">
-            <button class="button-menu-lateral">Editar Funcionário</button>
-           </a>
+          
            <a href="adicionarFuncionario.html">
             <button class="button-menu-lateral">Adicionar Funcionário</button>
            </a>
+=======
+            <a href="editarFuncionario.html">
+                <button class="button-menu-lateral">Editar Funcionários</button>
+            </a>
+
         </div>
 
         <div class="div-sair">
@@ -108,13 +103,11 @@
 
                 <div class="container-pontuacoes-baixas">
 
-                    <div id="graficoPontuacoesBaixas">
-                        <canvas id="chartPontuacoesBaixas"></canvas>
-                    </div>
+                    <canvas id="chartPontuacoesBaixas" style="width: 60%; height: 150px;"></canvas>
+                    <!-- <div class="pontuacoesBaixasClassificacao">
+                        <p>Pontuação 1:
+                            <span id="pontuacao1">Guarulhos - 3.2</span>
 
-                    <div class="pontuacoesBaixasClassificacao">
-                        <p>Pontuação 1
-                            <span id="pontuacao1">Guarulhos 3.2</span>
                         </p>
 
                         <p>Pontuação 2
@@ -130,8 +123,7 @@
                             <span id="pontuacao3">Campinas 2.0</span>
                         </p>
                         </p>
-                    </div>
-
+                    </div> -->
                 </div>
 
             </div>
@@ -147,44 +139,61 @@
                         <label for="selecao-servico">Escolha o Serviço:</label>
                         <label for="filtro-tempo">Escolha o Filtro:</label>
                         <label for="selecao-ano" id="etiqueta-ano" style="display: none;">Escolha o Ano:</label>
-                        <label for="selecao-trimestre" id="etiqueta-trimestre" style="display: none;">Escolha o Trimestre:</label>
+                        <label for="selecao-trimestre" id="etiqueta-trimestre" style="display: none;">Escolha o
+                            Trimestre:</label>
                     </div>
                     <div class="filter-group">
-                        <select id="selecao-servico" onchange="mostrarFiltroTempo()">
-                            <option value="">Selecione um Serviço</option>
-                            <option value="Sanitário">Sanitário</option>
-                            <option value="Check-In">Check-In</option>
-                            <option value="Desembarque">Desembarque</option>
+                        <select id="selecao-servico">
+                            <option value="" disabled selected>Selecione um Serviço</option>
+                            <option value="Processo_Check_in">Check-In</option>
+                            <option value="Avaliacao_Metodo_Desembarque">Método de Desembarque</option>
+                            <option value="Facilidade_Desembarque_Meio_Fio">Facilidade do Desembarque</option>
+                            <option value="Opcoes_Transporte_Aeroporto">Opções de Transporte do Aeroporto</option>
+                            <option value="Tempo_Espera_Fila">Tempo de Espera na Fila</option>
+                            <option value="Conforto_Acessibilidade">Conforto Acessibilidade</option>
+                            <option value="Organizacao_Filas">Organizacão das Filas</option>
+                            <option value="Cordialidade_Funcionarios">Cordialidade dos Funcionários</option>
+                            <option value="Tempo_Atendimento">Tempo de Atendimento</option>
+                            <option value="Processo_Inspecao_Seguranca">Processo de Inspeção de Segurança</option>4
+                            <option value="Controle_Migratorio">Controle Migratório</option>
+                            <option value="Quantidade_Estabelecimentos_Alimentacao">Quantidade de Estabelecimentos de Alimentação</option>
+                            <option value="Qualidade_Variedade_Opcoes_Alimentacao">Quantidade de Opções de Alimentação</option>
+                            <option value="Relacao_Preco_Qualidade_Alimentacao">Relação entre Preço e Qualidade na Alimentação</option>
+                            <option value="Quantidade_Estabelecimentos_Comerciais">Quantidade de Estabelecimentos Comerciais</option>
                         </select>
 
-                        <select id="filtro-tempo" onchange="atualizarOpcoesFiltro()">
-                            <option value="">Selecione um Filtro</option>
+                        <select id="filtro-tempo">
+                            <option value="" disabled selected>Selecione um Filtro</option>
                             <option value="ano">Ano</option>
                             <option value="trimestre">Trimestre</option>
                         </select>
 
                         <select id="selecao-ano" style="display: none;">
-                            <option value="">Selecione um Ano</option>
+                            <option value="" disabled selected>Selecione um Ano</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
                         </select>
 
                         <select id="selecao-trimestre" style="display: none;">
                             <option value="">Selecione um Trimestre</option>
-                            <option value="1">1º Trimestre</option>
-                            <option value="2">2º Trimestre</option>
-                            <option value="3">3º Trimestre</option>
-                            <option value="4">4º Trimestre</option>
+                            <option value="1º trimestre">1º Trimestre</option>
+                            <option value="2º trimestre">2º Trimestre</option>
+                            <option value="3º trimestre">3º Trimestre</option>
+                            <option value="4º trimestre">4º Trimestre</option>
                         </select>
+
+                        <button id="btn-aplicar-filtros">Aplicar Filtros</button>
                     </div>
                 </div>
 
                 <div class="graficoTempo">
-                    <canvas id="chartTempo"></canvas>
+                    <canvas id="chartServicos"></canvas>
                 </div>
 
                 <div class="graficos-satisfacao">
                     <div class="tabelaSatisfacao">
                         <h2>Índices de Satisfação por Aeroportos</h2>
-                        <div id="table_div"></div>
+                        <div id="table_div" style="width: 80%;"></div>
                     </div>
                 </div>
             </div>
@@ -192,554 +201,297 @@
     </main>
 </body>
 <script type="text/javascript">
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    const ctx = document.getElementById('chartPontuacoesBaixas').getContext('2d');
-    const chartPontuacoesBaixas = new Chart(ctx, {
-        type: 'bar', // Tipo de gráfico de barras
-        data: {
-            labels: ['Guarulhos', 'Congonhas', 'Brasília', 'Campinas'], // Nomes dos aeroportos
-            datasets: [{
-                label: 'Pontuações mais baixas',
-                data: [3.2, 3.5, 3.8, 2.0], // Pontuações fictícias
-                backgroundColor: '#ebd469', // Cor amarela personalizada
-                borderColor: '#c5ab67', // Cor do contorno das barras
-                borderWidth: 1 // Largura da borda das barras
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true, // Iniciar o eixo Y em 0
-                    max: 5, // Valor máximo do eixo Y
-                    ticks: {
-                        color: '#111111' // Cor dos números do eixo Y
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: '#111111' // Cor dos nomes dos aeroportos
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    display: false // Oculta a legenda
-                }
-            }
-        }
-    });
-
-    // Carregar o pacote "table" do Google Charts
-    google.charts.load('current', { 'packages': ['table'] });
-
-    // Definir a função de callback para desenhar a tabela quando a API for carregada
-    google.charts.setOnLoadCallback(drawTable);
-
-    function drawTable() {
-        // Criar um novo DataTable
-        var data = new google.visualization.DataTable();
-
-        // Adicionar colunas: a primeira é uma string para os nomes, as outras são números para os níveis de satisfação
-        data.addColumn('string', 'Nome');
-        data.addColumn('number', 'Muito Bom');
-        data.addColumn('number', 'Bom');
-        data.addColumn('number', 'Razoável');
-        data.addColumn('number', 'Ruim');
-        data.addColumn('number', 'Muito Ruim');
-
-        // Adicionar linhas de dados
-        data.addRows([
-            ['Guarulhos', 5, 2, 6, 0, 3],
-            ['Congonhas', 4, 3, 5, 1, 2],
-            ['Campinas', 3, 4, 5, 2, 1],
-            ['Brasília', 2, 1, 3, 0, 5]
-        ]);
-
-        // Criar a tabela e desenhá-la no elemento com o ID 'table_div'
-        var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        // Desenhar a tabela com algumas opções
-        table.draw(data, {
-            showRowNumber: true, // Exibe os números das linhas
-            width: '100%',       // Ajusta a tabela para ocupar 100% da largura disponível
-            height: '100%'       // Ajusta a tabela para ocupar 100% da altura disponível
-        });
-    }
-
-    // Mock de dados atualizados para cada serviço, ano e trimestre, com valores variados e não-sequenciais
-    let grafico;
-    const contexto = document.getElementById('chartTempo').getContext('2d');
-
-    // Função para inicializar o gráfico
-    function inicializarGrafico(dados, etiquetas, rotulo) {
-        if (grafico) grafico.destroy();
-        grafico = new Chart(contexto, {
-            type: 'bar',
-            data: {
-                labels: etiquetas,
-                datasets: [{
-                    label: rotulo,
-                    data: dados,
-                    backgroundColor: ['#ebd469', '#111111', '#666472'],
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        });
-    }
-
-    // Dados iniciais (comparação geral entre anos)
-    const dadosPadrao = [1500, 1300, 1700];
-    const etiquetasPadrao = ['2022', '2023', '2024'];
-    inicializarGrafico(dadosPadrao, etiquetasPadrao, 'Comparação Anual');
-
-    // Função para preencher o select de anos dinamicamente
-    function preencherSelectAnos() {
-        const selecaoAno = document.getElementById('selecao-ano');
-        const anoAtual = new Date().getFullYear(); // Obtém o ano atual
-        const anosDisponiveis = [2022, 2023, 2024]; // Você pode ajustar essa lista conforme necessário
-
-        // Limpa opções existentes
-        selecaoAno.innerHTML = '<option value="">Selecione um Ano</option>';
-
-        // Adiciona opções ao select de ano
-        anosDisponiveis.forEach(ano => {
-            const option = document.createElement('option');
-            option.value = ano;
-            option.textContent = ano;
-            selecaoAno.appendChild(option);
-        });
-    }
-
-    // Função para mostrar o container do filtro de tempo
-function mostrarFiltroTempo() {
-    const servicoSelecionado = document.getElementById('selecao-servico').value;
-    const filtroTempo = document.getElementById('filtro-tempo');
-    const filtroContainer = document.getElementById('filtro-container');
-
-    if (servicoSelecionado) {
-        filtroContainer.style.display = 'block'; // Mostra o filtro de tempo
-        filtroTempo.disabled = false; // Permite selecionar o filtro
-    } else {
-        filtroContainer.style.display = 'none'; // Oculta o filtro de tempo
-        filtroTempo.disabled = true; // Desabilita o filtro
-        alert("Por favor, selecione um serviço antes de escolher o filtro.");
-    }
-}
-
-// Atualiza a função de mudança do filtro de tempo
-document.getElementById('filtro-tempo').addEventListener('change', function() {
-    const servicoSelecionado = document.getElementById('selecao-servico').value;
-    if (!servicoSelecionado) {
-        alert("Por favor, selecione um serviço antes de escolher o filtro.");
-        this.value = ''; // Limpa a seleção
-    } else {
-        atualizarOpcoesFiltro(); // Chama a função para atualizar as opções de filtro
-    }
-});
-
-// Atualiza a função de mudança do filtro de tempo
-document.getElementById('filtro-tempo').addEventListener('change', function() {
-    const servicoSelecionado = document.getElementById('selecao-servico').value;
-    if (!servicoSelecionado) {
-        alert("Por favor, selecione um serviço antes de escolher o filtro.");
-        this.value = ''; // Limpa a seleção
-    } else {
-        atualizarOpcoesFiltro(); // Chama a função para atualizar as opções de filtro
-    }
-});
+    var idUsuario = sessionStorage.ID_USUARIO;
+    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
 
 
-    // Função para atualizar as opções de filtro com base na seleção de "Ano" ou "Trimestre"
-    function atualizarOpcoesFiltro() {
-        const filtroTempo = document.getElementById('filtro-tempo').value;
-        const etiquetaAno = document.getElementById('etiqueta-ano');
-        const selecaoAno = document.getElementById('selecao-ano');
-        const etiquetaTrimestre = document.getElementById('etiqueta-trimestre');
-        const selecaoTrimestre = document.getElementById('selecao-trimestre');
+    function pontuacoesMaisBaixas() {
 
-        if (filtroTempo === 'ano') {
-            etiquetaAno.style.display = 'inline';
-            selecaoAno.style.display = 'inline';
-            etiquetaTrimestre.style.display = 'none';
-            selecaoTrimestre.style.display = 'none';
-        } else if (filtroTempo === 'trimestre') {
-            etiquetaAno.style.display = 'none';
-            selecaoAno.style.display = 'none';
-            etiquetaTrimestre.style.display = 'inline';
-            selecaoTrimestre.style.display = 'inline';
-        } else {
-            etiquetaAno.style.display = 'none';
-            selecaoAno.style.display = 'none';
-            etiquetaTrimestre.style.display = 'none';
-            selecaoTrimestre.style.display = 'none';
-        }
-    }
+        console.log("teste")
+        const nomes = [];
+        const acertos = [];
+        let classificacoes = [];
 
-    // Função para buscar e atualizar o gráfico com dados simulados
-    function buscarEAtualizarDadosGrafico() {
-        const filtroTempo = document.getElementById('filtro-tempo').value;
-        const ano = document.getElementById('selecao-ano').value;
-        const trimestre = document.getElementById('selecao-trimestre').value;
-        const servico = document.getElementById('selecao-servico').value;
-
-        // Verifica se todos os filtros necessários foram selecionados
-        if (!servico) {
-            alert("Por favor, selecione um serviço.");
-            return;
-        }
-
-        if (filtroTempo === 'ano' && !ano) {
-            alert("Por favor, selecione um ano.");
-            return;
-        }
-
-        if (filtroTempo === 'trimestre' && !trimestre) {
-            alert("Por favor, selecione um trimestre.");
-            return;
-        }
-
-        // Simulação dos dados de acordo com o filtro selecionado e o serviço
-        let dados, etiquetas, rotulo;
-
-        if (filtroTempo === 'ano' && ano) {
-            dados = [800, 900, 750, 1100]; // Dados simulados para os trimestres do ano selecionado
-            etiquetas = ['1º Trimestre', '2º Trimestre', '3º Trimestre', '4º Trimestre'];
-            rotulo = `Comparação Trimestral - Ano ${ano} (${servico})`;
-        } else if (filtroTempo === 'trimestre' && trimestre) {
-            dados = [700, 850, 1000]; // Dados simulados para o trimestre selecionado nos anos 2022, 2023, 2024
-            etiquetas = ['2022', '2023', '2024'];
-            rotulo = `Comparação Anual - ${trimestre}º Trimestre (${servico})`;
-        } else {
-            // Se nenhum filtro, exibe dados padrão
-            dados = dadosPadrao;
-            etiquetas = etiquetasPadrao;
-            rotulo = 'Comparação Anual';
-        }
-
-        // Atualiza o gráfico com os novos dados
-        inicializarGrafico(dados, etiquetas, rotulo);
-    }
-
-
-
-    // // Event listeners para os filtros
-    document.getElementById('filtro-tempo').addEventListener('change', atualizarOpcoesFiltro);
-    document.getElementById('selecao-ano').addEventListener('change', buscarEAtualizarDadosGrafico);
-    document.getElementById('selecao-trimestre').addEventListener('change', buscarEAtualizarDadosGrafico);
-    document.getElementById('selecao-servico').addEventListener('change', mostrarFiltroTempo);
-    document.getElementById('selecao-servico').addEventListener('change', function() {
-    const filtroTempo = document.getElementById('filtro-tempo').value;
-    const ano = document.getElementById('selecao-ano').value;
-    const trimestre = document.getElementById('selecao-trimestre').value;
-
-    // Atualiza o gráfico com os dados atuais baseados no novo serviço
-    if (filtroTempo) {
-        buscarEAtualizarDadosGrafico(); // Chama a função para buscar e atualizar os dados do gráfico
-    }
-});
-
-    // // Inicializa os filtros e o gráfico ao carregar a página
-    preencherSelectAnos(); // Preenche o select de anos
-    atualizarOpcoesFiltro(); // Atualiza a exibição dos filtros
-
-    const nomes = [];
-    const acertos = [];
-    const listaCores = ['#CD853F', '#5E371C', ' #271E17'];
-
-    function ultimasRespostas() {
-        fetch('/dashboard/ultimasRespostas', { method: 'POST' })
-            .then(resultado => resultado.json())
+        fetch('/dashboard/pontuacoesMaisBaixas', { method: 'POST' })
+            .then(resposta => resposta.json()) // Converte a resposta em JSON
             .then(respostas => {
+                console.log(respostas); // Exibe os dados retornados da API no console
 
-                console.log(respostas)
 
+                // Processa as respostas e extrai as informações para os gráficos
                 respostas.forEach(resposta => {
-
-
-                    nomes.push(resposta.nome);
-                    acertos.push(resposta.qtdAcertos);
-
+                    nomes.push(resposta.siglaAeroporto);  // Nome do aeroporto
+                    classificacoes.push(resposta.Media_Satisfacao_Geral);  // Pontuação (classificação)
                 });
 
-                let posicaoCor = Math.random() * 3;
-                let corGrafico = listaCores[posicaoCor];
-
-                console.log(acertos)
-                console.log(nomes)
-
-                const ctx = document.getElementById('myChart');
+                // Cria o gráfico de barras
+                const ctx = document.getElementById('chartPontuacoesBaixas').getContext('2d');
                 new Chart(ctx, {
-                    type: 'bar',
+                    type: 'bar', // Tipo de gráfico de barras
                     data: {
-                        labels: nomes,
+                        labels: nomes, // Nomes dos aeroportos
                         datasets: [{
-                            label: "Quantidade de acertos",
-                            data: acertos,
-                            borderWidth: 1,
-                            backgroundColor: ['#D2691E', '#5E371C', '#271E17'],
-                            borderColor: corGrafico
+                            label: "Menores Pontuações",
+                            data: classificacoes, // As pontuações dos aeroportos
+                            backgroundColor: '#D2691E', // Cor das barras
+                            borderColor: '#8B4513', // Cor da borda das barras
+                            borderWidth: 1 // Largura da borda
                         }]
                     },
                     options: {
                         scales: {
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true, // Começar o eixo Y no zero
+                                max: 5, // Definir um valor máximo para a pontuação
+                                ticks: {
+                                    color: '#111111' // Cor dos números do eixo Y
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    color: '#111111' // Cor dos nomes dos aeroportos
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false // Ocultar a legenda
                             }
                         }
                     }
                 });
 
             })
-            .catch(error => console.error('Erro ao buscar pontuações:', error));
+            .catch(error => console.error('Erro ao buscar as pontuações mais baixas:', error));
+    }
+
+    // Variáveis globais
+    let chart = null;
+
+    // Elementos do DOM
+    const selectServico = document.getElementById('selecao-servico');
+    const selectFiltroTempo = document.getElementById('filtro-tempo');
+    const selectAno = document.getElementById('selecao-ano');
+    const selectTrimestre = document.getElementById('selecao-trimestre');
+    const btnAplicarFiltros = document.getElementById('btn-aplicar-filtros'); // O botão para aplicar os filtros
+
+    // Configurar eventos dos filtros
+    selectServico.addEventListener('change', habilitarFiltroTempo);
+    selectFiltroTempo.addEventListener('change', exibirFiltrosDinamicos);
+
+    // Adicionar o evento de clique no botão para aplicar os filtros
+    btnAplicarFiltros.addEventListener('click', atualizarGrafico);
+
+    // Função para habilitar o filtro de tempo
+    function habilitarFiltroTempo() {
+        const servicoSelecionado = selectServico.value;
+        if (servicoSelecionado) {
+            selectFiltroTempo.disabled = false;
+            ocultarFiltros(); // Reseta os filtros dinâmicos ao mudar o serviço
+        } else {
+            selectFiltroTempo.disabled = true;
+            ocultarFiltros(); // Oculta os filtros se nenhum serviço for selecionado
+        }
+    }
+
+    // Função para exibir filtros dinâmicos (Ano ou Trimestre)
+    function exibirFiltrosDinamicos(event) {
+        const filtroSelecionado = event.target.value;
+        ocultarFiltros(); // Oculta os filtros antes de exibir o selecionado
+
+        if (filtroSelecionado === 'ano') {
+            selectAno.style.display = 'block';
+            selectAno.disabled = false;
+        } else if (filtroSelecionado === 'trimestre') {
+            selectTrimestre.style.display = 'block';
+            selectTrimestre.disabled = false;
+        }
+    }
+
+    // Função para ocultar os filtros dinâmicos
+    function ocultarFiltros() {
+        // Oculta e desabilita o filtro de Ano
+        selectAno.style.display = 'none';
+        selectAno.disabled = true;
+        selectAno.value = ""; // Reseta o valor selecionado
+
+        // Oculta e desabilita o filtro de Trimestre
+        selectTrimestre.style.display = 'none';
+        selectTrimestre.disabled = true;
+        selectTrimestre.value = ""; // Reseta o valor selecionado
+    }
+
+    // Função para atualizar o gráfico com base nos filtros
+    function atualizarGrafico() {
+        const filtros = coletarFiltros(); // Coleta os filtros selecionados
+
+        if (!filtros.servico || !filtros.filtro || !filtros.valor) {
+            alert("Por favor, selecione o serviço e preencha todos os filtros necessários.");
+            return;
+        }
+
+        buscarDadosGrafico(filtros); // Chama a função para buscar os dados e atualizar o gráfico
     }
 
 
+    async function buscarDadosGrafico(filtros) {
+        console.log("Iniciando requisição com filtros:", filtros);
+
+        try {
+            const response = await fetch('/dashboard/respostasPorServico', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(filtros) // Envia os filtros como corpo da requisição
+            });
+
+            if (!response.ok) {
+                throw new Error('Erro ao buscar dados do gráfico');
+            }
+
+            const dados = await response.json(); // Converte a resposta em JSON
+            console.log("Dados recebidos para o gráfico:", dados);
+
+            if (dados.length === 0) {
+                console.error('Nenhum dado foi retornado');
+                alert('Nenhum dado foi retornado. Tente com outros filtros.');
+                return;
+            }
+
+            const servico = dados[0].coluna || filtros.servico; // Garantir que o serviço esteja presente
+            const labels = [];
+            const medias = [];
+
+            // Organize os dados conforme o filtro selecionado
+            if (filtros.filtro === "ano") {
+                // Se o filtro for por Ano, mostre os trimestres como labels
+                dados.forEach(item => {
+                    labels.push(`${item.trimestre}`); // Exibe os trimestres como labels
+                    medias.push(item.media); // Adiciona a média
+                });
+            } else if (filtros.filtro === "trimestre") {
+                // Se o filtro for por Trimestre, mostre os anos como labels
+                dados.forEach(item => {
+                    labels.push(`${item.ano}`); // Exibe os anos como labels
+                    medias.push(item.media); // Adiciona a média
+                });
+            }
+
+            // Plotar o gráfico com os dados organizados
+            plotarGrafico(labels, medias, filtros.valor, servico); // Passa os dados para o gráfico
+        } catch (error) {
+            console.error('Erro ao buscar os dados do gráfico:', error);
+            alert("Erro ao buscar dados do gráfico. Verifique os logs.");
+        }
+    }
 
 
+    // Função para plotar o gráfico
+    function plotarGrafico(labels, medias, ano, servico) {
+        // Verifica se já existe um gráfico e destrói antes de criar um novo
+        if (chart) {
+            chart.destroy(); // Se já existir um gráfico, destrua-o para evitar duplicações
+        }
+
+        const ctx3 = document.getElementById('chartServicos').getContext('2d');
+        chart = new Chart(ctx3, {
+            type: 'bar', // Tipo de gráfico de barras
+            data: {
+                labels: labels, // Labels do eixo X (ano ou trimestre)
+                datasets: [{
+                    label: `${servico} - Ano: ${ano}`, // Adiciona o nome do serviço na legenda
+                    data: medias, // Os valores (médias) a serem exibidos nas barras
+                    backgroundColor: '#FF6347', // Cor das barras
+                    borderColor: '#FF4500', // Cor da borda das barras
+                    borderWidth: 1 // Largura da borda
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true, // Começar o eixo Y no zero
+                        ticks: {
+                            color: '#111111' // Cor dos números do eixo Y
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#111111' // Cor dos nomes dos serviços
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true // Exibir a legenda
+                    }
+                }
+            }
+        });
+    }
+
+    // Função para coletar filtros
+    function coletarFiltros() {
+        const servico = selectServico.value;
+        const filtro = selectFiltroTempo.value;
+        const valor = filtro === "ano" ? selectAno.value : selectTrimestre.value;
+
+        console.log("Filtros coletados:", { servico, filtro, valor });
+        return { servico, filtro, valor };
+    }
 
 
+    google.charts.load('current', { 'packages': ['table'] });
+    google.charts.setOnLoadCallback(respostasPorAeroporto);
 
+    async function respostasPorAeroporto() {
+        try {
+            // Realizar a requisição usando fetch com o método POST
+            const response = await fetch('/dashboard/respostasPorAeroporto', {
+                method: 'POST', // Especifica que o método é POST
+                headers: {
+                    'Content-Type': 'application/json' // Define o tipo de conteúdo da requisição
+                },
+                body: JSON.stringify({ /* Você pode passar dados adicionais aqui se necessário */ })
+            });
 
+            if (!response.ok) {
+                throw new Error(`Erro na requisição: ${response.status}`);
+            }
 
-    // b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+            const jsonData = await response.json(); // Converter a resposta em JSON
 
-    // let proximaAtualizacao;
+            // Criar um novo DataTable
+            var data = new google.visualization.DataTable();
 
-    // window.onload = exibirAquariosDoUsuario();
+            // Adicionar as colunas (nome do aeroporto e as avaliações)
+            data.addColumn('string', 'Sigla');
+            data.addColumn('number', 'Muito Bom');
+            data.addColumn('number', 'Bom');
+            data.addColumn('number', 'Razoável');
+            data.addColumn('number', 'Ruim');
+            data.addColumn('number', 'Muito Ruim');
 
-    // function exibirAquariosDoUsuario() {
-    //     var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-    //     aquarios.forEach(item => {
-    //         document.getElementById("btnAquario").innerHTML += `
-    //         <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-    //         `
+            // Adicionar as linhas dinamicamente com base nos dados recebidos
+            jsonData.forEach(row => {
+                data.addRow([
+                    row.siglaAeroporto, // Nome do aeroporto
+                    row.Muito_Bom,      // Contagem de "Muito Bom"
+                    row.Bom,           // Contagem de "Bom"
+                    row.Razoavel,      // Contagem de "Razoável"
+                    row.Ruim,          // Contagem de "Ruim"
+                    row.Muito_Ruim      // Contagem de "Muito Ruim"
+                ]);
+            });
 
-    //         document.getElementById("graficos").innerHTML += `
-    //             <div id="grafico${item.id}" class="display-none">
-    //                 <h3 class="tituloGraficos">
-    //                     <span id="tituloAquario${item.id}">${item.descricao}</span>
-    //                 </h3>
-    //                 <div class="graph">
-    //                     <canvas id="myChartCanvas${item.id}"></canvas>
-    //                 </div>
-    //                 <div class="label-captura">
-    //                     <p id="avisoCaptura${item.id}" style="color: white"></p>
-    //                 </div>
-    //             </div>
-    //         `
+            // Criar a tabela e desenhá-la no elemento com o ID 'table_div'
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+            table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
 
-    //         obterDadosGrafico(item.id)
-    //     });
+        } catch (error) {
+            console.error("Erro ao carregar os dados:", error);
+        }
+    }
 
-    //     if (aquarios.length > 0) {
-    //         exibirAquario(aquarios[0].id)
-    //     }
-    // }
-
-    // function alterarTitulo(idAquario) {
-    //     var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-    //     var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idAquario).descricao;
-    //     tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
-    // }
-
-    // function exibirAquario(idAquario) {
-    //     let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
-
-    //     for (i = 0; i < todosOsGraficos.length; i++) {
-    //         // exibindo - ou não - o gráfico
-    //         if (todosOsGraficos[i].id != idAquario) {
-    //             let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-    //             if (elementoAtual.classList.contains("display-block")) {
-    //                 elementoAtual.classList.remove("display-block")
-    //             }
-    //             elementoAtual.classList.add("display-none")
-
-    //             // alterando estilo do botão
-    //             let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-    //             if (btnAtual.classList.contains("btn-pink")) {
-    //                 btnAtual.classList.remove("btn-pink")
-    //             }
-    //             btnAtual.classList.add("btn-white")
-    //         }
-    //     }
-
-    //     // exibindo - ou não - o gráfico
-    //     let graficoExibir = document.getElementById(`grafico${idAquario}`)
-    //     graficoExibir.classList.remove("display-none")
-    //     graficoExibir.classList.add("display-block")
-
-    //     // alterando estilo do botão
-    //     let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-    //     btnExibir.classList.remove("btn-white")
-    //     btnExibir.classList.add("btn-pink")
-    // }
-
-    // // O gráfico é construído com três funções:
-    // // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-    // // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-    // // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-    // // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-    // // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-    // // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-    // //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    // //     Para ajustar o "select", ajuste o comando sql em src/models
-    // function obterDadosGrafico(idAquario) {
-
-    //     alterarTitulo(idAquario)
-
-    //     if (proximaAtualizacao != undefined) {
-    //         clearTimeout(proximaAtualizacao);
-    //     }
-
-    //     fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 resposta.reverse();
-
-    //                 plotarGrafico(resposta, idAquario);
-
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
-
-    // // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
-    // // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    // function plotarGrafico(resposta, idAquario) {
-
-    //     console.log('iniciando plotagem do gráfico...');
-
-    //     // Criando estrutura para plotar gráfico - labels
-    //     let labels = [];
-
-    //     // Criando estrutura para plotar gráfico - dados
-    //     let dados = {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'Umidade',
-    //             data: [],
-    //             fill: false,
-    //             borderColor: 'rgb(75, 192, 192)',
-    //             tension: 0.1
-    //         },
-    //         {
-    //             label: 'Temperatura',
-    //             data: [],
-    //             fill: false,
-    //             borderColor: 'rgb(199, 52, 52)',
-    //             tension: 0.1
-    //         }]
-    //     };
-
-    //     console.log('----------------------------------------------')
-    //     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    //     console.log(resposta)
-
-    //     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    //     for (i = 0; i < resposta.length; i++) {
-    //         var registro = resposta[i];
-    //         labels.push(registro.momento_grafico);
-    //         dados.datasets[0].data.push(registro.umidade);
-    //         dados.datasets[1].data.push(registro.temperatura);
-    //     }
-
-    //     console.log('----------------------------------------------')
-    //     console.log('O gráfico será plotado com os respectivos valores:')
-    //     console.log('Labels:')
-    //     console.log(labels)
-    //     console.log('Dados:')
-    //     console.log(dados.datasets)
-    //     console.log('----------------------------------------------')
-
-    //     // Criando estrutura para plotar gráfico - config
-    //     const config = {
-    //         type: 'line',
-    //         data: dados,
-    //     };
-
-    //     // Adicionando gráfico criado em div na tela
-    //     let myChart = new Chart(
-    //         document.getElementById(`myChartCanvas${idAquario}`),
-    //         config
-    //     );
-
-    //     setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    // }
-
-
-    // // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
-    // // buscando a última medida inserida em tabela contendo as capturas,
-
-    // //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-    // //     Para ajustar o "select", ajuste o comando sql em src/models
-    // function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
-    //     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (novoRegistro) {
-
-    //                 obterdados(idAquario);
-    //                 // alertar(novoRegistro, idAquario);
-    //                 console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-    //                 console.log(`Dados atuais do gráfico:`);
-    //                 console.log(dados);
-
-    //                 let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-    //                 avisoCaptura.innerHTML = ""
-
-
-    //                 if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-    //                     console.log("---------------------------------------------------------------")
-    //                     console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-    //                     avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-    //                     console.log("Horário do novo dado capturado:")
-    //                     console.log(novoRegistro[0].momento_grafico)
-    //                     console.log("Horário do último dado capturado:")
-    //                     console.log(dados.labels[dados.labels.length - 1])
-    //                     console.log("---------------------------------------------------------------")
-    //                 } else {
-    //                     // tirando e colocando valores no gráfico
-    //                     dados.labels.shift(); // apagar o primeiro
-    //                     dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-    //                     dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-    //                     dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-    //                     dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-    //                     dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-    //                     myChart.update();
-    //                 }
-
-    //                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    //                 proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-    //             proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-
-    // }
 </script>
