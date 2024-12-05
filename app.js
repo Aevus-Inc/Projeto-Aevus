@@ -18,7 +18,13 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var dashboardRouter = require("./src/routes/dashboard");
+
+var aeroportoEspRouter = require('./src/routes/aeroportoEspRoutes');
+var aeroportoRouter = require('./src/routes/crudAeroportosRoutes');
+
+=======
 var crudsRouter = require("./src/routes/cruds");
+
 
 
 app.use(express.json());
@@ -30,7 +36,12 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/dashboard", dashboardRouter);
+
+app.use('/aeroporto', aeroportoEspRouter);
+app.use('/aeroportos', aeroportoRouter);
+
 app.use("/cruds", crudsRouter);
+
 
 
 app.listen(PORTA_APP, function () {
