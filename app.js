@@ -22,10 +22,7 @@ var dashboardRouter = require("./src/routes/dashboard");
 var aeroportoEspRouter = require('./src/routes/aeroportoEspRoutes');
 var aeroportoRouter = require('./src/routes/crudAeroportosRoutes');
 
-=======
 var crudsRouter = require("./src/routes/cruds");
-
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
