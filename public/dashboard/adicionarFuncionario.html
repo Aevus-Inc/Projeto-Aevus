@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adicionar Funcionário</title>
     <link rel="stylesheet" href="../css/gerenciarFuncionarios.css">
     <link rel="shortcut icon" href="../img/logoSemDescricao.png" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
 </head>
 
 <body>
@@ -41,32 +44,233 @@
         <div class="adicionar-funcionario">
 
             <div class="card-adicionar">
-            <h1>Adicionar Funcionário</h1>
-            <div class="form-group">
-                <label for="novo-nome">Nome:</label>
-                <input type="text" id="novo-nome" placeholder="Digite o nome..." required>
+                <h1>Adicionar Funcionário</h1>
+                <div class="form-group">
+                    <label for="novo-nome">Nome:</label>
+                    <input type="text" id="novoNome" placeholder="Digite o nome..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="novo-cargo">Cargo:</label>
+                    <select id="novoCargo">
+                        <option value="" selected disabled>Selecione um cargo:</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Operacional">Operacional</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="novo-cpf">CPF:</label>
+                    <input type="text" id="novoCpf" placeholder="000.000.000-00" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="novo-email">Email:</label>
+                    <input type="email" id="novoEmail" placeholder="Digite o email..." required>
+                </div>
+                <div class="form-actions">
+                    <button id="add-button" class="styled-button"
+                        onclick="cadastrarUsuario(), cadastrarPessoa()">Adicionar Funcionário</button>
+                </div>
+                <div id="addFeedbackMessage" style="color: green;"></div>
             </div>
-            <div class="form-group">
-                <label for="novo-cargo">Cargo:</label>
-                <input type="text" id="novo-cargo" placeholder="Digite o cargo..." required>
-            </div>
-            <div class="form-group">
-                <label for="novo-telefone">Telefone:</label>
-                <input type="text" id="novo-telefone" placeholder="Digite o telefone..." required>
-            </div>
-            <div class="form-group">
-                <label for="novo-email">Email:</label>
-                <input type="email" id="novo-email" placeholder="Digite o email..." required>
-            </div>
-            <div class="form-actions">
-                <button id="add-button" class="styled-button">Adicionar Funcionário</button>
-            </div>
-            <div id="add-feedback-message" style="color: green;"></div>
         </div>
-    </div>
-    </div>
+        </div>
     </main>
 
-
 </body>
+
 </html>
+
+<script>
+    let nomeVar = novoNome.value;
+    let cargoVar = novoCargo.value;
+    let cpfVar = novoCpf.value;
+    let emailVar = novoEmail.value;
+    let card = addFeedbackMessage.value;
+
+    $('#novoCpf').mask('000.000.000-00', {reverse: false});
+
+    function cadastrarUsuario() {
+
+
+        function limparFormulario() {
+            document.getElementById("novoNome").value = "";
+            document.getElementById("novoCargo").value = "";
+            document.getElementById("novoCpf").value = "";
+            document.getElementById("novoEmail").value = "";
+        }
+
+        if (
+            nomeVar == null &
+            cargoVar == null &
+            cpfVar == null &
+            emailVar == null
+        ) {
+
+            card.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
+
+            return false;
+        } else {
+
+            // Enviando o valor da nova input
+            fetch("/cruds/cadastrarUsuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar.trim(),
+                    cargoServer: cargoVar.trim(),
+                    cpfServer: cpfVar.trim(),
+                    emailServer: emailVar.trim()
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+
+                        card.innerHTML =
+                            "Cadastro realizado com sucesso";
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+
+                        card.innerHTML =
+                            "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+
+    }
+
+    function cadastrarUsuario() {
+
+        let nomeVar = novoNome.value;
+        let cargoVar = novoCargo.value;
+        let cpfVar = novoCpf.value;
+        let emailVar = novoEmail.value;
+
+        let card = addFeedbackMessage.value;
+
+
+
+        if (
+            nomeVar == false &
+            cargoVar == false &
+            cpfVar == false &
+            emailVar == false
+        ) {
+
+            card.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
+
+            return false;
+        } else {
+
+            // Enviando o valor da nova input
+            fetch("/cruds/cadastrarUsuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar.trim(),
+                    cargoServer: cargoVar.trim(),
+                    cpfServer: cpfVar.trim(),
+                    emailServer: emailVar.trim()
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+
+                        card.innerHTML =
+                            "Cadastro realizado com sucesso";
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+
+                        card.innerHTML =
+                            "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+
+    }
+
+    function cadastrarPessoa() {
+
+        let nomeVar = novoNome.value;
+        let cpfVar = novoCpf.value;
+
+        let card = addFeedbackMessage.value;
+
+
+        if (
+            nomeVar == false &
+            cpfVar == false
+        ) {
+
+            card.innerHTML = "Por favor, preencha todos os campos para prosseguir!";
+
+            return false;
+        } else {
+
+            // Enviando o valor da nova input
+            fetch("/cruds/cadastrarPessoa", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    nomeServer: nomeVar.trim(),
+                    cpfServer: cpfVar.trim()
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta: ", resposta);
+
+                    if (resposta.ok) {
+
+                        card.innerHTML =
+                            "Cadastro realizado com sucesso";
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro!";
+
+                        card.innerHTML =
+                            "Houve um erro ao tentar realizar o cadastro!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+
+    }
+
+    function limparFormulario() {
+        document.getElementById("novoNome").value = "";
+        document.getElementById("novoCargo").value = "";
+        document.getElementById("novoCpf").value = "";
+        document.getElementById("novoEmail").value = "";
+    }
+
+</script>
