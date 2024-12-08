@@ -32,19 +32,12 @@ function getGrafico(req, res) {
 
 function getGraficoFiltrado(req, res) {
     const { filters, idAeroporto } = req.body;
-    console.log("Filtros recebidos no controlador:", filters);
-    console.log("ID do aeroporto recebido:", idAeroporto);
     aeroportoEspModel.getGraficoFiltrado(filters, idAeroporto)
         .then(function (resultado) {
-            if (resultado.length > 0) {
-                res.status(200).json(resultado);
-            } else {
-                res.status(200).json([]); // Retorna um array vazio em vez de 204
-            }
+            res.status(200).json(resultado);
         })
         .catch(function (error) {
             console.log(error);
-            console.log(`\nHouve um erro ao buscar os dados do gráfico filtrado! Erro: ${error.sqlMessage}`);
             res.status(500).json({ error: error.sqlMessage });
         });
 }

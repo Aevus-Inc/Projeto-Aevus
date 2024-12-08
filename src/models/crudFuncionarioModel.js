@@ -3,19 +3,20 @@ var database = require("../database/config");
 function listarFuncionarios() {
   var instrucaoSql = `
     SELECT 
-      u.idUsuario,
-      p.nome,
-      p.cpf,
-      p.telefone,
-      p.dataNascimento,
-      p.sexo,
+      p.idPessoa, 
+      p.nome, 
+      p.cpf, 
+      p.telefone, 
+      p.sexo, 
       p.endereco,
-      u.email,
-      u.tipoUsuario,
-      u.dataContratacao,
+      u.idUsuario, 
+      u.email, 
+      u.tipoUsuario, 
+      u.senha, 
+      DATE_FORMAT(u.dataContratacao, '%d/%m/%Y') AS dataContratacao,
       u.status
-    FROM Usuario u
-    JOIN Pessoa p ON u.fkPessoa = p.idPessoa;
+    FROM Usuario AS u 
+    INNER JOIN Pessoa AS p ON u.fkPessoa = p.idPessoa;
   `;
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
@@ -28,7 +29,6 @@ function carregarDetalhesFuncionario(idUsuario) {
       p.nome,
       p.cpf,
       p.telefone,
-      p.dataNascimento,
       p.sexo,
       p.endereco,
       u.email,
@@ -43,7 +43,7 @@ function carregarDetalhesFuncionario(idUsuario) {
   return database.executar(instrucaoSql);
 }
 
-function atualizarFuncionario(idUsuario, nome, cpf, telefone, dataNascimento, sexo, endereco, email, tipoUsuario, dataContratacao, status) {
+function atualizarFuncionario(idUsuario, nome, cpf, telefone, sexo, endereco, email, tipoUsuario, status) {
   var instrucaoSql = `
     UPDATE Pessoa p
     JOIN Usuario u ON p.idPessoa = u.fkPessoa
@@ -51,12 +51,10 @@ function atualizarFuncionario(idUsuario, nome, cpf, telefone, dataNascimento, se
       p.nome = '${nome}',
       p.cpf = '${cpf}',
       p.telefone = '${telefone}',
-      p.dataNascimento = '${dataNascimento}',
       p.sexo = '${sexo}',
       p.endereco = '${endereco}',
       u.email = '${email}',
       u.tipoUsuario = '${tipoUsuario}',
-      u.dataContratacao = '${dataContratacao}',
       u.status = '${status}'
     WHERE u.idUsuario = ${idUsuario};
   `;
@@ -72,17 +70,17 @@ function excluirFuncionario(idUsuario) {
   return database.executar(instrucaoSql);
 }
 
-function cadastrarUsuario(nome, cpf, telefone, dataNascimento, sexo, endereco, email, tipoUsuario, dataContratacao, status) {
+function cadastrarUsuario(nome, cpf, telefone, sexo, endereco, email, tipoUsuario, status) {
   var instrucaoPessoa = `
-    INSERT INTO Pessoa (nome, cpf, telefone, dataNascimento, sexo, endereco)
-    VALUES ('${nome}', '${cpf}', '${telefone}', '${dataNascimento}', '${sexo}', '${endereco}');
+    INSERT INTO Pessoa (nome, cpf, telefone, sexo, endereco)
+    VALUES ('${nome}', '${cpf}', '${telefone}', '${sexo}', '${endereco}');
   `;
 
   return database.executar(instrucaoPessoa).then(resultado => {
     var idPessoa = resultado.insertId;
     var instrucaoUsuario = `
-      INSERT INTO Usuario (email, tipoUsuario, dataContratacao, status, fkPessoa)
-      VALUES ('${email}', '${tipoUsuario}', '${dataContratacao}', '${status}', ${idPessoa});
+      INSERT INTO Usuario (email, tipoUsuario, status, fkPessoa)
+      VALUES ('${email}', '${tipoUsuario}', '${status}', ${idPessoa});
     `;
     return database.executar(instrucaoUsuario);
   });

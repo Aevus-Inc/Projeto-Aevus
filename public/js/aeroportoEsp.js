@@ -431,52 +431,27 @@ function construirNovoGraficoComFiltros() {
             }
         }
     });
-
-    // Limpar os filtros do sessionStorage após construir o gráfico
-    sessionStorage.removeItem('listaGlobalFiltros');
 }
 
 function aplicarFiltros() {
-    // Destruir o gráfico anterior
-    if (window.myChart) {
-        window.myChart.destroy();
-    }
-
-    // Construir novo gráfico com os filtros salvos no sessionStorage
-    const filtros = recuperarDoSessionStorage('listaGlobalFiltros');
+    const filtros = obterFiltrosSelecionados();
     const idAeroporto = 1; // Exemplo de ID de aeroporto
 
-    fetch('/aeroporto/filtro-localizacao-deslocamento', {
+    fetch('/aeroporto/grafico-filtrado', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idAeroporto })
+        body: JSON.stringify({ filters: filtros, idAeroporto })
     })
     .then(response => response.json())
     .then(data => {
-        const periodos = [...new Set(data.map(item => item.Trimestre_Ano))];
-        const metrics = data.reduce((acc, item) => {
-            if (!acc[item.Coluna]) {
-                acc[item.Coluna] = Array(periodos.length).fill(null);
-            }
-
-            const periodoIndex = periodos.indexOf(item.Trimestre_Ano);
-            if (periodoIndex !== -1) {
-                acc[item.Coluna][periodoIndex] = item.Valor;
-            }
-            return acc;
-        }, {});
-
-        plotarGraficoFiltroLocalizacaoDeslocamento(metrics, periodos);
-
-        // Limpar os filtros do sessionStorage após construir o gráfico
-        sessionStorage.removeItem('listaGlobalFiltros');
+        salvarNoSessionStorage('listaGlobalFiltros', data);
+        construirNovoGraficoComFiltros();
     })
-    .catch(error => console.error('Erro ao buscar os dados do gráfico filtrado:', error));
+    .catch(error => console.error('Erro ao aplicar os filtros:', error));
 }
 
 function construirNovoGraficoComFiltros() {
     const filtros = recuperarDoSessionStorage('listaGlobalFiltros');
-
     const periodos = [...new Set(filtros.flatMap(data => data.map(item => item.Trimestre_Ano)))];
 
     const metrics = filtros.flat().reduce((acc, item) => {
@@ -531,9 +506,6 @@ function construirNovoGraficoComFiltros() {
             }
         }
     });
-
-    // Limpar os filtros do sessionStorage após construir o gráfico
-    sessionStorage.removeItem('listaGlobalFiltros');
 }
 
 function plotarGraficoFiltroLocalizacaoDeslocamento(metrics, trimestres) {

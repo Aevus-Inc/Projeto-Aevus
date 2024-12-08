@@ -196,7 +196,7 @@ Subconsulta AS (
     SELECT 'Satisfacao_Geral' AS Coluna, P.Satisfacao_Geral AS Valor, T.Trimestre
     FROM CTE_Trimestre T
     INNER JOIN PesquisaDeSatisfacao P ON T.Pesquisa_ID = P.Pesquisa_ID
-    WHERE P.Satisfacao_Geral IS NOT NULL
+    WHERE P.Satisfacao_Geral IS NOT NULL AND 
     ${filterConditions} 
     
     UNION ALL
@@ -204,7 +204,7 @@ Subconsulta AS (
     SELECT 'Avaliação Método de Desembarque' AS Coluna, D.Avaliacao_Metodo_Desembarque AS Valor, T.Trimestre
     FROM CTE_Trimestre T
     LEFT JOIN Desembarque D ON T.Pesquisa_ID = D.Pesquisa_ID
-    WHERE D.Avaliacao_Metodo_Desembarque IS NOT NULL
+    WHERE D.Avaliacao_Metodo_Desembarque IS NOT NULL AND
     ${filterConditions}
     
     UNION ALL
@@ -212,7 +212,7 @@ Subconsulta AS (
     SELECT 'Facilidade de Desembarque no Meio-Fio' AS Coluna, D.Facilidade_Desembarque_Meio_Fio AS Valor, T.Trimestre
     FROM CTE_Trimestre T
     LEFT JOIN Desembarque D ON T.Pesquisa_ID = D.Pesquisa_ID
-    WHERE D.Facilidade_Desembarque_Meio_Fio IS NOT NULL
+    WHERE D.Facilidade_Desembarque_Meio_Fio IS NOT NULL AND
     ${filterConditions}
     
     UNION ALL

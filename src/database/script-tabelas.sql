@@ -3,7 +3,6 @@ create database if not exists aevus;
 use aevus;
 
 
-
 CREATE TABLE IF NOT EXISTS Empresa (
   idEmpresa INT AUTO_INCREMENT,
   nomeFantasia VARCHAR(45),
@@ -19,13 +18,29 @@ CREATE TABLE IF NOT EXISTS Empresa (
   CONSTRAINT uk_email UNIQUE (email)
 );
 
+INSERT INTO Empresa (nomeFantasia, cnpj, razaoSocial, email, senha)
+ VALUES 
+ ('Aevus Infinity', '12345678000199', 'Aevus Infinity LTDA', 'testeempresa@teste.com', 'xx123456');
+
 
 CREATE TABLE IF NOT EXISTS Pessoa (
-  idPessoa INT AUTO_INCREMENT,
-  nome VARCHAR(100),
-  cpf CHAR(11) UNIQUE,
-  PRIMARY KEY (idPessoa)
-);
+ idPessoa INT AUTO_INCREMENT,
+ nome VARCHAR(100), 
+ cpf CHAR(11) UNIQUE, 
+ telefone VARCHAR(20), 
+ dataNascimento DATE, 
+ sexo VARCHAR(9), 
+ endereco VARCHAR(255), 
+ CONSTRAINT ck_sexo CHECK (sexo IN ('Masculino', 'Feminino')),
+ PRIMARY KEY (idPessoa) );
+
+INSERT INTO Pessoa (nome, cpf, telefone, dataNascimento, sexo, endereco)
+ VALUES 
+ ('João Silva', '12345678901', '11987654321', '1990-01-15', 'M', 'Rua das Flores, 123'),
+ ('Maria Silva', '12345678902', '11987654322', '1993-03-25', 'F', 'Avenida Brasil, 456'),
+ ('Carlos Silva', '12345678903', '11987654323', '1997-04-05', 'M', 'Praça da Sé, 789'),
+ ('Ana Silva', '12345678904', '11987654324', '1995-10-15', 'F', 'Rua das Palmeiras, 1011');
+
 
 CREATE TABLE IF NOT EXISTS Aeroporto (
   idAeroporto INT AUTO_INCREMENT,
@@ -46,12 +61,26 @@ CREATE TABLE IF NOT EXISTS Aeroporto (
   PRIMARY KEY (idAeroporto)
 );
 
+INSERT INTO Aeroporto (
+   siglaAeroporto, nomeAeroporto, endereco, codigoICAO, 
+   cidade, estado, pais, telefone, email, numeroPistas, capacidadePassageiros, numeroTerminais, 
+   horarioAbertura, horarioFechamento
+) VALUES 
+( 'SBGR', 'Aeroporto Internacional de São Paulo/Guarulhos', 'Guarulhos, SP', 'GRU', 
+  'Guarulhos', 'SP', 'Brasil', '11-2445-2945', 'contato@gru.com', 2, 42000000, 3, '06:00:00', '23:00:00'),
+( 'SBSG', 'Aeroporto Internacional de São Gonçalo do Amarante', 'São Gonçalo do Amarante, RN', 'NAT', 
+  'São Gonçalo do Amarante', 'RN', 'Brasil', '84-3343-6060', 'contato@sgar.com', 1, 3000000, 1, '05:00:00', '22:00:00'),
+( 'SBEG', 'Aeroporto Internacional Eduardo Gomes', 'Manaus, AM', 'MAO', 
+  'Manaus', 'AM', 'Brasil', '92-3652-1210', 'contato@edg.com', 2, 6000000, 2, '00:00:00', '23:59:59'),
+( 'SBFL', 'Aeroporto Internacional Hercílio Luz', 'Florianópolis, SC', 'FLN', 
+  'Florianópolis', 'SC', 'Brasil', '48-3331-4000', 'contato@hercilio.com', 1, 4000000, 1, '06:00:00', '22:00:00');
+
+
 CREATE TABLE IF NOT EXISTS Usuario (
-idUsuario INT AUTO_INCREMENT PRIMARY KEY,       
-  nome VARCHAR(100),                              
-  email VARCHAR(254) UNIQUE,                     
-  cpf CHAR(11) UNIQUE,                            
+idUsuario INT AUTO_INCREMENT PRIMARY KEY,                                    
+  email VARCHAR(255) UNIQUE,                                                
   tipoUsuario VARCHAR(255) DEFAULT 'Operacional', 
+  senhaPadrao VARCHAR(6) DEFAULT '123456',
   senha VARCHAR(255),                             
   dataContratacao DATETIME DEFAULT CURRENT_TIMESTAMP, 
   status VARCHAR(255) DEFAULT 'Ativo',            
@@ -63,6 +92,12 @@ idUsuario INT AUTO_INCREMENT PRIMARY KEY,
 );
 
 
+INSERT INTO Usuario (email, tipoUsuario, senha, fkAeroporto, fkPessoa) VALUES
+('joao.silva@empresa.com', 'Operacional', 'senha123', 1, 1),
+('maria.silva@empresa.com', 'Operacional', 'senha123', 1, 2),
+('carlos.silva@empresa.com', 'Operacional', 'senha123', 1, 3),
+('ana.silva@empresa.com', 'Operacional', 'senha123', 1, 4);
+
 
 CREATE TABLE IF NOT EXISTS RelacaoAeroporto_Funcionario (
   Aeroporto_idAeroporto INT,
@@ -73,6 +108,7 @@ CREATE TABLE IF NOT EXISTS RelacaoAeroporto_Funcionario (
   FOREIGN KEY (Aeroporto_idAeroporto) REFERENCES Aeroporto(idAeroporto) ON DELETE CASCADE,
   FOREIGN KEY (Funcionario_idUsuario) REFERENCES Usuario(idUsuario) ON DELETE CASCADE
 );
+
 CREATE TABLE IF NOT EXISTS Passageiro (
     Passageiro_ID INT AUTO_INCREMENT PRIMARY KEY,
     Nacionalidade VARCHAR(20),
