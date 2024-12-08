@@ -1,3 +1,4 @@
+const { listarServicos } = require("../controllers/dashboardController");
 var database = require("../database/config");
 
 function pontuacoesMaisBaixas() {
@@ -30,9 +31,9 @@ LEFT JOIN Check_in C ON P.Pesquisa_ID = C.Pesquisa_ID
 LEFT JOIN Inspecao_Seguranca INS ON P.Pesquisa_ID = INS.Pesquisa_ID
 LEFT JOIN Controle_Migratorio_Aduaneiro CMA ON P.Pesquisa_ID = CMA.Pesquisa_ID
 LEFT JOIN Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
+WHERE A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
 GROUP BY A.siglaAeroporto
-ORDER BY Media_Satisfacao_Geral ASC
-LIMIT 3;`;
+ORDER BY Media_Satisfacao_Geral ASC;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -40,7 +41,7 @@ LIMIT 3;`;
 
 function respostasPorAeroporto() {
     var instrucaoSql = `
-      SELECT 
+   SELECT 
     siglaAeroporto,
     COUNT(CASE WHEN Nota = 5 THEN 1 END) AS Muito_Bom,
     COUNT(CASE WHEN Nota = 4 THEN 1 END) AS Bom,
@@ -60,6 +61,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Sinalizacao BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -74,6 +76,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Disponibilidade_Paineis_Informacoes_Voo BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -88,6 +91,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Acessibilidade_Terminal BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -102,6 +106,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Conforto_Sala_Embarque BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -116,6 +121,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Conforto_Termico BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -130,6 +136,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Conforto_Acustico BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -144,6 +151,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Disponibilidade_Assentos BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -158,6 +166,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Disponibilidade_Assentos_Reservados BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -172,6 +181,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Disponibilidade_Tomadas BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -186,6 +196,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Internet_Disponibilizada_Aeroporto BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -200,6 +211,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Velocidade_Conexao BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -214,6 +226,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         CA.Facilidade_Acesso_Rede BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -228,6 +241,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         S.Quantidade_Banheiros BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -242,6 +256,7 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         S.Limpeza_Banheiros BETWEEN 1 AND 5
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
     
     UNION ALL
     
@@ -256,51 +271,11 @@ FROM (
         Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
     WHERE 
         S.Manutencao_Geral_Sanitarios BETWEEN 1 AND 5
-    
-    UNION ALL
-    
-    SELECT 
-        A.siglaAeroporto,
-        S.Limpeza_Geral_Aeroporto AS Nota
-    FROM 
-        PesquisaDeSatisfacao P
-    LEFT JOIN 
-        Sanitarios S ON P.Pesquisa_ID = S.Pesquisa_ID
-    LEFT JOIN 
-        Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
-    WHERE 
-        S.Limpeza_Geral_Aeroporto BETWEEN 1 AND 5
-    
-    UNION ALL
-    
-    SELECT 
-        A.siglaAeroporto,
-        RB.Processo_Restituicao_Bagagens AS Nota
-    FROM 
-        PesquisaDeSatisfacao P
-    LEFT JOIN 
-        Restituicao_Bagagens RB ON P.Pesquisa_ID = RB.Pesquisa_ID
-    LEFT JOIN 
-        Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
-     WHERE 
-        RB.Processo_Restituicao_Bagagens BETWEEN 1 AND 5
-    
-    UNION ALL
-    
-    SELECT 
-        A.siglaAeroporto,
-        RB.Facilidade_Identificacao_Esteira AS Nota
-    FROM 
-        PesquisaDeSatisfacao P
-    LEFT JOIN 
-        Restituicao_Bagagens RB ON P.Pesquisa_ID = RB.Pesquisa_ID
-    LEFT JOIN 
-        Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
-    WHERE 
-        RB.Facilidade_Identificacao_Esteira BETWEEN 1 AND 5
-) AS Subconsulta
+        AND A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
+) AS TabelaNota
 GROUP BY siglaAeroporto
 ORDER BY siglaAeroporto;
+
 `;
 
 console.log("Executando a instrução SQL: \n" + instrucaoSql);  // Verifique se a query está sendo executada
@@ -320,7 +295,7 @@ function respostasPorServico(servico, filtro, valor) {
 
 if (filtro === "ano") {
     instrucaoSql = `
-        WITH CTE_Trimestre AS (
+ WITH CTE_Trimestre AS (
     SELECT 
         P.Pesquisa_ID,
         P.Mes,
@@ -504,13 +479,17 @@ FROM (
     FROM CTE_Trimestre T
     LEFT JOIN Estabelecimentos E ON T.Pesquisa_ID = E.Pesquisa_ID
 ) Subconsulta
-        WHERE Coluna = '${servico}' AND Ano = ${valor}
-        GROUP BY Coluna, Trimestre
-        ORDER BY FIELD(Trimestre, '1º Trimestre', '2º Trimestre', '3º Trimestre', '4º Trimestre');
+WHERE Coluna = '${servico}' 
+  AND Ano = ${valor} 
+  AND Valor > 0
+   AND Valor IS NOT NULL
+AND Trimestre IS NOT NULL
+GROUP BY Coluna, Trimestre
+ORDER BY FIELD(Trimestre, '1º Trimestre', '2º Trimestre', '3º Trimestre', '4º Trimestre');
     `;
 } else if (filtro === "trimestre") {
     instrucaoSql = `
-      WITH CTE_Trimestre AS (
+    WITH CTE_Trimestre AS (
     SELECT 
         P.Pesquisa_ID,
         P.Mes,
@@ -694,9 +673,13 @@ FROM (
     FROM CTE_Trimestre T
     LEFT JOIN Estabelecimentos E ON T.Pesquisa_ID = E.Pesquisa_ID
 ) Subconsulta
-        WHERE Coluna = '${servico}' AND Trimestre = '${valor}'
-        GROUP BY Coluna, Ano
-       ORDER BY FIELD(Trimestre, '1º Trimestre', '2º Trimestre', '3º Trimestre', '4º Trimestre');
+WHERE Coluna = '${servico}' AND Trimestre = '${valor}' 
+AND Valor > 0
+AND Valor IS NOT NULL
+AND Trimestre IS NOT NULL
+GROUP BY Coluna, Ano
+ORDER BY FIELD(Trimestre, '1º Trimestre', '2º Trimestre', '3º Trimestre', '4º Trimestre');
+
     `;
 }
 
@@ -704,8 +687,73 @@ FROM (
     return database.executar(instrucaoSql)
 }
 
+
+function listarAnos() {
+    var instrucaoSql = `
+        SELECT DISTINCT YEAR(STR_TO_DATE(DataPesquisa, '%d-%m-%Y')) AS Ano
+        FROM PesquisaDeSatisfacao;
+    `;
+    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarServicosDisponiveis() {
+    var instrucaoSql = `
+        SELECT 
+            'Satisfacao_Geral' AS Coluna, 'Satisfação Geral' AS Alias
+        UNION ALL
+        SELECT 
+            'Avaliacao_Metodo_Desembarque' AS Coluna, 'Avaliação do Método de Desembarque' AS Alias
+        UNION ALL
+        SELECT 
+            'Facilidade_Desembarque_Meio_Fio' AS Coluna, 'Facilidade no Desembarque (Meio Fio)' AS Alias
+        UNION ALL
+        SELECT 
+            'Opcoes_Transporte_Aeroporto' AS Coluna, 'Opções de Transporte no Aeroporto' AS Alias
+        UNION ALL
+        SELECT 
+            'Processo_Check_in' AS Coluna, 'Processo de Check-in' AS Alias
+        UNION ALL
+        SELECT 
+            'Tempo_Espera_Fila' AS Coluna, 'Tempo de Espera na Fila' AS Alias
+        UNION ALL
+        SELECT 
+            'Organizacao_Filas' AS Coluna, 'Organização das Filas' AS Alias
+        UNION ALL
+        SELECT 
+            'Cordialidade_Funcionarios' AS Coluna, 'Cordialidade dos Funcionários' AS Alias
+        UNION ALL
+        SELECT 
+            'Tempo_Atendimento' AS Coluna, 'Tempo de Atendimento' AS Alias
+        UNION ALL
+        SELECT 
+            'Processo_Inspecao_Seguranca' AS Coluna, 'Processo de Inspeção de Segurança' AS Alias
+        UNION ALL
+        SELECT 
+            'Controle_Migratorio' AS Coluna, 'Controle Migratório' AS Alias
+        UNION ALL
+        SELECT 
+            'Quantidade_Estabelecimentos_Alimentacao' AS Coluna, 'Quantidade de Estabelecimentos de Alimentação' AS Alias
+        UNION ALL
+        SELECT 
+            'Qualidade_Variedade_Opcoes_Alimentacao' AS Coluna, 'Qualidade e Variedade das Opções de Alimentação' AS Alias
+        UNION ALL
+        SELECT 
+            'Relacao_Preco_Qualidade_Alimentacao' AS Coluna, 'Relação Preço/Qualidade da Alimentação' AS Alias
+        UNION ALL
+        SELECT 
+            'Quantidade_Estabelecimentos_Comerciais' AS Coluna, 'Quantidade de Estabelecimentos Comerciais' AS Alias
+    `;
+    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     pontuacoesMaisBaixas,
     respostasPorAeroporto,
-    respostasPorServico
+    respostasPorServico,
+    listarAnos,
+    listarServicosDisponiveis
 };

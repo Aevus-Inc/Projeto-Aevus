@@ -27,4 +27,12 @@ router.post('/respostasPorServico', async (req, res) => {
     dashboardController.respostasPorAeroporto(req, res);
 });
 
+router.get('/listarAnos', function(req, res) {
+    dashboardController.listarAnos(req, res);
+});
+
+router.get('/listarServicosDisponiveis', function(req, res) {
+    dashboardController.listarServicosDisponiveis(req, res);
+});
+
 module.exports = router;

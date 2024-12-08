@@ -5,13 +5,14 @@ function autenticar(email, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", email, senha);
 
     var instrucaoSql = `
-        SELECT idUsuario AS id, nome, email, tipoUsuario
-        FROM Usuario
-        WHERE email = '${email}' AND senha = '${senha}'
-
-        UNION ALL
-
-        SELECT idEmpresa AS id, nomeFantasia AS nome, email, tipoUsuario
+    Select Pessoa.idPessoa, Pessoa.nome, Usuario.email, Usuario.tipoUsuario
+        from pessoa 
+        inner join Usuario 
+        WHERE email = '${email}' AND senha = '${senha}' and fkPessoa = idPessoa
+        
+        union all 
+        
+		SELECT idEmpresa AS id, nomeFantasia AS nome, email, tipoUsuario
         FROM Empresa
         WHERE email = '${email}' AND senha = '${senha}';
     `;

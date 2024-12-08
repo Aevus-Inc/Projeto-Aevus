@@ -61,8 +61,46 @@ async function respostasPorServico(req, res) {
         res.status(500).json({ error: "Erro ao processar consulta ao banco" });
     }
 }
+
+
+function listarAnos(req, res) {
+    console.log("Buscando todos os anos de pesquisa de satisfação...");
+
+    dashboardModel.listarAnos()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum ano encontrado.");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao listar anos:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function listarServicosDisponiveis(req, res) {
+    console.log("Buscando todos os anos de pesquisa de satisfação...");
+
+    dashboardModel.listarServicosDisponiveis()
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum serviço encontrado.");
+            }
+        })
+        .catch(function (erro) {
+            console.error("Erro ao listar anos:", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     pontuacoesMaisBaixas,
     respostasPorAeroporto,
-    respostasPorServico
+    respostasPorServico,
+    listarAnos,
+    listarServicosDisponiveis
 };

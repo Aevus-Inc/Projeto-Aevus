@@ -31,4 +31,5 @@ router.post("/cadastrarPessoa", function (req, res) {
     crudsController.cadastrarPessoa(req, res);
 });
 
+
 module.exports = router;
