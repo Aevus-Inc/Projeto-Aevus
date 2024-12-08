@@ -24,7 +24,7 @@
 //             borderColor: '#c5ab67', // Cor do contorno das barras
 //             borderWidth: 1 // Largura da borda das barras
 //         }]
-//     },
+//     }, 
 //     options: {
 //         scales: {
 //             y: {

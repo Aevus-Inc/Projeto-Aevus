@@ -15,14 +15,14 @@ var HOST_APP = process.env.APP_HOST;
 
 var app = express();
 
+
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var dashboardRouter = require("./src/routes/dashboard");
-
 var aeroportoEspRouter = require('./src/routes/aeroportoEspRoutes');
 var aeroportoRouter = require('./src/routes/crudAeroportosRoutes');
-
 var crudsRouter = require("./src/routes/cruds");
+var funcionarioRouter = require("./src/routes/crudFuncionarioRoutes");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,23 +33,15 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/dashboard", dashboardRouter);
-
 app.use('/aeroporto', aeroportoEspRouter);
 app.use('/aeroportos', aeroportoRouter);
-
 app.use("/cruds", crudsRouter);
+app.use("/funcionarios", funcionarioRouter);
 
 
 
 app.listen(PORTA_APP, function () {
     console.log(`
-    ##   ##  ######   #####             ####       ##     ######     ##              ##  ##    ####    ######  
-    ##   ##  ##       ##  ##            ## ##     ####      ##      ####             ##  ##     ##         ##  
-    ##   ##  ##       ##  ##            ##  ##   ##  ##     ##     ##  ##            ##  ##     ##        ##   
-    ## # ##  ####     #####    ######   ##  ##   ######     ##     ######   ######   ##  ##     ##       ##    
-    #######  ##       ##  ##            ##  ##   ##  ##     ##     ##  ##            ##  ##     ##      ##     
-    ### ###  ##       ##  ##            ## ##    ##  ##     ##     ##  ##             ####      ##     ##      
-    ##   ##  ######   #####             ####     ##  ##     ##     ##  ##              ##      ####    ######  
     \n\n\n                                                                                                 
     Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://${HOST_APP}:${PORTA_APP} :. \n\n
     Você está rodando sua aplicação em ambiente de .:${process.env.AMBIENTE_PROCESSO}:. \n\n
