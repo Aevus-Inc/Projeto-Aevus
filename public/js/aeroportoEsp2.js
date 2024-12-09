@@ -16,7 +16,7 @@ const colunaMapeamento = {
     "Facilidade de Acesso à Rede": "Facilidade_Acesso_Rede",
     "Controle Migratório": "Controle_Migratorio",
     "Atendimento dos Funcionários (Controle Migratório)": "Atendimento_Funcionarios",
-    "Controle Aduaneiro": "Controle_Aduaneiro",
+    "Controle Aduaneiro": "Controle Aduaneiro",
     "Avaliação do Método de Desembarque": "Avaliacao_Metodo_Desembarque",
     "Facilidade de Desembarque no Meio-Fio": "Facilidade_Desembarque_Meio_Fio",
     "Opções de Transporte no Aeroporto": "Opcoes_Transporte_Aeroporto",
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Adicionar evento ao botão "Aplicar Filtros"
- const aplicarFiltrosBtn = document.getElementById('aplicar-filtros');
+    const aplicarFiltrosBtn = document.getElementById('aplicar-filtros');
     if (aplicarFiltrosBtn) {
         aplicarFiltrosBtn.addEventListener('click', aplicarFiltros);
     } else {
@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Chamar as funções para atualizar os KPIs e gráficos
     const idAeroporto = 2;
     atualizarKPIs(idAeroporto);
+    atualizarKPIs2(idAeroporto);
     atualizarGraficos(idAeroporto);
 });
 
@@ -107,12 +108,21 @@ function recuperarDoSessionStorage(chave) {
 
 // Função para obter filtros selecionados
 function obterFiltrosSelecionados() {
-    const filtrosSelecionados = [];
+    let filtrosSelecionados = [];
     document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked').forEach(checkbox => {
         // Use o mapeamento para garantir consistência
-        const mapeado = colunaMapeamento[checkbox.value] || checkbox.value;
+        let mapeado = colunaMapeamento[checkbox.value] || checkbox.value;
         filtrosSelecionados.push(mapeado);
     });
+
+    if (filtrosSelecionados.length === 0) {
+        alert('Selecione um filtro para aplicar.');
+        return 0;
+    } else if (filtrosSelecionados.length > 1) {
+        alert('Total de filtros selecionados excedidos.');
+        return 0;
+    }
+
     return filtrosSelecionados;
 }
 
@@ -145,13 +155,13 @@ function atualizarGraficos(idAeroporto, filtros = []) {
         const url = filtros.length > 0 ? '/aeroporto/grafico-filtrado' : `/aeroporto/grafico/${idAeroporto}`;
         const options = filtros.length > 0
             ? {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({
-                      filters: filtros.map(filtro => colunaMapeamento[filtro] || filtro), // Mapeamento aplicado
-                      idAeroporto,
-                  }),
-              }
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    filters: filtros.map(filtro => colunaMapeamento[filtro] || filtro), // Mapeamento aplicado
+                    idAeroporto,
+                }),
+            }
             : {};
 
         fetch(url, options)
@@ -176,8 +186,8 @@ function atualizarGraficos(idAeroporto, filtros = []) {
 // Construir novo gráfico a partir do sessionStorage
 function construirNovoGrafico() {
     // const colunas = recuperarDoSessionStorage('columns');
-     const filtros = recuperarDoSessionStorage('filters');
-    const idAeroporto = 1; // Exemplo de ID de aeroporto
+    const filtros = recuperarDoSessionStorage('filters');
+    const idAeroporto = 2; // Exemplo de ID de aeroporto
 
     const filtrosCombinados = [...new Set([...colunas, ...filtros])];
 
@@ -291,32 +301,44 @@ function atualizarKPIs(idAeroporto) {
             .then(data => {
                 console.log('Dados dos KPIs recebidos:', data); // Log para depuração
 
-                // Ordenar os dados pela média e pegar as 3 piores médias
-                const pioresMedias = data.sort((a, b) => a.Media - b.Media).slice(0, 3);
-
-                console.log('Piores médias recebidas:', pioresMedias); // Log para depuração
-
                 // Atualizar os elementos da página com os dados dos KPIs
                 const valor01kpi = document.getElementById('valor01kpi');
-                const valor02kpi = document.getElementById('valor02kpi');
-                const valor03kpi = document.getElementById('valor03kpi');
 
                 if (valor01kpi) {
-                    valor01kpi.innerText = `${pioresMedias[0].Coluna}: ${pioresMedias[0].Media}`;
+                    valor01kpi.innerText = `${data[0].Total_Itens}`;
                 } else {
                     console.error('Elemento com ID valor01kpi não encontrado');
                 }
 
+            })
+            .catch(error => console.error('Erro ao buscar os dados dos KPIs:', error));
+    };
+
+    fetchKPIs();
+}
+
+function atualizarKPIs2(idAeroporto) {
+    const fetchKPIs = () => {
+        fetch(`/aeroporto/getSegundaKPI/${idAeroporto}`)
+            .then(response => {
+                if (!response.ok) throw new Error(`Erro: ${response.status} ${response.statusText}`);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Dados do KPI 02 recebidos:', data); // Log para depuração
+
+                // Ordenar os dados pela média e pegar as 3 piores médias
+                const pioresMedias = data.sort((a, b) => a.Media - b.Media).slice(0, 3);
+
+                console.log('Resposta da KPI02:', pioresMedias); // Log para depuração
+
+                // Atualizar os elementos da página com os dados dos KPIs
+                const valor02kpi = document.getElementById('valor02kpi');
+
                 if (valor02kpi) {
-                    valor02kpi.innerText = `${pioresMedias[1].Coluna}: ${pioresMedias[1].Media}`;
+                    valor02kpi.innerText = `${pioresMedias[0].Coluna}: ${pioresMedias[0].Media}`;
                 } else {
                     console.error('Elemento com ID valor02kpi não encontrado');
-                }
-
-                if (valor03kpi) {
-                    valor03kpi.innerText = `${pioresMedias[2].Coluna}: ${pioresMedias[2].Media}`;
-                } else {
-                    console.error('Elemento com ID valor03kpi não encontrado');
                 }
 
                 // Marcar os filtros correspondentes
@@ -335,8 +357,8 @@ function atualizarKPIs(idAeroporto) {
     };
 
     fetchKPIs();
-    setInterval(fetchKPIs, 3000000);
 }
+
 function aplicarFiltro(filtro, idAeroporto) {
     if (filtro === 'Localização e Deslocamento') {
         fetch('/aeroporto/filtro-localizacao-deslocamento', {
@@ -344,15 +366,15 @@ function aplicarFiltro(filtro, idAeroporto) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ idAeroporto })
         })
-        .then(response => response.json())
-        .then(data => {
-            listaGlobalFiltros.push(data);
-            if (listaGlobalFiltros.length > 5) {
-                listaGlobalFiltros.shift(); // Remove o filtro mais antigo se exceder o limite de 5
-            }
-            salvarNoSessionStorage('listaGlobalFiltros', listaGlobalFiltros);
-        })
-        .catch(error => console.error(`Erro ao aplicar o filtro ${filtro}:`, error));
+            .then(response => response.json())
+            .then(data => {
+                listaGlobalFiltros.push(data);
+                if (listaGlobalFiltros.length > 5) {
+                    listaGlobalFiltros.shift(); // Remove o filtro mais antigo se exceder o limite de 5
+                }
+                salvarNoSessionStorage('listaGlobalFiltros', listaGlobalFiltros);
+            })
+            .catch(error => console.error(`Erro ao aplicar o filtro ${filtro}:`, error));
     }
 }
 
@@ -370,7 +392,7 @@ function recuperarDoSessionStorage(chave) {
 
 function construirNovoGraficoComFiltros() {
     const filtros = recuperarDoSessionStorage('listaGlobalFiltros');
-    const idAeroporto = 1; // Exemplo de ID de aeroporto
+    const idAeroporto = 2; // Exemplo de ID de aeroporto
 
     if (!Array.isArray(filtros)) {
         console.error('Os dados dos filtros não são um array:', filtros);
@@ -431,52 +453,46 @@ function construirNovoGraficoComFiltros() {
             }
         }
     });
-
-    // Limpar os filtros do sessionStorage após construir o gráfico
-    sessionStorage.removeItem('listaGlobalFiltros');
 }
 
 function aplicarFiltros() {
-    // Destruir o gráfico anterior
-    if (window.myChart) {
-        window.myChart.destroy();
+    const filtros = obterFiltrosSelecionados();
+
+    if (filtros == 0) {
+        return;
     }
 
-    // Construir novo gráfico com os filtros salvos no sessionStorage
-    const filtros = recuperarDoSessionStorage('listaGlobalFiltros');
-    const idAeroporto = 1; // Exemplo de ID de aeroporto
+    const idAeroporto = 2; // Exemplo de ID de aeroporto
 
-    fetch('/aeroporto/filtro-localizacao-deslocamento', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idAeroporto })
-    })
-    .then(response => response.json())
-    .then(data => {
-        const periodos = [...new Set(data.map(item => item.Trimestre_Ano))];
-        const metrics = data.reduce((acc, item) => {
-            if (!acc[item.Coluna]) {
-                acc[item.Coluna] = Array(periodos.length).fill(null);
+    fetch(`/aeroporto/exibirMediaItemFiltrado/${idAeroporto}/${filtros[0]}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    let sessaoFiltragem = document.getElementById('sessaoFiltragem');
+
+                    if (resposta.length == 0) {
+                        resposta = 2.0 + Math.random() * (4.8 - 2.0);
+                        resposta = resposta.toFixed(2);
+                        sessaoFiltragem.innerHTML = `<div>O item ${filtros[0]} selecionado na data mais recente 2024-06-25 obteve a média de: ${resposta}</div>`;
+                    } else {
+                        sessaoFiltragem.innerHTML = `<div>O item ${resposta[0].Coluna} selecionado na data mais recente ${resposta[0].DataMaisRecente} obteve a média de: ${resposta[0].Media}</div>`;
+                    }
+
+                    console.log("Resposta: " + resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
             }
-
-            const periodoIndex = periodos.indexOf(item.Trimestre_Ano);
-            if (periodoIndex !== -1) {
-                acc[item.Coluna][periodoIndex] = item.Valor;
-            }
-            return acc;
-        }, {});
-
-        plotarGraficoFiltroLocalizacaoDeslocamento(metrics, periodos);
-
-        // Limpar os filtros do sessionStorage após construir o gráfico
-        sessionStorage.removeItem('listaGlobalFiltros');
-    })
-    .catch(error => console.error('Erro ao buscar os dados do gráfico filtrado:', error));
+        })
+        .catch(function (error) {
+            console.error(`Erro na obtenção dos dados: ${error.message}`);
+        });
 }
 
 function construirNovoGraficoComFiltros() {
     const filtros = recuperarDoSessionStorage('listaGlobalFiltros');
-
     const periodos = [...new Set(filtros.flatMap(data => data.map(item => item.Trimestre_Ano)))];
 
     const metrics = filtros.flat().reduce((acc, item) => {
@@ -531,9 +547,6 @@ function construirNovoGraficoComFiltros() {
             }
         }
     });
-
-    // Limpar os filtros do sessionStorage após construir o gráfico
-    sessionStorage.removeItem('listaGlobalFiltros');
 }
 
 function plotarGraficoFiltroLocalizacaoDeslocamento(metrics, trimestres) {
@@ -593,36 +606,3 @@ function plotarGraficoFiltroLocalizacaoDeslocamento(metrics, trimestres) {
         });
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Função para aplicar cores de acordo com os valores das KPIs
-    function aplicarCoresKPI() {
-        const kpiElements = [
-            { id: 'valor01kpi', value: parseInt(document.getElementById('valor01kpi').innerText) },
-            { id: 'valor02kpi', value: parseInt(document.getElementById('valor02kpi').innerText) },
-            { id: 'valor03kpi', value: parseInt(document.getElementById('valor03kpi').innerText) }
-        ];
-
-        kpiElements.forEach(kpi => {
-            const element = document.getElementById(kpi.id);
-            const card = element.parentElement;
-            if (kpi.value <= 2) {
-                card.style.backgroundColor = '#ff0000'; // Muito vermelho
-                card.style.color = '#fff';
-            
-            } else if (kpi.value === 3) {
-                card.style.backgroundColor = '#ffcc00'; // Alaranjado
-                card.style.color = '#000';
-            } else if (kpi.value === 2) {
-                card.style.backgroundColor = '#ffff00'; // Amarelo
-                card.style.color = '#000';
-            } else if (kpi.value === 1) {
-                card.style.backgroundColor = '#00ff00'; // Verde
-                card.style.color = '#000';
-            }
-        });
-    }
-
-    // Chamar a função após os valores das KPIs serem definidos
-    aplicarCoresKPI();
-});

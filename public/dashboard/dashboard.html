@@ -36,9 +36,9 @@
            <a href="crudFuncionario.html">
             <button class="button-menu-lateral">Gerenciar colaboradores</button>
            </a>
-            <a href="editarFuncionario.html">
+            <!-- <a href="editarFuncionario.html">
                 <button class="button-menu-lateral">Editar Funcionários</button>
-            </a>
+            </a> -->
             <a href="crudAeroporto.html">
                 <button class="button-menu-lateral">Gerenciar aeroportos</button>
             </a>
@@ -514,10 +514,15 @@ async function carregarServicos() {
         // Verificando se servicos é um array e contém dados
         if (Array.isArray(servicos) && servicos.length > 0) {
             servicos.forEach(servico => {
-                const option = document.createElement("option");
-                option.value = servico.Coluna; // O nome da coluna será o value
-                option.textContent = servico.Alias; // O alias será mostrado no dropdown
-                selectServico.appendChild(option);
+                if (servico.Coluna == 'Satisfacao_Geral') {
+                    console.log('Satisfacao_Geral Não entrou!');
+                } else {
+                    const option = document.createElement("option");
+                    option.value = servico.Coluna; // O nome da coluna será o value
+                    option.textContent = servico.Alias; // O alias será mostrado no dropdown
+                    selectServico.appendChild(option);
+                }
+
             });
 
             console.log("Serviços carregados com sucesso:", servicos);

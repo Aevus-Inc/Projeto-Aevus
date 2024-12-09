@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="shortcut icon" href=" " type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
     <div class="barraLateral">
         <div class="div-logo">
@@ -16,48 +18,45 @@
         <div class="div-user">
             <img src="../img/icon-user.png" alt="Ícone de Usuário">
             <p class="aa1">Bem vindo!</p>
-            <p class="aa1">Usuário</p>
+            <span id="usuarioNome"></span>
         </div>
         <div class="div-nameAirport">
             <p>Aeroporto</p>
         </div>
         <div class="div-buttons">
-            <button class="button-menu-lateral">Dashboard geral</button>
+            <button class="button-menu-lateral"><span class="div-sair"><a href="./dashboard.html">Dashboard
+                        geral</a></span></button>
         </div>
         <div class="div-sair">
             <button>Sair</button>
         </div>
     </div>
 
-                        <div class="container">
-                            <div class="main-content">
-                                <section class="section-graficos1">
-                                <div class="cards-kpi">
-                        <div class="card-space">
-                            <a href="/public/dashboard/aeroporto.html">
-                                <p id="critico">Crítico!</p> <!-- Avalia qual setor representa a maior proporção das reclamações no período analisado -->
-                                <div class="card">
-                                    <span id="valor01kpi">1</span> <!-- Contribuição(%) = Reclamação de um setor / Reclamação total de todos os setores -->
-                                </div>
-                            </a>
-                        </div>
-                        <div class="card-space">
-                            <a href="">
-                                <p>Alta Prioridade</p> <!-- Mostra quanto as reclamações aumentaram ou diminuíram de um ano para o outro em cada setor -->
-                                <div class="card">
-                                    <span id="valor02kpi">2</span> <!-- Crescimento = Reclamação ano atual - Reclamação ano anterior --> 
-                                </div>
-                            </a>
-                        </div>
-                        <div class="card-space">
-                            <a href="">
-                                <p>Ponto de Atenção!</p> <!-- Avalia a diferença entre o maior e o menor número de reclamações em cada setor ao longo dos anos, para entender o quanto as reclamações oscilaram -->
-                                <div class="card">
-                                    <span id="valor03kpi">3</span> <!-- Variação = Máximo Reclamações - Mínimo Reclamações -->
-                                </div>
-                            </a>
-                        </div>
+    <div class="container">
+        <div class="main-content">
+            <section class="section-graficos1">
+                <div class="cards-kpi">
+                    <div class="card-space">
+                        <a href="/public/dashboard/aeroporto.html">
+                            <p id="critico">Crítico!</p>
+                            <!-- Avalia qual setor representa a maior proporção das reclamações no período analisado -->
+                            <div class="card">
+                                <span id="valor01kpi">1</span>
+                                <!-- Contribuição(%) = Reclamação de um setor / Reclamação total de todos os setores -->
+                            </div>
+                        </a>
                     </div>
+                    <div class="card-space">
+                        <a href="">
+                            <p>Alta Prioridade</p>
+                            <!-- Mostra quanto as reclamações aumentaram ou diminuíram de um ano para o outro em cada setor -->
+                            <div class="card">
+                                <span id="valor02kpi">2</span>
+                                <!-- Crescimento = Reclamação ano atual - Reclamação ano anterior -->
+                            </div>
+                        </a>
+                    </div>
+                </div>
                 <div class="visao-geral">
                     <p>Histórico do crescimento dos piores rankeados</p>
                     <div class="chart-principal">
@@ -68,123 +67,167 @@
                 </div>
             </section>
             <section class="section-graficos2">
-                <div class="campo-filtro">
-                    <h2>Busca por filtro</h2>
-                    <div class="campos-dropdown">
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-conforto">Conforto e Acessibilidade:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Localizacao_Deslocamento"> Localização e Deslocamento</label>
-                                    <label><input type="checkbox" value="Sinalizacao"> Sinalização</label>
-                                    <label><input type="checkbox" value="Disponibilidade_Paineis_Informacoes_Voo"> Disponibilidade de Painéis de Informações de Voo</label>
-                                    <label><input type="checkbox" value="Acessibilidade_Terminal"> Acessibilidade no Terminal</label>
-                                    <label><input type="checkbox" value="Conforto_Sala_Embarque"> Conforto na Sala de Embarque</label>
-                                    <label><input type="checkbox" value="Conforto_Termico"> Conforto Térmico</label>
-                                    <label><input type="checkbox" value="Conforto_Acustico"> Conforto Acústico</label>
-                                    <label><input type="checkbox" value="Disponibilidade_Assentos"> Disponibilidade de Assentos</label>
-                                    <label><input type="checkbox" value="Disponibilidade_Assentos_Reservados"> Disponibilidade de Assentos Reservados</label>
-                                    <label><input type="checkbox" value="Disponibilidade_Tomadas"> Disponibilidade de Tomadas</label>
-                                    <label><input type="checkbox" value="Internet_Disponibilizada_Aeroporto"> Internet Disponibilizada no Aeroporto</label>
-                                    <label><input type="checkbox" value="Velocidade_Conexao"> Velocidade da Conexão</label>
-                                    <label><input type="checkbox" value="Facilidade_Acesso_Rede"> Facilidade de Acesso à Rede</label>
+                <div id="quadroOpcoesFiltragem">
+                    <div class="campo-filtro">
+                        <h2>Busca por filtro</h2>
+                        <div class="campos-dropdown">
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-conforto">Conforto e Acessibilidade:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Localização Deslocamento"> Localização e
+                                            Deslocamento</label>
+                                        <label><input type="checkbox" value="Sinalizacao"> Sinalização</label>
+                                        <label><input type="checkbox" value="Disponibilidade Paineis Informacoes Voo">
+                                            Disponibilidade de Painéis de Informações de Voo</label>
+                                        <label><input type="checkbox" value="Acessibilidade Terminal"> Acessibilidade no
+                                            Terminal</label>
+                                        <label><input type="checkbox" value="Conforto Sala Embarque"> Conforto na Sala de
+                                            Embarque</label>
+                                        <label><input type="checkbox" value="Conforto Termico"> Conforto Térmico</label>
+                                        <label><input type="checkbox" value="Conforto Acustico"> Conforto Acústico</label>
+                                        <label><input type="checkbox" value="Disponibilidade Assentos"> Disponibilidade de
+                                            Assentos</label>
+                                        <label><input type="checkbox" value="Disponibilidade Assentos Reservados">
+                                            Disponibilidade de Assentos Reservados</label>
+                                        <label><input type="checkbox" value="Disponibilidade Tomadas"> Disponibilidade de
+                                            Tomadas</label>
+                                        <label><input type="checkbox" value="Internet Disponibilizada Aeroporto"> Internet
+                                            Disponibilizada no Aeroporto</label>
+                                        <label><input type="checkbox" value="Velocidade Conexao"> Velocidade da
+                                            Conexão</label>
+                                        <label><input type="checkbox" value="Facilidade Acesso Rede"> Facilidade de Acesso à
+                                            Rede</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-controle">Controle Migratório e Aduaneiro:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Controle_Migratorio"> Controle Migratório</label>
-                                    <label><input type="checkbox" value="Atendimento_Funcionarios"> Atendimento dos Funcionários</label>
-                                    <label><input type="checkbox" value="Controle_Aduaneiro"> Controle Aduaneiro</label>
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-controle">Controle Migratório e Aduaneiro:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Controle Migratorio"> Controle
+                                            Migratório</label>
+                                        <label><input type="checkbox" value="Atendimento Funcionarios"> Atendimento dos
+                                            Funcionários</label>
+                                        <label><input type="checkbox" value="Controle Aduaneiro"> Controle Aduaneiro</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-desembarque">Desembarque:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Avaliacao_Metodo_Desembarque"> Avaliação do Método de Desembarque</label>
-                                    <label><input type="checkbox" value="Facilidade_Desembarque_Meio_Fio"> Facilidade de Desembarque no Meio-Fio</label>
-                                    <label><input type="checkbox" value="Opcoes_Transporte_Aeroporto"> Opções de Transporte no Aeroporto</label>
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-desembarque">Desembarque:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Avaliacao Metodo Desembarque"> Avaliação do
+                                            Método de Desembarque</label>
+                                        <label><input type="checkbox" value="Facilidade Desembarque Meio Fio"> Facilidade de
+                                            Desembarque no Meio-Fio</label>
+                                        <label><input type="checkbox" value="Opcoes Transporte Aeroporto"> Opções de
+                                            Transporte no Aeroporto</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-estacionamento">Estacionamento:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Qualidade_Instalacoes_Estacionamento"> Qualidade das Instalações do Estacionamento</label>
-                                    <label><input type="checkbox" value="Facilidade_Encontrar"> Facilidade de Encontrar</label>
-                                    <label><input type="checkbox" value="Facilidade_Acesso_Terminal"> Facilidade de Acesso ao Terminal</label>
-                                    <label><input type="checkbox" value="Relacao_Preco_Qualidade"> Relação Preço/Qualidade</label>
-                                    <label><input type="checkbox" value="Tempo_Caminhada_Estacionamento_Terminais"> Tempo de Caminhada do Estacionamento aos Terminais</label>
-                                    <label><input type="checkbox" value="Tempo_Espera_Onibus_Deslocamento_Estacionamento_Terminais"> Tempo de Espera do Ônibus de Deslocamento do Estacionamento aos Terminais</label>
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-estacionamento">Estacionamento:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Qualidade Instalacoes Estacionamento">
+                                            Qualidade das Instalações do Estacionamento</label>
+                                        <label><input type="checkbox" value="Facilidade Encontrar"> Facilidade de
+                                            Encontrar</label>
+                                        <label><input type="checkbox" value="Facilidade Acesso Terminal"> Facilidade de
+                                            Acesso ao Terminal</label>
+                                        <label><input type="checkbox" value="Relacao Preco Qualidade"> Relação
+                                            Preço/Qualidade</label>
+                                        <label><input type="checkbox" value="Tempo Caminhada Estacionamento Terminais">
+                                            Tempo de Caminhada do Estacionamento aos Terminais</label>
+                                        <label><input type="checkbox"
+                                                value="Tempo Espera Onibus Deslocamento Estacionamento Terminais"> Tempo de
+                                            Espera do Ônibus de Deslocamento do Estacionamento aos Terminais</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-estabelecimentos">Estabelecimentos:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Quantidade_Estabelecimentos_Alimentacao"> Quantidade de Estabelecimentos de Alimentação</label>
-                                    <label><input type="checkbox" value="Qualidade_Variedade_Opcoes_Alimentacao"> Qualidade e Variedade das Opções de Alimentação</label>
-                                    <label><input type="checkbox" value="Relacao_Preco_Qualidade_Alimentacao"> Relação Preço/Qualidade da Alimentação</label>
-                                    <label><input type="checkbox" value="Quantidade_Estabelecimentos_Comerciais"> Quantidade de Estabelecimentos Comerciais</label>
-                                    <label><input type="checkbox" value="Qualidade_Variedade_Opcoes_Comerciais"> Qualidade e Variedade das Opções Comerciais</label>
-                                    <label><input type="checkbox" value="Relacao_Preco_Qualidade_Comerciais"> Relação Preço/Qualidade dos Comerciais</label>
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-estabelecimentos">Estabelecimentos:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Quantidade Estabelecimentos Alimentacao">
+                                            Quantidade de Estabelecimentos de Alimentação</label>
+                                        <label><input type="checkbox" value="Qualidade Variedade Opcoes Alimentacao">
+                                            Qualidade e Variedade das Opções de Alimentação</label>
+                                        <label><input type="checkbox" value="Relacao Preco Qualidade Alimentacao"> Relação
+                                            Preço/Qualidade da Alimentação</label>
+                                        <label><input type="checkbox" value="Quantidade Estabelecimentos Comerciais">
+                                            Quantidade de Estabelecimentos Comerciais</label>
+                                        <label><input type="checkbox" value="Qualidade Variedade Opcoes Comerciais">
+                                            Qualidade e Variedade das Opções Comerciais</label>
+                                        <label><input type="checkbox" value="Relacao Preco Qualidade Comerciais"> Relação
+                                            Preço/Qualidade dos Comerciais</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-inspecao">Inspeção de Segurança:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Processo_Inspecao_Seguranca"> Processo de Inspeção de Segurança</label>
-                                    <label><input type="checkbox" value="Tempo_Espera_Fila"> Tempo de Espera na Fila</label>
-                                    <label><input type="checkbox" value="Organizacao das Filas"> Organização das Filas</label>
-                                    <label><input type="checkbox" value="Atendimento_Funcionarios"> Atendimento dos Funcionários</label>
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-inspecao">Inspeção de Segurança:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Processo Inspecao Seguranca"> Processo de
+                                            Inspeção de Segurança</label>
+                                        <label><input type="checkbox" value="Tempo Espera Fila"> Tempo de Espera na
+                                            Fila</label>
+                                        <label><input type="checkbox" value="Organizacao das Filas"> Organização das
+                                            Filas</label>
+                                        <label><input type="checkbox" value="Atendimento Funcionarios"> Atendimento dos
+                                            Funcionários</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-restituicao">Restituição de Bagagens:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Processo_Restituicao_Bagagens"> Processo de Restituição de Bagagens</label>
-                                    <label><input type="checkbox" value="Tempo_Restituicao"> Tempo de Restituição</label>
-                                    <label><input type="checkbox" value="Integridade_Bagagem"> Integridade da Bagagem</label>
-                                    <label><input type="checkbox" value="Atendimento_Cia_Aerea"> Atendimento da Companhia Aérea</label>
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-restituicao">Restituição de Bagagens:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Processo Restituicao Bagagens"> Processo de
+                                            Restituição de Bagagens</label>
+                                        <label><input type="checkbox" value="Tempo Restituicao"> Tempo de
+                                            Restituição</label>
+                                        <label><input type="checkbox" value="Integridade Bagagem"> Integridade da
+                                            Bagagem</label>
+                                        <label><input type="checkbox" value="Atendimento Cia Aerea"> Atendimento da
+                                            Companhia Aérea</label>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="campo-filtro-dropdown">
-                            <label for="filtro-sanitarios">Sanitários:</label>
-                            <div class="dropdown-checkbox">
-                                <button class="dropdown-button">Selecione</button>
-                                <div class="dropdown-content">
-                                    <label><input type="checkbox" value="Quantidade_Banheiros"> Quantidade de Banheiros</label>
-                                    <label><input type="checkbox" value="Limpeza_Banheiros"> Limpeza dos Banheiros</label>
-                                    <label><input type="checkbox" value="Manutencao_Geral_Sanitarios"> Manutenção Geral dos Sanitários</label>
-                                    <label><input type="checkbox" value="Limpeza_Geral_Aeroporto"> Limpeza Geral do Aeroporto</label>
+                            <div class="campo-filtro-dropdown">
+                                <label for="filtro-sanitarios">Sanitários:</label>
+                                <div class="dropdown-checkbox">
+                                    <button class="dropdown-button">Selecione</button>
+                                    <div class="dropdown-content">
+                                        <label><input type="checkbox" value="Quantidade Banheiros"> Quantidade de
+                                            Banheiros</label>
+                                        <label><input type="checkbox" value="Limpeza Banheiros"> Limpeza dos
+                                            Banheiros</label>
+                                        <label><input type="checkbox" value="Manutencao Geral Sanitarios"> Manutenção Geral
+                                            dos Sanitários</label>
+                                        <label><input type="checkbox" value="Limpeza Geral Aeroporto"> Limpeza Geral do
+                                            Aeroporto</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <button id="aplicar-filtros">Aplicar Filtros</button>
                 </div>
-                <button id="aplicar-filtros">Aplicar Filtros</button>
+                <div id="sessaoFiltragem" style="margin-top: 10%; text-align: center;"></div>
             </section>
         </div>
     </div>
 
-    <script src="../js/aeroportoEsp2.js"></script>
+    <script src="../js/aeroportoEsp.js"></script>
 </body>
+
 </html>
