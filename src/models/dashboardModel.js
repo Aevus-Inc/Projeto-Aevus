@@ -307,7 +307,7 @@ if (filtro === "ano") {
             WHEN P.Mes IN ('OUTUBRO', 'NOVEMBRO', 'DEZEMBRO') THEN '4º Trimestre'
         END AS Trimestre,
         -- Extração do ano a partir da DataPesquisa
-        YEAR(STR_TO_DATE(P.DataPesquisa, '%d-%m-%Y')) AS Ano
+        YEAR(STR_TO_DATE(P.DataPesquisa, '%Y-%m-%d')) AS Ano
     FROM PesquisaDeSatisfacao P
 )
 SELECT 
@@ -501,7 +501,7 @@ ORDER BY FIELD(Trimestre, '1º Trimestre', '2º Trimestre', '3º Trimestre', '4�
             WHEN P.Mes IN ('OUTUBRO', 'NOVEMBRO', 'DEZEMBRO') THEN '4º Trimestre'
         END AS Trimestre,
         -- Extração do ano a partir da DataPesquisa
-        YEAR(STR_TO_DATE(P.DataPesquisa, '%d-%m-%Y')) AS Ano
+        YEAR(STR_TO_DATE(P.DataPesquisa, '%Y-%m-%d')) AS Ano
     FROM PesquisaDeSatisfacao P
 )
 SELECT 
@@ -690,7 +690,7 @@ ORDER BY FIELD(Trimestre, '1º Trimestre', '2º Trimestre', '3º Trimestre', '4�
 
 function listarAnos() {
     var instrucaoSql = `
-        SELECT DISTINCT YEAR(STR_TO_DATE(DataPesquisa, '%d-%m-%Y')) AS Ano
+        SELECT DISTINCT YEAR(STR_TO_DATE(DataPesquisa, '%Y-%m-%d')) AS Ano
         FROM PesquisaDeSatisfacao;
     `;
     

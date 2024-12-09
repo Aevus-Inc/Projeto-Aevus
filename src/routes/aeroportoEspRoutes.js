@@ -5,11 +5,14 @@ const aeroportoEspController = require('../controllers/aeroportoEspController');
 // Rota para obter os KPIs
 router.get('/kpis/:idAeroporto', aeroportoEspController.getKPIs);
 
+// Rota para obter os KPIs
+router.get('/getSegundaKPI/:idAeroporto', aeroportoEspController.getSegundaKPI);
+
 // Rota para obter os dados do gráfico
 router.get('/grafico/:idAeroporto', aeroportoEspController.getGrafico);
 
 // Rota para obter os dados do gráfico filtrado
-router.post('/grafico-filtrado', aeroportoEspController.getGraficoFiltrado);
+router.get('/exibirMediaItemFiltrado/:idAeroporto/:filtro', aeroportoEspController.exibirMediaItemFiltrado);
 
 // Rota para obter os detalhes do item selecionado
 router.post('/detalhes-item', aeroportoEspController.getDetalhesItem);

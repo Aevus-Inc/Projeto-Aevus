@@ -6,7 +6,7 @@ function autenticar(email, senha) {
 
     var instrucaoSql = `
     Select Pessoa.idPessoa, Pessoa.nome, Usuario.email, Usuario.tipoUsuario
-        from pessoa 
+        from Pessoa 
         inner join Usuario 
         WHERE email = '${email}' AND senha = '${senha}' and fkPessoa = idPessoa
         
@@ -17,7 +17,7 @@ function autenticar(email, senha) {
         WHERE email = '${email}' AND senha = '${senha}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
-
+ 
     return database.executar(instrucaoSql);
 }
 

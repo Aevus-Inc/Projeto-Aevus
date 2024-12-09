@@ -13,6 +13,19 @@ function getKPIs(req, res) {
         });
 }
 
+function getSegundaKPI(req, res) {
+    var idAeroporto = req.params.idAeroporto;
+    aeroportoEspModel.getSegundaKPI(idAeroporto)
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (error) {
+            console.log(error);
+            console.log(`\nHouve um erro ao buscar os KPIs! Erro: ${error.sqlMessage}`);
+            res.status(500).json({ error: error.sqlMessage });
+        });
+}
+
 function getGrafico(req, res) {
     var idAeroporto = req.params.idAeroporto;
     aeroportoEspModel.getGrafico(idAeroporto)
@@ -30,9 +43,11 @@ function getGrafico(req, res) {
         });
 }
 
-function getGraficoFiltrado(req, res) {
-    const { filters, idAeroporto } = req.body;
-    aeroportoEspModel.getGraficoFiltrado(filters, idAeroporto)
+function exibirMediaItemFiltrado(req, res) {
+    let filtro = req.params.filtro;
+    let idAeroporto = req.params.idAeroporto;
+
+    aeroportoEspModel.exibirMediaItemFiltrado(filtro, idAeroporto)
         .then(function (resultado) {
             res.status(200).json(resultado);
         })
@@ -103,8 +118,9 @@ function filtroLocalizacaoDeslocamento(req, res) {
 
 module.exports = {
     getKPIs,
+    getSegundaKPI,
     getGrafico,
-    getGraficoFiltrado,
+    exibirMediaItemFiltrado,
     getDetalhesItem,
     atualizarKPIs,
     atualizarGraficos,
