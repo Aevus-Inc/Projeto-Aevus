@@ -18,10 +18,11 @@
         <div class="div-user">
             <img src="../img/icon-user.png" alt="Ícone de Usuário">
             <p class="aa1">Bem vindo!</p>
-            <span id="usuarioNome"></span>
+             <span id="usuarioNome"></span>
         </div>
         <div class="div-nameAirport">
-            <p>Aeroporto</p>
+<br>
+            <p style="color:whitesmoke; text-align: center;">Aeroporto Internacional de São Paulo/Guarulhos–Governador André Franco Montoro</p>
         </div>
         <div class="div-buttons">
             <button class="button-menu-lateral"><span class="div-sair"><a href="./dashboard.html">Dashboard
@@ -37,67 +38,72 @@
             <section class="section-graficos1">
                 <div class="cards-kpi">
                     <div class="card-space">
-                        <a href="/public/dashboard/aeroporto.html">
-                            <p id="critico">Crítico!</p>
-                            <!-- Avalia qual setor representa a maior proporção das reclamações no período analisado -->
+                                 <p> Qtde de itens < 4</p>   
                             <div class="card">
-                                <span id="valor01kpi">1</span>
-                                <!-- Contribuição(%) = Reclamação de um setor / Reclamação total de todos os setores -->
+                                <span id="valor01kpi">                               
+                                    <span class="kpi-img-container">
+                                        <img src="../img/kpi_atencao.png" alt="Atenção" class="kpi-img">
+                                    </span>
+                                    <span class="kpi-text"></span>
+                                </span>
                             </div>
                         </a>
                     </div>
+
                     <div class="card-space">
-                        <a href="">
-                            <p>Alta Prioridade</p>
+                            <p>Menor nota do Trimestre</p>
                             <!-- Mostra quanto as reclamações aumentaram ou diminuíram de um ano para o outro em cada setor -->
                             <div class="card">
-                                <span id="valor02kpi">2</span>
-                                <!-- Crescimento = Reclamação ano atual - Reclamação ano anterior -->
-                            </div>
-                        </a>
+                                <span id="valor02kpi">                                   
+                                    <span class="kpi-number2"></span>
+                                </span>
+                            </div>                       
                     </div>
                 </div>
                 <div class="visao-geral">
-                    <p>Histórico do crescimento dos piores rankeados</p>
+                    <p>Histórico do crescimento das piores médias do trimestre</p>
                     <div class="chart-principal">
                         <div class="grafico-geral">
                             <canvas id="myChart"></canvas>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </section>
             <section class="section-graficos2">
                 <div id="quadroOpcoesFiltragem">
                     <div class="campo-filtro">
-                        <h2>Busca por filtro</h2>
+                        <h2>Consultar itens do ultimo trimestre</h2>
+                            <br>
+                        <p style="font-size: 15px; font-weight: bold;">Selecione um item para ver a menor média de nota do ultimo Trimestre.</p>
+                             <br>             
                         <div class="campos-dropdown">
                             <div class="campo-filtro-dropdown">
                                 <label for="filtro-conforto">Conforto e Acessibilidade:</label>
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Localização Deslocamento"> Localização e
+                                        <label><input type="radio" name="dropdown_radio" value="Localização Deslocamento"> Localização e
                                             Deslocamento</label>
-                                        <label><input type="checkbox" value="Sinalizacao"> Sinalização</label>
-                                        <label><input type="checkbox" value="Disponibilidade Paineis Informacoes Voo">
+                                        <label><input type="radio" name="dropdown_radio" value="Sinalizacao"> Sinalização</label>
+                                        <label><input type="radio" name="dropdown_radio" value="Disponibilidade Paineis Informacoes Voo">
                                             Disponibilidade de Painéis de Informações de Voo</label>
-                                        <label><input type="checkbox" value="Acessibilidade Terminal"> Acessibilidade no
+                                        <label><input type="radio" name="dropdown_radio" value="Acessibilidade Terminal"> Acessibilidade no
                                             Terminal</label>
-                                        <label><input type="checkbox" value="Conforto Sala Embarque"> Conforto na Sala de
+                                        <label><input type="radio" name="dropdown_radio" value="Conforto Sala Embarque"> Conforto na Sala de
                                             Embarque</label>
-                                        <label><input type="checkbox" value="Conforto Termico"> Conforto Térmico</label>
-                                        <label><input type="checkbox" value="Conforto Acustico"> Conforto Acústico</label>
-                                        <label><input type="checkbox" value="Disponibilidade Assentos"> Disponibilidade de
+                                        <label><input type="radio" name="dropdown_radio" value="Conforto Termico"> Conforto Térmico</label>
+                                        <label><input type="radio" name="dropdown_radio" value="Conforto Acustico"> Conforto Acústico</label>
+                                        <label><input type="radio" name="dropdown_radio" value="Disponibilidade Assentos"> Disponibilidade de
                                             Assentos</label>
-                                        <label><input type="checkbox" value="Disponibilidade Assentos Reservados">
+                                        <label><input type="radio" name="dropdown_radio" value="Disponibilidade Assentos Reservados">
                                             Disponibilidade de Assentos Reservados</label>
-                                        <label><input type="checkbox" value="Disponibilidade Tomadas"> Disponibilidade de
+                                        <label><input type="radio" name="dropdown_radio" value="Disponibilidade Tomadas"> Disponibilidade de
                                             Tomadas</label>
-                                        <label><input type="checkbox" value="Internet Disponibilizada Aeroporto"> Internet
+                                        <label><input type="radio" name="dropdown_radio" value="Internet Disponibilizada Aeroporto"> Internet
                                             Disponibilizada no Aeroporto</label>
-                                        <label><input type="checkbox" value="Velocidade Conexao"> Velocidade da
+                                        <label><input type="radio" name="dropdown_radio" value="Velocidade Conexao"> Velocidade da
                                             Conexão</label>
-                                        <label><input type="checkbox" value="Facilidade Acesso Rede"> Facilidade de Acesso à
+                                        <label><input type="radio" name="dropdown_radio" value="Facilidade Acesso Rede"> Facilidade de Acesso à
                                             Rede</label>
                                     </div>
                                 </div>
@@ -107,11 +113,11 @@
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Controle Migratorio"> Controle
+                                        <label><input type="radio" name="dropdown_radio" value="Controle Migratorio"> Controle
                                             Migratório</label>
-                                        <label><input type="checkbox" value="Atendimento Funcionarios"> Atendimento dos
+                                        <label><input type="radio" name="dropdown_radio" value="Atendimento Funcionarios"> Atendimento dos
                                             Funcionários</label>
-                                        <label><input type="checkbox" value="Controle Aduaneiro"> Controle Aduaneiro</label>
+                                        <label><input type="radio" name="dropdown_radio" value="Controle Aduaneiro"> Controle Aduaneiro</label>
                                     </div>
                                 </div>
                             </div>
@@ -120,11 +126,11 @@
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Avaliacao Metodo Desembarque"> Avaliação do
+                                        <label><input type="radio" name="dropdown_radio" value="Avaliacao Metodo Desembarque"> Avaliação do
                                             Método de Desembarque</label>
-                                        <label><input type="checkbox" value="Facilidade Desembarque Meio Fio"> Facilidade de
+                                        <label><input type="radio" name="dropdown_radio" value="Facilidade Desembarque Meio Fio"> Facilidade de
                                             Desembarque no Meio-Fio</label>
-                                        <label><input type="checkbox" value="Opcoes Transporte Aeroporto"> Opções de
+                                        <label><input type="radio" name="dropdown_radio" value="Opcoes Transporte Aeroporto"> Opções de
                                             Transporte no Aeroporto</label>
                                     </div>
                                 </div>
@@ -134,18 +140,17 @@
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Qualidade Instalacoes Estacionamento">
+                                        <label><input type="radio" name="dropdown_radio" value="Qualidade Instalacoes Estacionamento">
                                             Qualidade das Instalações do Estacionamento</label>
-                                        <label><input type="checkbox" value="Facilidade Encontrar"> Facilidade de
+                                        <label><input type="radio" name="dropdown_radio" value="Facilidade Encontrar"> Facilidade de
                                             Encontrar</label>
-                                        <label><input type="checkbox" value="Facilidade Acesso Terminal"> Facilidade de
+                                        <label><input type="radio" name="dropdown_radio" value="Facilidade Acesso Terminal"> Facilidade de
                                             Acesso ao Terminal</label>
-                                        <label><input type="checkbox" value="Relacao Preco Qualidade"> Relação
+                                        <label><input type="radio" name="dropdown_radio" value="Relacao Preco Qualidade"> Relação
                                             Preço/Qualidade</label>
-                                        <label><input type="checkbox" value="Tempo Caminhada Estacionamento Terminais">
+                                        <label><input type="radio" name="dropdown_radio" value="Tempo Caminhada Estacionamento Terminais">
                                             Tempo de Caminhada do Estacionamento aos Terminais</label>
-                                        <label><input type="checkbox"
-                                                value="Tempo Espera Onibus Deslocamento Estacionamento Terminais"> Tempo de
+                                        <label><input type="radio"name="dropdown_radio"                                                 value="Tempo Espera Onibus Deslocamento Estacionamento Terminais"> Tempo de
                                             Espera do Ônibus de Deslocamento do Estacionamento aos Terminais</label>
                                     </div>
                                 </div>
@@ -155,17 +160,17 @@
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Quantidade Estabelecimentos Alimentacao">
+                                        <label><input type="radio" name="dropdown_radio" value="Quantidade Estabelecimentos Alimentacao">
                                             Quantidade de Estabelecimentos de Alimentação</label>
-                                        <label><input type="checkbox" value="Qualidade Variedade Opcoes Alimentacao">
+                                        <label><input type="radio" name="dropdown_radio" value="Qualidade Variedade Opcoes Alimentacao">
                                             Qualidade e Variedade das Opções de Alimentação</label>
-                                        <label><input type="checkbox" value="Relacao Preco Qualidade Alimentacao"> Relação
+                                        <label><input type="radio" name="dropdown_radio" value="Relacao Preco Qualidade Alimentacao"> Relação
                                             Preço/Qualidade da Alimentação</label>
-                                        <label><input type="checkbox" value="Quantidade Estabelecimentos Comerciais">
+                                        <label><input type="radio" name="dropdown_radio" value="Quantidade Estabelecimentos Comerciais">
                                             Quantidade de Estabelecimentos Comerciais</label>
-                                        <label><input type="checkbox" value="Qualidade Variedade Opcoes Comerciais">
+                                        <label><input type="radio" name="dropdown_radio" value="Qualidade Variedade Opcoes Comerciais">
                                             Qualidade e Variedade das Opções Comerciais</label>
-                                        <label><input type="checkbox" value="Relacao Preco Qualidade Comerciais"> Relação
+                                        <label><input type="radio" name="dropdown_radio" value="Relacao Preco Qualidade Comerciais"> Relação
                                             Preço/Qualidade dos Comerciais</label>
                                     </div>
                                 </div>
@@ -175,13 +180,13 @@
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Processo Inspecao Seguranca"> Processo de
+                                        <label><input type="radio" name="dropdown_radio" value="Processo Inspecao Seguranca"> Processo de
                                             Inspeção de Segurança</label>
-                                        <label><input type="checkbox" value="Tempo Espera Fila"> Tempo de Espera na
+                                        <label><input type="radio" name="dropdown_radio" value="Tempo Espera Fila"> Tempo de Espera na
                                             Fila</label>
-                                        <label><input type="checkbox" value="Organizacao das Filas"> Organização das
+                                        <label><input type="radio" name="dropdown_radio" value="Organizacao das Filas"> Organização das
                                             Filas</label>
-                                        <label><input type="checkbox" value="Atendimento Funcionarios"> Atendimento dos
+                                        <label><input type="radio" name="dropdown_radio" value="Atendimento Funcionarios"> Atendimento dos
                                             Funcionários</label>
                                     </div>
                                 </div>
@@ -191,13 +196,13 @@
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Processo Restituicao Bagagens"> Processo de
+                                        <label><input type="radio" name="dropdown_radio" value="Processo Restituicao Bagagens"> Processo de
                                             Restituição de Bagagens</label>
-                                        <label><input type="checkbox" value="Tempo Restituicao"> Tempo de
+                                        <label><input type="radio" name="dropdown_radio" value="Tempo Restituicao"> Tempo de
                                             Restituição</label>
-                                        <label><input type="checkbox" value="Integridade Bagagem"> Integridade da
+                                        <label><input type="radio" name="dropdown_radio" value="Integridade Bagagem"> Integridade da
                                             Bagagem</label>
-                                        <label><input type="checkbox" value="Atendimento Cia Aerea"> Atendimento da
+                                        <label><input type="radio" name="dropdown_radio" value="Atendimento Cia Aerea"> Atendimento da
                                             Companhia Aérea</label>
                                     </div>
                                 </div>
@@ -207,27 +212,27 @@
                                 <div class="dropdown-checkbox">
                                     <button class="dropdown-button">Selecione</button>
                                     <div class="dropdown-content">
-                                        <label><input type="checkbox" value="Quantidade Banheiros"> Quantidade de
+                                        <label><input type="radio" name="dropdown_radio" value="Quantidade Banheiros"> Quantidade de
                                             Banheiros</label>
-                                        <label><input type="checkbox" value="Limpeza Banheiros"> Limpeza dos
+                                        <label><input type="radio" name="dropdown_radio" value="Limpeza Banheiros"> Limpeza dos
                                             Banheiros</label>
-                                        <label><input type="checkbox" value="Manutencao Geral Sanitarios"> Manutenção Geral
+                                        <label><input type="radio" name="dropdown_radio" value="Manutencao Geral Sanitarios"> Manutenção Geral
                                             dos Sanitários</label>
-                                        <label><input type="checkbox" value="Limpeza Geral Aeroporto"> Limpeza Geral do
+                                        <label><input type="radio" name="dropdown_radio" value="Limpeza Geral Aeroporto"> Limpeza Geral do
                                             Aeroporto</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button id="aplicar-filtros">Aplicar Filtros</button>
+                    <button id="aplicar-filtros">Consultar</button>
                 </div>
                 <div id="sessaoFiltragem" style="margin-top: 10%; text-align: center;"></div>
             </section>
         </div>
     </div>
 
-    <script src="../js/aeroportoEsp.js"></script>
+    <script src="../js/aeroportoEsp3.js"></script>
 </body>
 
 </html>

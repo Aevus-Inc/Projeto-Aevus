@@ -32,6 +32,56 @@ body {
   background-color: var(--cinza-fundo);
 }
 
+/* Modal de Alerta */
+#alertModal {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+}
+
+#alertModal .modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+#alertModal h3 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#alertModal p {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#alertModal button {
+  width: 100%;
+  margin: 10px auto;
+  outline: none;
+  border-radius: 20px;
+  padding: 10px;
+  border: none;
+  background-color: rgb(57, 57, 226);
+  color: white;
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -39,6 +89,22 @@ a {
   font-weight: normal;
   padding: 0;
   margin: 0;
+}
+
+.inputLinha input {
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.inputLinha input#siglaAeroporto, 
+.inputLinha input#m-siglaAeroporto, 
+.inputLinha input#edit-siglaAeroporto {
+  width: 60%; 
+}
+
+
+th#siglaAeroporto, td.siglaAeroporto {
+  text-align: center;
 }
 
 button {
@@ -162,6 +228,9 @@ button {
   padding: 20px;
 }
 
+
+
+
 .flex-container {
   min-height: 70px;
   display: flex;
@@ -172,12 +241,14 @@ button {
 
 .flex-container h2 {
   font-weight: 900;
-  font-size: 30px;
+  font-size: 25px;
   word-break: break-all;
 }
 
 .flex-container #new {
-  font-size: 16px;
+ width: 130px; 
+  padding: 10px;
+  font-size: 14px;
   padding: 8px;
   border-radius: 5px;
   border: none;
@@ -190,6 +261,13 @@ button {
   border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
+}
+
+#search {
+  width: 200px; 
+  height: 80%;
+  padding: 5px;
+  font-size: 10px;
 }
 
 .container::-webkit-scrollbar {
@@ -218,11 +296,6 @@ tr {
   border-bottom: 1px solid rgb(238, 235, 235) !important;
 }
 
-tbody tr td {
-  vertical-align: text-top;
-  padding: 6px;
-  max-width: 50px;
-}
 
 thead tr th {
   padding: 5px;
@@ -230,13 +303,19 @@ thead tr th {
   height: auto;
   white-space: nowrap;
   word-wrap: normal;
-  font-size: 25px; 
+  font-size: 20px; 
 }
 
 tbody tr td {
   vertical-align: text-top;
-  padding: 5px; /* Reduzir o padding */
+  padding: 5px; 
   max-width: 50px;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+tbody tr td.acao {
+  text-align: center;
 }
 
 thead tr th.acao {
@@ -244,8 +323,10 @@ thead tr th.acao {
   text-align: center;
 }
 
-tbody tr td.acao {
-  text-align: center;
+
+
+button, .acao button {
+  cursor: pointer;
 }
 
 .details {
@@ -363,10 +444,7 @@ tbody tr td.acao {
     font-size: 15px;
   }
 
-  #new {
-    padding: 5px;
-    font-size: 10px;
-  }
+
 
   thead tr th.acao {
     width: auto !important;
@@ -512,9 +590,8 @@ tbody tr td.acao {
   }
 
   #new {
-    padding: 5px;
-    font-size: 10px;
-  }
+  cursor: pointer;
+}
 
   thead tr th.acao {
     width: auto !important;

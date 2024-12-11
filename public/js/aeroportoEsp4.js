@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // Chamar as funções para atualizar os KPIs e gráficos
-    const idAeroporto = 1;
+    const idAeroporto = 4;
     atualizarKPIs(idAeroporto);
     atualizarKPIs2(idAeroporto);
     atualizarGraficos(idAeroporto);
@@ -191,7 +191,7 @@ function atualizarGraficos(idAeroporto, filtros = []) {
 function construirNovoGrafico() {
     // const colunas = recuperarDoSessionStorage('columns');
     const filtros = recuperarDoSessionStorage('filters');
-    const idAeroporto = 1; // Exemplo de ID de aeroporto
+    const idAeroporto = 4; // Exemplo de ID de aeroporto
 
     const filtrosCombinados = [...new Set([...colunas, ...filtros])];
 
@@ -398,7 +398,7 @@ function recuperarDoSessionStorage(chave) {
 
 function construirNovoGraficoComFiltros() {
     const filtros = recuperarDoSessionStorage('listaGlobalFiltros');
-    const idAeroporto = 1; // Exemplo de ID de aeroporto
+    const idAeroporto = 4; // Exemplo de ID de aeroporto
 
     if (!Array.isArray(filtros)) {
         console.error('Os dados dos filtros não são um array:', filtros);
@@ -468,7 +468,7 @@ function aplicarFiltros() {
         return;
     }
 
-    const idAeroporto = 1; // Exemplo de ID de aeroporto
+    const idAeroporto = 4; // Exemplo de ID de aeroporto
 
     fetch(`/aeroporto/exibirMediaItemFiltrado/${idAeroporto}/${filtros[0]}`, { cache: 'no-store' })
         .then(function (response) {

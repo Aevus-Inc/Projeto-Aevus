@@ -151,7 +151,7 @@ function getGrafico(idAeroporto, filters = []) {
             FROM Medias
             WHERE Trimestre = (SELECT Trimestre FROM Ultimo_Trimestre)
             ORDER BY Media ASC
-            LIMIT 3
+            LIMIT 5
         )
         SELECT M.Coluna, M.Media, M.Trimestre
         FROM Medias M

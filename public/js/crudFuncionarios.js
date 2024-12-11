@@ -5,6 +5,10 @@ document.addEventListener("DOMContentLoaded", function() {
   carregarFuncionarios();
 });
 
+
+    var idUsuario = sessionStorage.ID_USUARIO;
+    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
+
 let idFuncionarioEditando = null;
 
 function configurarFiltroBusca() {

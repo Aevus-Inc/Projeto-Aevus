@@ -66,6 +66,9 @@ const tabelaMapeamento = {
     "PesquisaDeSatisfacao": "Satisfacao_Geral"
 };
 
+    var idUsuario = sessionStorage.ID_USUARIO;
+    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
+
 let listaGlobalFiltros = [];
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -79,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
 
     // Adicionar evento ao botão "Aplicar Filtros"
     const aplicarFiltrosBtn = document.getElementById('aplicar-filtros');
@@ -109,7 +113,7 @@ function recuperarDoSessionStorage(chave) {
 // Função para obter filtros selecionados
 function obterFiltrosSelecionados() {
     let filtrosSelecionados = [];
-    document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked').forEach(checkbox => {
+    document.querySelectorAll('.dropdown-content input[type="radio"]:checked').forEach(checkbox => {
         // Use o mapeamento para garantir consistência
         let mapeado = colunaMapeamento[checkbox.value] || checkbox.value;
         filtrosSelecionados.push(mapeado);
@@ -282,7 +286,7 @@ function atualizarOuCriarGrafico(metrics, trimestres) {
                 },
                 plugins: {
                     legend: {
-                        position: 'right'
+                        position: 'top'
                     }
                 }
             }
@@ -305,8 +309,10 @@ function atualizarKPIs(idAeroporto) {
                 const valor01kpi = document.getElementById('valor01kpi');
 
                 if (valor01kpi) {
-                    valor01kpi.innerText = `${data[0].Total_Itens}`;
-                } else {
+                    const totalItens = data[0].Total_Itens;
+                    const kpiText = valor01kpi.querySelector('.kpi-text');
+                    kpiText.innerHTML = `<span class="kpi-number">${totalItens}</span> <span class="kpi-text">Itens</span>`;
+                }else {
                     console.error('Elemento com ID valor01kpi não encontrado');
                 }
 
@@ -370,7 +376,7 @@ function aplicarFiltro(filtro, idAeroporto) {
             .then(data => {
                 listaGlobalFiltros.push(data);
                 if (listaGlobalFiltros.length > 5) {
-                    listaGlobalFiltros.shift(); // Remove o filtro mais antigo se exceder o limite de 5
+                    listaGlobalFiltros.shift(); 
                 }
                 salvarNoSessionStorage('listaGlobalFiltros', listaGlobalFiltros);
             })
@@ -474,9 +480,9 @@ function aplicarFiltros() {
                     if (resposta.length == 0) {
                         resposta = 2.0 + Math.random() * (4.8 - 2.0);
                         resposta = resposta.toFixed(2);
-                        sessaoFiltragem.innerHTML = `<div>O item ${filtros[0]} selecionado na data mais recente 2024-06-25 obteve a média de: ${resposta}</div>`;
+                        sessaoFiltragem.innerHTML = `<div style="background-color: white; border-radius: 10px; border: 2px var(--dourado-principal) solid; height:80px; display: flex; align-items: center; justify-content:center">O item ${filtros[0]} selecionado na data mais recente 2024-06-25 obteve a média de: ${resposta}</div>`;
                     } else {
-                        sessaoFiltragem.innerHTML = `<div>O item ${resposta[0].Coluna} selecionado na data mais recente ${resposta[0].DataMaisRecente} obteve a média de: ${resposta[0].Media}</div>`;
+                        sessaoFiltragem.innerHTML = `<div style="background-color: white; border-radius: 10px; border: 2px var(--dourado-principal) solid; height:80px; display: flex; align-items: center; justify-content:center">O item ${resposta[0].Coluna} selecionado na data mais recente ${resposta[0].DataMaisRecente} obteve a média de: ${resposta[0].Media}</div>`;
                     }
 
                     console.log("Resposta: " + resposta);

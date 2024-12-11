@@ -123,8 +123,8 @@ button {
     align-items: center;
 }
 
-.div-sair a {
-    text-decoration: none;
+.div-sair a:visited {
+    color: white;
 }
 
 .div-sair button {
@@ -142,17 +142,27 @@ button {
     gap: 20px;
 }
 
-/* KPI´S */
-.cards-kpi {
-    width: 100%;
-    height: 20vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+
+
+
+.card{
+    margin-top: 3px;
 }
 
-.cards-kpi h2 {
-    margin-bottom: 2%;
+.card-space{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    width: 300px;
+  
+
+}
+
+.card-space .card {
+    width: 100%;
+    height: 15vh;;
 }
 
 /* Melhoria Crítica */
@@ -162,12 +172,7 @@ button {
     font-weight: bold;
 }
 
-.card-space:first-child .card {
-    background-color: var(--vermelho-urgente);
-    color: #fff;
-    font-size: large; /* Ajuste a fonte para todos os elementos */
-    font-weight: bold;
-}
+
 
 /* Gráfico Visão Geral */
 .section-graficos1 {
@@ -216,6 +221,8 @@ button {
     width: 100%;
     height: 100%;
 }
+
+
 
 /* Filtro */
 .section-graficos2 {
@@ -300,9 +307,49 @@ button {
     display: block;
 }
 
-#critico {
-  color: var(--vermelho-urgente);
+#valor01kpi {
+    display: flex;
+    align-items: center;
+}
 
+#valor02kpi {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.kpi-number2 {
+    font-size: 30px;
+    font-weight: bold;
+    width: 50%;
+    text-align: center;
+}
+
+.kpi-img-container2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.kpi-img-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+
+
+.kpi-text {
+    width: 50%;
+
+}
+
+.kpi-img {
+    width: 30%; 
+    margin:10px;
 }
 
 button#aplicar-filtros {
@@ -394,6 +441,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #fff;
 }
 
 .div-logo img {
@@ -475,7 +523,14 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    font-size: larger;
+    font-weight: bold;
+    padding: 2px;
 
+}
+
+.card{
+    background-color: white;
 }
 
 .cards-kpi h2 {
@@ -509,8 +564,8 @@ button {
 }
 
 .card-space:first-child .card {
-    background-color: var(--vermelho-urgente);
-    color: #fff;
+    background-color: white;
+    color: var(--vermelho-urgente);
     font-size: large; /* Ajuste a fonte para todos os elementos */
     font-weight: bold;
 }

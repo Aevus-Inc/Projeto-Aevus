@@ -4,15 +4,82 @@ document.addEventListener("DOMContentLoaded", function() {
   setupEditFormSubmit();
   setupInputValidations();
   loadAeroportos();
-  // setInterval(loadAeroportos, 2000); 
+  setupNameSearch();
 });
-
 
 function setupSearchFilter() {
   var searchInput = document.getElementById('search');
   if (searchInput) {
     searchInput.addEventListener('input', filterTable);
   }
+}
+
+function loadAeroportos() {
+  fetch("/aeroportos")
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error('Erro ao carregar aeroportos!');
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      if (!data || data.length === 0) {
+        throw new Error('Nenhum aeroporto encontrado!');
+      }
+      var tbody = document.getElementById('aeroportoTableBody');
+      tbody.innerHTML = ''; // Limpar a tabela antes de adicionar novos dados
+      data.forEach(function(aeroporto) {
+        if (['SBGR', 'SBSG', 'SBEG', 'SBFL'].includes(aeroporto.siglaAeroporto) || aeroporto.idAeroporto > 20) {
+          addAeroportoToTable(aeroporto);
+        }
+      });
+    })
+    .catch(function(error) {
+      console.error('Erro ao carregar aeroportos:', error);
+    });
+}
+
+function setupNameSearch() {
+  const nameInput = document.getElementById('m-nome');
+  const suggestionsContainer = document.getElementById('suggestions');
+
+  nameInput.addEventListener('input', function() {
+    const query = nameInput.value;
+    if (query.length > 2) {
+      fetch(`/aeroportos/search/${query}`)
+        .then(response => response.json())
+        .then(aeroportos => {
+          suggestionsContainer.innerHTML = '';
+          aeroportos.forEach(aeroporto => {
+            const suggestion = document.createElement('div');
+            suggestion.textContent = aeroporto.nomeAeroporto;
+            suggestion.addEventListener('click', function() {
+              nameInput.value = aeroporto.nomeAeroporto;
+              fillForm(aeroporto);
+              suggestionsContainer.innerHTML = '';
+            });
+            suggestionsContainer.appendChild(suggestion);
+          });
+        })
+        .catch(error => console.error('Erro ao buscar aeroportos:', error));
+    } else {
+      suggestionsContainer.innerHTML = '';
+    }
+  });
+}
+
+function fillForm(aeroporto) {
+  document.getElementById('m-siglaAeroporto').value = aeroporto.siglaAeroporto;
+  document.getElementById('m-codigoICAO').value = aeroporto.codigoICAO;
+  document.getElementById('m-endereco').value = aeroporto.endereco;
+  document.getElementById('m-cidade').value = aeroporto.cidade;
+  document.getElementById('m-estado').value = aeroporto.estado;
+  document.getElementById('m-pais').value = aeroporto.pais;
+  document.getElementById('m-email').value = aeroporto.email;
+  document.getElementById('m-telefone').value = aeroporto.telefone;
+  document.getElementById('m-numeroPistas').value = aeroporto.numeroPistas;
+  document.getElementById('m-numeroTerminais').value = aeroporto.numeroTerminais;
+  document.getElementById('m-capacidadePassageiros').value = aeroporto.capacidadePassageiros;
 }
 
 function filterTable() {
@@ -58,7 +125,6 @@ function openEditModal(aeroporto) {
     document.getElementById('edit-cidade').value = aeroporto.cidade;
     document.getElementById('edit-estado').value = aeroporto.estado;
     document.getElementById('edit-pais').value = aeroporto.pais;
-    document.getElementById('edit-cep').value = aeroporto.cep;
     document.getElementById('edit-email').value = aeroporto.email;
     document.getElementById('edit-telefone').value = aeroporto.telefone;
     document.getElementById('edit-numeroPistas').value = aeroporto.numeroPistas;
@@ -80,7 +146,6 @@ function closeEditModal() {
 function setupInputValidations() {
   var siglaAeroportoInput = document.getElementById('m-siglaAeroporto');
   var codigoICAOInput = document.getElementById('m-codigoICAO');
-  var cepInput = document.getElementById('m-cep');
   var numeroPistasInput = document.getElementById('m-numeroPistas');
   var numeroTerminaisInput = document.getElementById('m-numeroTerminais');
 
@@ -95,16 +160,6 @@ function setupInputValidations() {
       codigoICAOInput.value = codigoICAOInput.value.toUpperCase().slice(0, 4).replace(/[^A-Z]/g, '');
     });
   }
-
-  if (cepInput) {
-    cepInput.addEventListener('input', function() {
-      cepInput.value = cepInput.value.replace(/\D/g, '').slice(0, 8);
-      if (cepInput.value.length > 5) {
-        cepInput.value = cepInput.value.slice(0, 5) + '-' + cepInput.value.slice(5);
-      }
-    });
-  }
-
   if (numeroPistasInput) {
     numeroPistasInput.addEventListener('input', function() {
       numeroPistasInput.value = numeroPistasInput.value.replace(/\D/g, '');
@@ -204,7 +259,6 @@ function setupEditFormSubmit() {
       var cidade = document.getElementById('edit-cidade').value;
       var estado = document.getElementById('edit-estado').value;
       var pais = document.getElementById('edit-pais').value;
-      var cep = document.getElementById('edit-cep').value;
       var email = document.getElementById('edit-email').value;
       var telefone = document.getElementById('edit-telefone').value;
       var numeroPistas = parseInt(document.getElementById('edit-numeroPistas').value);
@@ -221,7 +275,6 @@ function setupEditFormSubmit() {
         cidade: cidade || null,
         estado: estado || null,
         pais: pais || null,
-        cep: cep || null,
         email: email || null,
         telefone: telefone || null,
         numeroPistas: numeroPistas || null,
@@ -262,42 +315,20 @@ function setupEditFormSubmit() {
 }
 
 
-function loadAeroportos() {
-  fetch("/aeroportos")
-    .then(function(response) {
-      if (!response.ok) {
-        throw new Error('Erro ao carregar aeroportos!');
-      }
-      return response.json();
-    })
-    .then(function(data) {
-      if (!data || data.length === 0) {
-        throw new Error('Nenhum aeroporto encontrado!');
-      }
-      var tbody = document.getElementById('aeroportoTableBody');
-      tbody.innerHTML = '';
-      data.forEach(function(aeroporto) {
-        addAeroportoToTable(aeroporto);
-      });
-    })
-    .catch(function(error) {
-      console.error('Erro ao carregar aeroportos:', error);
-    });
-}
 
 function addAeroportoToTable(aeroporto) {
-  var tbody = document.getElementById('aeroportoTableBody');
-  var newRow = document.createElement('tr');
+  let tableBody = document.querySelector('tbody');
+  let newRow = document.createElement('tr');
   newRow.innerHTML = `
     <td>${aeroporto.nomeAeroporto || ''}</td>
-    <td>${aeroporto.siglaAeroporto || ''}</td>
+    <td class="siglaAeroporto">${aeroporto.siglaAeroporto || ''}</td>
     <td>${aeroporto.cidade || ''}</td>
     <td>${aeroporto.estado || ''}</td>
     <td class="acao"><button onclick="toggleDetails(this)">+</button></td>
     <td class="acao"><button onclick='openEditModal(${JSON.stringify(aeroporto)})'><i class='bx bx-edit'></i></button></td>
     <td class="acao"><button onclick="deleteAeroporto(${aeroporto.idAeroporto})"><i class='bx bx-trash'></i></button></td>
   `;
-  tbody.appendChild(newRow);
+  tableBody.appendChild(newRow);
 
   var detailsRow = document.createElement('tr');
   detailsRow.classList.add('details');
@@ -317,13 +348,13 @@ function addAeroportoToTable(aeroporto) {
       </div>
     </td>
   `;
-  tbody.appendChild(detailsRow);
+  tableBody.appendChild(detailsRow);
 }
 
-function formatTime(time) {
-  if (!time) return '';
-  const [hours, minutes] = time.split(':');
-  return `${hours}:${minutes}`;
+function formatTime(timeString) {
+  if (!timeString) return '';
+  const [hours, minutes] = timeString.split(':');
+  return `${hours.padStart(2, '0')}:${minutes.padStart(2, '0')}`;
 }
 
 function deleteAeroporto(idAeroporto) {

@@ -20,8 +20,26 @@ function create(
   return database.executar(instrucaoSql);
 }
 
+function searchByName(name) {
+  const sql = `SELECT * FROM Aeroporto WHERE nomeAeroporto LIKE '%${name}%'`;
+  console.log("Executando a instrução SQL: \n" + sql);
+  return database.executar(sql);
+}
+
 function getAll() {
   const sql = `SELECT * FROM Aeroporto`;
+  console.log("Executando a instrução SQL: \n" + sql);
+  return database.executar(sql);
+}
+
+function getFiltered() {
+  const sql = `SELECT * FROM Aeroporto WHERE siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')`;
+  console.log("Executando a instrução SQL: \n" + sql);
+  return database.executar(sql);
+}
+
+function getAllFromEmpresa() {
+  const sql = `SELECT * FROM Aeroporto WHERE idAeroporto >= 24`;
   console.log("Executando a instrução SQL: \n" + sql);
   return database.executar(sql);
 }
@@ -101,8 +119,11 @@ function updateBySigla(
 module.exports = {
   create,
   getAll,
+  getAllFromEmpresa,
   update,
   deleteAeroporto,
   getBySigla,
-  updateBySigla
+  updateBySigla,
+  getFiltered,
+  searchByName
 };

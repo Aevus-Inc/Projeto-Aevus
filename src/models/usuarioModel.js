@@ -7,14 +7,15 @@ function autenticar(email, senha) {
     var instrucaoSql = `
     Select Pessoa.idPessoa, Pessoa.nome, Usuario.email, Usuario.tipoUsuario
         from Pessoa 
-        inner join Usuario 
-        WHERE email = '${email}' AND senha = '${senha}' and fkPessoa = idPessoa
+        inner join Usuario  on fkpessoa = idPessoa
+        WHERE email = '${email}' AND senha = '${senha}' 
         
         union all 
         
 		SELECT idEmpresa AS id, nomeFantasia AS nome, email, tipoUsuario
         FROM Empresa
         WHERE email = '${email}' AND senha = '${senha}';
+        
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
  

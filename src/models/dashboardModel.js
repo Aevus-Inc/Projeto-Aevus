@@ -6,30 +6,69 @@ function pontuacoesMaisBaixas() {
        SELECT 
     A.siglaAeroporto,
     ROUND(AVG(
-        COALESCE(P.Satisfacao_Geral, 0) + 
-        COALESCE(D.Avaliacao_Metodo_Desembarque, 0) + 
-        COALESCE(D.Facilidade_Desembarque_Meio_Fio, 0) + 
-        COALESCE(D.Opcoes_Transporte_Aeroporto, 0) + 
-        COALESCE(C.Processo_Check_in, 0) + 
-        COALESCE(C.Tempo_Espera_Fila, 0) + 
-        COALESCE(C.Organizacao_Filas, 0) + 
-        COALESCE(C.Cordialidade_Funcionarios, 0) + 
-        COALESCE(C.Tempo_Atendimento, 0) + 
-        COALESCE(INS.Processo_Inspecao_Seguranca, 0) + 
-        COALESCE(INS.Tempo_Espera_Fila, 0) + 
-        COALESCE(INS.Organizacao_Filas, 0) + 
-        COALESCE(INS.Atendimento_Funcionarios, 0) + 
-        COALESCE(CMA.Controle_Migratorio, 0) + 
-        COALESCE(CMA.Tempo_Espera_Fila, 0) + 
-        COALESCE(CMA.Organizacao_Filas, 0) + 
-        COALESCE(CMA.Atendimento_Funcionarios, 0) + 
-        COALESCE(CMA.Controle_Aduaneiro, 0)
-    ) / 17, 2) AS Media_Satisfacao_Geral
+        CASE WHEN P.Satisfacao_Geral IS NOT NULL THEN P.Satisfacao_Geral ELSE 0 END +
+        CASE WHEN D.Avaliacao_Metodo_Desembarque IS NOT NULL THEN D.Avaliacao_Metodo_Desembarque ELSE 0 END +
+        CASE WHEN D.Facilidade_Desembarque_Meio_Fio IS NOT NULL THEN D.Facilidade_Desembarque_Meio_Fio ELSE 0 END +
+        CASE WHEN D.Opcoes_Transporte_Aeroporto IS NOT NULL THEN D.Opcoes_Transporte_Aeroporto ELSE 0 END +
+        CASE WHEN C.Processo_Check_in IS NOT NULL THEN C.Processo_Check_in ELSE 0 END +
+        CASE WHEN C.Tempo_Espera_Fila IS NOT NULL THEN C.Tempo_Espera_Fila ELSE 0 END +
+        CASE WHEN C.Organizacao_Filas IS NOT NULL THEN C.Organizacao_Filas ELSE 0 END +
+        CASE WHEN C.Cordialidade_Funcionarios IS NOT NULL THEN C.Cordialidade_Funcionarios ELSE 0 END +
+        CASE WHEN C.Tempo_Atendimento IS NOT NULL THEN C.Tempo_Atendimento ELSE 0 END +
+        CASE WHEN INS.Processo_Inspecao_Seguranca IS NOT NULL THEN INS.Processo_Inspecao_Seguranca ELSE 0 END +
+        CASE WHEN INS.Tempo_Espera_Fila IS NOT NULL THEN INS.Tempo_Espera_Fila ELSE 0 END +
+        CASE WHEN INS.Organizacao_Filas IS NOT NULL THEN INS.Organizacao_Filas ELSE 0 END +
+        CASE WHEN INS.Atendimento_Funcionarios IS NOT NULL THEN INS.Atendimento_Funcionarios ELSE 0 END +
+        CASE WHEN CMA.Controle_Migratorio IS NOT NULL THEN CMA.Controle_Migratorio ELSE 0 END +
+        CASE WHEN CMA.Tempo_Espera_Fila IS NOT NULL THEN CMA.Tempo_Espera_Fila ELSE 0 END +
+        CASE WHEN CMA.Organizacao_Filas IS NOT NULL THEN CMA.Organizacao_Filas ELSE 0 END +
+        CASE WHEN CMA.Atendimento_Funcionarios IS NOT NULL THEN CMA.Atendimento_Funcionarios ELSE 0 END +
+        CASE WHEN CMA.Controle_Aduaneiro IS NOT NULL THEN CMA.Controle_Aduaneiro ELSE 0 END +
+        CASE WHEN E.Qualidade_Instalacoes_Estacionamento IS NOT NULL THEN E.Qualidade_Instalacoes_Estacionamento ELSE 0 END +
+        CASE WHEN E.Facilidade_Encontrar_Vagas IS NOT NULL THEN E.Facilidade_Encontrar_Vagas ELSE 0 END +
+        CASE WHEN E.Facilidade_Acesso_Terminal IS NOT NULL THEN E.Facilidade_Acesso_Terminal ELSE 0 END +
+        CASE WHEN E.Relacao_Preco_Qualidade IS NOT NULL THEN E.Relacao_Preco_Qualidade ELSE 0 END +
+        CASE WHEN E.Tempo_Caminhada_Estacionamento_Terminais IS NOT NULL THEN E.Tempo_Caminhada_Estacionamento_Terminais ELSE 0 END +
+        CASE WHEN E.Tempo_Espera_Onibus_Deslocamento_Estacionamento_Terminais IS NOT NULL THEN E.Tempo_Espera_Onibus_Deslocamento_Estacionamento_Terminais ELSE 0 END +
+        CASE WHEN EST.Quantidade_Estabelecimentos_Alimentacao IS NOT NULL THEN EST.Quantidade_Estabelecimentos_Alimentacao ELSE 0 END +
+        CASE WHEN EST.Qualidade_Variedade_Opcoes_Alimentacao IS NOT NULL THEN EST.Qualidade_Variedade_Opcoes_Alimentacao ELSE 0 END +
+        CASE WHEN EST.Relacao_Preco_Qualidade_Alimentacao IS NOT NULL THEN EST.Relacao_Preco_Qualidade_Alimentacao ELSE 0 END +
+        CASE WHEN EST.Quantidade_Estabelecimentos_Comerciais IS NOT NULL THEN EST.Quantidade_Estabelecimentos_Comerciais ELSE 0 END +
+        CASE WHEN EST.Qualidade_Variedade_Opcoes_Comerciais IS NOT NULL THEN EST.Qualidade_Variedade_Opcoes_Comerciais ELSE 0 END +
+        CASE WHEN EST.Relacao_Preco_Qualidade_Comerciais IS NOT NULL THEN EST.Relacao_Preco_Qualidade_Comerciais ELSE 0 END +
+        CASE WHEN CONF.Localizacao_Deslocamento IS NOT NULL THEN CONF.Localizacao_Deslocamento ELSE 0 END +
+        CASE WHEN CONF.Sinalizacao IS NOT NULL THEN CONF.Sinalizacao ELSE 0 END +
+        CASE WHEN CONF.Disponibilidade_Paineis_Informacoes_Voo IS NOT NULL THEN CONF.Disponibilidade_Paineis_Informacoes_Voo ELSE 0 END +
+        CASE WHEN CONF.Acessibilidade_Terminal IS NOT NULL THEN CONF.Acessibilidade_Terminal ELSE 0 END +
+        CASE WHEN CONF.Conforto_Sala_Embarque IS NOT NULL THEN CONF.Conforto_Sala_Embarque ELSE 0 END +
+        CASE WHEN CONF.Conforto_Termico IS NOT NULL THEN CONF.Conforto_Termico ELSE 0 END +
+        CASE WHEN CONF.Conforto_Acustico IS NOT NULL THEN CONF.Conforto_Acustico ELSE 0 END +
+        CASE WHEN CONF.Disponibilidade_Assentos IS NOT NULL THEN CONF.Disponibilidade_Assentos ELSE 0 END +
+        CASE WHEN CONF.Disponibilidade_Assentos_Reservados IS NOT NULL THEN CONF.Disponibilidade_Assentos_Reservados ELSE 0 END +
+        CASE WHEN CONF.Disponibilidade_Tomadas IS NOT NULL THEN CONF.Disponibilidade_Tomadas ELSE 0 END +
+        CASE WHEN CONF.Internet_Disponibilizada_Aeroporto IS NOT NULL THEN CONF.Internet_Disponibilizada_Aeroporto ELSE 0 END +
+        CASE WHEN CONF.Velocidade_Conexao IS NOT NULL THEN CONF.Velocidade_Conexao ELSE 0 END +
+        CASE WHEN CONF.Facilidade_Acesso_Rede IS NOT NULL THEN CONF.Facilidade_Acesso_Rede ELSE 0 END +
+        CASE WHEN RES.Processo_Restituicao_Bagagens IS NOT NULL THEN RES.Processo_Restituicao_Bagagens ELSE 0 END +
+        CASE WHEN RES.Facilidade_Identificacao_Esteira IS NOT NULL THEN RES.Facilidade_Identificacao_Esteira ELSE 0 END +
+        CASE WHEN RES.Tempo_Restituicao IS NOT NULL THEN RES.Tempo_Restituicao ELSE 0 END +
+        CASE WHEN RES.Integridade_Bagagem IS NOT NULL THEN RES.Integridade_Bagagem ELSE 0 END +
+        CASE WHEN RES.Atendimento_Cia_Aerea IS NOT NULL THEN RES.Atendimento_Cia_Aerea ELSE 0 END +
+        CASE WHEN SAN.Quantidade_Banheiros IS NOT NULL THEN SAN.Quantidade_Banheiros ELSE 0 END +
+        CASE WHEN SAN.Limpeza_Banheiros IS NOT NULL THEN SAN.Limpeza_Banheiros ELSE 0 END +
+        CASE WHEN SAN.Manutencao_Geral_Sanitarios IS NOT NULL THEN SAN.Manutencao_Geral_Sanitarios ELSE 0 END +
+        CASE WHEN SAN.Limpeza_Geral_Aeroporto IS NOT NULL THEN SAN.Limpeza_Geral_Aeroporto ELSE 0 END
+    ) / 10, 2) AS Media_Satisfacao_Geral
 FROM PesquisaDeSatisfacao P
 LEFT JOIN Desembarque D ON P.Pesquisa_ID = D.Pesquisa_ID
 LEFT JOIN Check_in C ON P.Pesquisa_ID = C.Pesquisa_ID
 LEFT JOIN Inspecao_Seguranca INS ON P.Pesquisa_ID = INS.Pesquisa_ID
 LEFT JOIN Controle_Migratorio_Aduaneiro CMA ON P.Pesquisa_ID = CMA.Pesquisa_ID
+LEFT JOIN Estacionamento E ON P.Pesquisa_ID = E.Pesquisa_ID
+LEFT JOIN Estabelecimentos EST ON P.Pesquisa_ID = EST.Pesquisa_ID
+LEFT JOIN Conforto_Acessibilidade CONF ON P.Pesquisa_ID = CONF.Pesquisa_ID
+LEFT JOIN Sanitarios SAN ON P.Pesquisa_ID = SAN.Pesquisa_ID
+LEFT JOIN Restituicao_Bagagens RES ON P.Pesquisa_ID = RES.Pesquisa_ID
 LEFT JOIN Aeroporto A ON P.Aeroporto_idAeroporto = A.idAeroporto
 WHERE A.siglaAeroporto IN ('SBGR', 'SBSG', 'SBEG', 'SBFL')
 GROUP BY A.siglaAeroporto

@@ -1,5 +1,16 @@
 const Aeroporto = require('../models/crudAeroportosModel');
 
+async function searchAeroportosByName(req, res) {
+  const { name } = req.params;
+  try {
+    const aeroportos = await Aeroporto.searchByName(name);
+    res.json(aeroportos);
+  } catch (err) {
+    console.error('Erro ao buscar aeroportos:', err);
+    res.status(500).send('Erro ao buscar aeroportos');
+  }
+}
+
 async function createAeroporto(req, res) {
   const newAeroporto = req.body;
 
@@ -64,18 +75,26 @@ async function createAeroporto(req, res) {
 
 async function getAeroportos(req, res) {
   try {
-    const resultado = await Aeroporto.getAll();
-    if (resultado.length > 0) {
-      res.status(200).json(resultado);
-    } else {
-      res.status(204).send("Nenhum aeroporto encontrado!");
-    }
+    const aeroportos = await Aeroporto.getAll();
+    console.log("Aeroportos retornados:", aeroportos); // Adicione este log
+    res.json(aeroportos);
   } catch (err) {
-    console.log(err);
-    console.log("Houve um erro ao buscar os aeroportos: ", err.message);
-    res.status(500).json({ error: err.message });
+    console.error('Erro ao obter aeroportos:', err);
+    res.status(500).send('Erro ao obter aeroportos');
   }
 }
+
+async function getAeroportosFromEmpresa(req, res) {
+  try {
+    const aeroportos = await Aeroporto.getAllFromEmpresa();
+    res.json(aeroportos);
+  } catch (err) {
+    console.error('Erro ao obter aeroportos da nova tabela:', err);
+    res.status(500).send('Erro ao obter aeroportos da nova tabela');
+  }
+}
+
+
 
 async function updateAeroporto(req, res) {
   const idAeroporto = req.params.id;
@@ -222,7 +241,9 @@ async function updateAeroportoBySigla(req, res) {
 module.exports = {
   createAeroporto,
   getAeroportos,
+  getAeroportosFromEmpresa,
   updateAeroporto,
   deleteAeroporto,
-  updateAeroportoBySigla
+  updateAeroportoBySigla,
+  searchAeroportosByName
 };
