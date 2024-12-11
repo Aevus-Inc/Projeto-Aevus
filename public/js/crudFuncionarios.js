@@ -77,6 +77,8 @@ function setupInputValidations() {
   var editarEmailInput = document.getElementById('editarEmail');
   var editarDataContratacaoInput = document.getElementById('editarDataContratacao');
 
+  $('#cpfInput').mask('000.000.000-00', {reverse: false});
+  
   if (cpfInput) {
     cpfInput.addEventListener('input', function() {
       cpfInput.value = cpfInput.value.replace(/\D/g, '').slice(0, 11);
