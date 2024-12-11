@@ -3,13 +3,16 @@ document.addEventListener("DOMContentLoaded", function() {
   configurarFormulario();
   configurarFormularioEdicao();
   carregarFuncionarios();
+
+  var idUsuario = sessionStorage.ID_USUARIO;
+  var usuarioNome = document.getElementById('usuarioNome'); 
+  if (usuarioNome) {
+    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
+  }
 });
 
+let idFuncionarioEditando = null; 
 
-    var idUsuario = sessionStorage.ID_USUARIO;
-    usuarioNome.innerHTML = sessionStorage.NOME_USUARIO;
-
-let idFuncionarioEditando = null;
 
 function configurarFiltroBusca() {
   var searchInput = document.getElementById('buscar');

@@ -579,3 +579,12 @@ tbody tr td.acao {
 input:invalid + .error-message {
   display: block;
 }
+
+.flex-container button {
+  width: 150px;
+  height: 5vh;
+  border-radius: 5px;
+  background-color: #44454e;
+  color: #fff;
+}
+
