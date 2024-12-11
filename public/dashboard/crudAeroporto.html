@@ -15,17 +15,17 @@
     <aside class="barraLateral">
       <div class="div-user">
         <h1>Bem Vindo!</h1>
-       <span id="usuarioNome"></span>
-        </div>
-        <div class="div-nameAirport">
-<br>
-            <p style="color:whitesmoke; text-align: center;"> Aeroporto Internacional de São Gonçalo do Amarante - Natal</p>
-        </div>
-        <div class="div-buttons">
-            <button class="button-menu-lateral"><span class="div-sair"><a href="./dashboard.html">Dashboard geral</a></span></button>
-        </div>
-        <div class="div-sair">
-            <button>Sair</button>
+        <span id="usuarioNome"></span>
+      </div>
+      <div class="div-nameAirport">
+        <br>
+        <p style="color:whitesmoke; text-align: center;"> Aeroporto Internacional de São Gonçalo do Amarante - Natal</p>
+      </div>
+      <div class="div-buttons">
+        <button class="button-menu-lateral"><span class="div-sair"><a href="./dashboard.html">Dashboard
+              geral</a></span></button>
+      </div>
+      <div class="div-sair">
         <a href="../index.html">
           <button>Sair</button>
         </a>
@@ -34,190 +34,191 @@
         <p>AEVUS INC.</p>
       </div>
     </aside>
-    
+
     <main class="main">
-  <div class="container">
-    <div class="flex-container">
-      <h2>Cadastro de Aeroportos</h2>
-      <input type="text" id="search" placeholder="Buscar Aeroportos">
-      <button onclick="openModal()" id="new">Incluir Aeroporto</button>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th id="nomeAeroporto">Nome Aeroporto</th>
-          <th id="siglaAeroporto" class="siglaAeroporto">Sigla Aeroporto</th>
-          <th id="cidade">Cidade</th>
-          <th id="estado">Estado</th>
-          <th class="acao">Detalhes</th>
-          <th class="acao">Editar</th>
-          <th class="acao">Excluir</th>
-        </tr>
-      </thead>
-      <tbody id="aeroportoTableBody">
-        <!-- Linhas da tabela serão inseridas aqui dinamicamente -->
-      </tbody>
-    </table>
+      <div class="container">
+        <div class="flex-container">
+          <h2>Cadastro de Aeroportos</h2>
+          <input type="text" id="search" placeholder="Buscar Aeroportos">
+          <button onclick="openModal()" id="new">Incluir Aeroporto</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th id="nomeAeroporto">Nome Aeroporto</th>
+              <th id="siglaAeroporto" class="siglaAeroporto">Sigla Aeroporto</th>
+              <th id="cidade">Cidade</th>
+              <th id="estado">Estado</th>
+              <th class="acao">Detalhes</th>
+              <th class="acao">Editar</th>
+              <th class="acao">Excluir</th>
+            </tr>
+          </thead>
+          <tbody id="aeroportoTableBody">
+            <!-- Linhas da tabela serão inseridas aqui dinamicamente -->
+          </tbody>
+        </table>
 
-    <div class="modal-container" id="modal-container">
-      <div class="modal">
-        <form id="addAeroportoForm">
-          <h3>Identidade do Aeroporto</h3>
-          <div class="form-section">
-            <label for="m-nome">Nome</label>
-            <div class="inputLinha">
-              <input id="m-nome" type="text" required />
-              <div id="suggestions" class="suggestions"></div>
-            </div>
-            <label for="m-siglaAeroporto">Sigla Aeroporto</label>
-            <div class="inputLinha">
-              <input id="m-siglaAeroporto" type="text" required />
-            </div>
-            <label for="m-codigoICAO">Código ICAO</label>
-            <div class="inputLinha">
-              <input id="m-codigoICAO" type="text" required />
-            </div>
+        <div class="modal-container" id="modal-container">
+          <div class="modal">
+            <form id="addAeroportoForm">
+              <h3>Identidade do Aeroporto</h3>
+              <div class="form-section">
+                <label for="m-nome">Nome</label>
+                <div class="inputLinha">
+                  <input id="m-nome" type="text" required />
+                  <div id="suggestions" class="suggestions"></div>
+                </div>
+                <label for="m-siglaAeroporto">Sigla Aeroporto</label>
+                <div class="inputLinha">
+                  <input id="m-siglaAeroporto" type="text" required />
+                </div>
+                <label for="m-codigoICAO">Código ICAO</label>
+                <div class="inputLinha">
+                  <input id="m-codigoICAO" type="text" required />
+                </div>
+              </div>
+
+              <h3>Endereço</h3>
+              <div class="form-section">
+                <label for="m-endereco">Endereço</label>
+                <div class="inputLinha">
+                  <input id="m-endereco" type="text" required />
+                </div>
+                <label for="m-cidade">Cidade</label>
+                <div class="inputLinha">
+                  <input id="m-cidade" type="text" required />
+                </div>
+                <label for="m-estado">Estado</label>
+                <div class="inputLinha">
+                  <input id="m-estado" type="text" required />
+                </div>
+                <label for="m-pais">País</label>
+                <div class="inputLinha">
+                  <input id="m-pais" type="text" required />
+                </div>
+                <label for="m-email">Email</label>
+                <div class="inputLinha">
+                  <input id="m-email" type="email" required />
+                </div>
+                <label for="m-telefone">Telefone</label>
+                <div class="inputLinha">
+                  <input id="m-telefone" type="text" required />
+                </div>
+              </div>
+
+              <h3>Funcionalidade</h3>
+              <div class="form-section">
+                <label for="m-numeroPistas">Número de Pistas</label>
+                <div class="inputLinha">
+                  <input id="m-numeroPistas" type="text" required />
+                </div>
+                <label for="m-numeroTerminais">Número de Terminais</label>
+                <div class="inputLinha">
+                  <input id="m-numeroTerminais" type="text" required />
+                </div>
+                <label for="m-capacidadePassageiros">Capacidade de Passageiros</label>
+                <div class="inputLinha">
+                  <input id="m-capacidadePassageiros" type="text" required />
+                </div>
+                <label for="m-horarioAbertura">Horário de Abertura</label>
+                <div class="inputLinha">
+                  <input id="m-horarioAbertura" type="time" required />
+                </div>
+                <label for="m-horarioFechamento">Horário de Fechamento</label>
+                <div class="inputLinha">
+                  <input id="m-horarioFechamento" type="time" required />
+                </div>
+              </div>
+
+              <button type="submit" id="btnSalvar">Salvar</button>
+              <button type="button" onclick="closeModal()">Fechar</button>
+            </form>
           </div>
+        </div>
 
-          <h3>Endereço</h3>
-          <div class="form-section">
-            <label for="m-endereco">Endereço</label>
-            <div class="inputLinha">
-              <input id="m-endereco" type="text" required />
-            </div>
-            <label for="m-cidade">Cidade</label>
-            <div class="inputLinha">
-              <input id="m-cidade" type="text" required />
-            </div>
-            <label for="m-estado">Estado</label>
-            <div class="inputLinha">
-              <input id="m-estado" type="text" required />
-            </div>
-            <label for="m-pais">País</label>
-            <div class="inputLinha">
-              <input id="m-pais" type="text" required />
-            </div>
-            <label for="m-email">Email</label>
-            <div class="inputLinha">
-              <input id="m-email" type="email" required />
-            </div>
-            <label for="m-telefone">Telefone</label>
-            <div class="inputLinha">
-              <input id="m-telefone" type="text" required />
-            </div>
+        <div class="modal-container" id="editAeroportoModal">
+          <div class="modal">
+            <form id="editAeroportoForm">
+              <h3>Editar Aeroporto</h3>
+              <div class="form-section">
+                <label for="edit-nome">Nome</label>
+                <div class="inputLinha">
+                  <input id="edit-nome" type="text" required />
+                </div>
+                <label for="edit-siglaAeroporto">Sigla Aeroporto</label>
+                <div class="inputLinha">
+                  <input id="edit-siglaAeroporto" type="text" required />
+                </div>
+                <label for="edit-codigoICAO">Código ICAO</label>
+                <div class="inputLinha">
+                  <input id="edit-codigoICAO" type="text" required />
+                </div>
+              </div>
+
+              <h3>Endereço</h3>
+              <div class="form-section">
+                <label for="edit-endereco">Endereço</label>
+                <div class="inputLinha">
+                  <input id="edit-endereco" type="text" required />
+                </div>
+                <label for="edit-cidade">Cidade</label>
+                <div class="inputLinha">
+                  <input id="edit-cidade" type="text" required />
+                </div>
+                <label for="edit-estado">Estado</label>
+                <div class="inputLinha">
+                  <input id="edit-estado" type="text" required />
+                </div>
+                <label for="edit-pais">País</label>
+                <div class="inputLinha">
+                  <input id="edit-pais" type="text" required />
+                </div>
+                <label for="edit-email">Email</label>
+                <div class="inputLinha">
+                  <input id="edit-email" type="email" required />
+                </div>
+                <label for="edit-telefone">Telefone</label>
+                <div class="inputLinha">
+                  <input id="edit-telefone" type="text" required />
+                </div>
+              </div>
+
+              <h3>Funcionalidade</h3>
+              <div class="form-section">
+                <label for="edit-numeroPistas">Número de Pistas</label>
+                <div class="inputLinha">
+                  <input id="edit-numeroPistas" type="text" required />
+                </div>
+                <label for="edit-numeroTerminais">Número de Terminais</label>
+                <div class="inputLinha">
+                  <input id="edit-numeroTerminais" type="text" required />
+                </div>
+                <label for="edit-capacidadePassageiros">Capacidade de Passageiros</label>
+                <div class="inputLinha">
+                  <input id="edit-capacidadePassageiros" type="text" required />
+                </div>
+                <label for="edit-horarioAbertura">Horário de Abertura</label>
+                <div class="inputLinha">
+                  <input id="edit-horarioAbertura" type="time" required />
+                </div>
+                <label for="edit-horarioFechamento">Horário de Fechamento</label>
+                <div class="inputLinha">
+                  <input id="edit-horarioFechamento" type="time" required />
+                </div>
+              </div>
+
+              <input type="hidden" id="edit-id" />
+              <button type="submit" id="btnUpdate">Atualizar</button>
+              <button type="button" onclick="closeEditModal()">Fechar</button>
+            </form>
           </div>
-
-          <h3>Funcionalidade</h3>
-          <div class="form-section">
-            <label for="m-numeroPistas">Número de Pistas</label>
-            <div class="inputLinha">
-              <input id="m-numeroPistas" type="text" required />
-            </div>
-            <label for="m-numeroTerminais">Número de Terminais</label>
-            <div class="inputLinha">
-              <input id="m-numeroTerminais" type="text" required />
-            </div>
-            <label for="m-capacidadePassageiros">Capacidade de Passageiros</label>
-            <div class="inputLinha">
-              <input id="m-capacidadePassageiros" type="text" required />
-            </div>
-            <label for="m-horarioAbertura">Horário de Abertura</label>
-            <div class="inputLinha">
-              <input id="m-horarioAbertura" type="time" required />
-            </div>
-            <label for="m-horarioFechamento">Horário de Fechamento</label>
-            <div class="inputLinha">
-              <input id="m-horarioFechamento" type="time" required />
-            </div>
-          </div>
-
-          <button type="submit" id="btnSalvar">Salvar</button>
-          <button type="button" onclick="closeModal()">Fechar</button>
-        </form>
+        </div>
       </div>
-    </div>
-
-    <div class="modal-container" id="editAeroportoModal">
-      <div class="modal">
-        <form id="editAeroportoForm">
-          <h3>Editar Aeroporto</h3>
-          <div class="form-section">
-            <label for="edit-nome">Nome</label>
-            <div class="inputLinha">
-              <input id="edit-nome" type="text" required />
-            </div>
-            <label for="edit-siglaAeroporto">Sigla Aeroporto</label>
-            <div class="inputLinha">
-              <input id="edit-siglaAeroporto" type="text" required />
-            </div>
-            <label for="edit-codigoICAO">Código ICAO</label>
-            <div class="inputLinha">
-              <input id="edit-codigoICAO" type="text" required />
-            </div>
-          </div>
-
-          <h3>Endereço</h3>
-          <div class="form-section">
-            <label for="edit-endereco">Endereço</label>
-            <div class="inputLinha">
-              <input id="edit-endereco" type="text" required />
-            </div>
-            <label for="edit-cidade">Cidade</label>
-            <div class="inputLinha">
-              <input id="edit-cidade" type="text" required />
-            </div>
-            <label for="edit-estado">Estado</label>
-            <div class="inputLinha">
-              <input id="edit-estado" type="text" required />
-            </div>
-            <label for="edit-pais">País</label>
-            <div class="inputLinha">
-              <input id="edit-pais" type="text" required />
-            </div>
-            <label for="edit-email">Email</label>
-            <div class="inputLinha">
-              <input id="edit-email" type="email" required />
-            </div>
-            <label for="edit-telefone">Telefone</label>
-            <div class="inputLinha">
-              <input id="edit-telefone" type="text" required />
-            </div>
-          </div>
-
-          <h3>Funcionalidade</h3>
-          <div class="form-section">
-            <label for="edit-numeroPistas">Número de Pistas</label>
-            <div class="inputLinha">
-              <input id="edit-numeroPistas" type="text" required />
-            </div>
-            <label for="edit-numeroTerminais">Número de Terminais</label>
-            <div class="inputLinha">
-              <input id="edit-numeroTerminais" type="text" required />
-            </div>
-            <label for="edit-capacidadePassageiros">Capacidade de Passageiros</label>
-            <div class="inputLinha">
-              <input id="edit-capacidadePassageiros" type="text" required />
-            </div>
-            <label for="edit-horarioAbertura">Horário de Abertura</label>
-            <div class="inputLinha">
-              <input id="edit-horarioAbertura" type="time" required />
-            </div>
-            <label for="edit-horarioFechamento">Horário de Fechamento</label>
-            <div class="inputLinha">
-              <input id="edit-horarioFechamento" type="time" required />
-            </div>
-          </div>
-
-          <input type="hidden" id="edit-id" />
-          <button type="submit" id="btnUpdate">Atualizar</button>
-          <button type="button" onclick="closeEditModal()">Fechar</button>
-        </form>
-      </div>
-    </div>
-  </div>
 
 
-</main>
-<script src="../js/crudAeroportos.js"></script>
+    </main>
+    <script src="../js/crudAeroportos.js"></script>
 </body>
-</html> 
+
+</html>
